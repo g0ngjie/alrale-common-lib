@@ -3,22 +3,22 @@
 
 /**
  * 定时器
- * @param millisecond 毫秒
- * @param callback 
+ * @param {number | undefined} millisecond 毫秒 | 1000
+ * @param {Function} callback 
  * @returns {Function} clearInterval
  */
-export function execInterval(millisecond: number, callback: Function): Function {
+export function execInterval(millisecond: number = 1000, callback: Function): Function {
     const intervalId = setInterval(() => callback(), millisecond)
     return () => clearInterval(intervalId)
 }
 
 /**
  * 自动结束定时器
- * @param millisecond 开始毫秒
- * @param stopMillisecond 结束时间毫秒
- * @param callback 
+ * @param {number | undefined} millisecond 开始毫秒 | 1000
+ * @param {number | undefined} stopMillisecond 结束时间毫秒 | 1000
+ * @param {Function} callback 
  */
-export function autoStopInterval(millisecond: number, stopMillisecond: number, callback: Function): Promise<void> {
+export function autoStopInterval(millisecond: number = 1000, stopMillisecond: number = 1000, callback: Function): Promise<void> {
     return new Promise(resolve => {
         const intervalId = setInterval(() => callback(), millisecond)
         setTimeout(() => {
