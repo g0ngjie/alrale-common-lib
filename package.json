@@ -1,0 +1,37 @@
+{
+  "name": "@alrale/common-lib",
+  "version": "1.0.0",
+  "description": "common functions",
+  "private": false,
+  "main": "lib/index.js",
+  "typings": "types/index.d.ts",
+  "scripts": {
+    "build": "./build.sh",
+    "test": "jest"
+  },
+  "repository": "git@github.com:g0ngjie/alrale-common-lib.git",
+  "author": "Gj <gongjie0422@163.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/g0ngjie/alrale-common-lib/issues"
+  },
+  "homepage": "https://github.com/g0ngjie/alrale-common-lib",
+  "keywords": [
+    "common-lib",
+    "alrale"
+  ],
+  "files": [
+    "lib",
+    "types/*.d.ts"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@types/jest": "^26.0.15",
+    "babel-jest": "^26.6.3",
+    "gulp": "^4.0.2",
+    "gulp-uglify": "^3.0.2",
+    "jest": "^26.6.3"
+  }
+}
