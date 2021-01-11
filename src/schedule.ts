@@ -14,13 +14,13 @@ export function execInterval(millisecond: number = 1000, callback: Function): Fu
 
 /**
  * 自动结束定时器
- * @param {number | undefined} millisecond 开始毫秒 | 1000
+ * @param {number | undefined} interval 间隔毫秒 | 1000
  * @param {number | undefined} stopMillisecond 结束时间毫秒 | 1000
  * @param {Function} callback 
  */
-export function autoStopInterval(millisecond: number = 1000, stopMillisecond: number = 1000, callback: Function): Promise<void> {
+export function autoStopInterval(interval: number = 1000, stopMillisecond: number = 1000, callback: Function): Promise<void> {
     return new Promise(resolve => {
-        const intervalId = setInterval(() => callback(), millisecond)
+        const intervalId = setInterval(() => callback(), interval)
         setTimeout(() => {
             clearInterval(intervalId)
             resolve()
