@@ -22,7 +22,8 @@
   ],
   "files": [
     "lib",
-    "types/*.d.ts"
+    "types/*.d.ts",
+    "node_modules/@types/validator"
   ],
   "devDependencies": {
     "@babel/core": "^7.12.3",
