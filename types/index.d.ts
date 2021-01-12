@@ -10,5 +10,4 @@ export { setStore, getStore, setOStore, getOStore, removeStore } from './store';
 export { sleep, sleepSync } from './sleep';
 export { dateDiff, week } from './time.axis';
 export { execInterval, autoStopInterval, Schedule } from './schedule';
-import Enum from "./enum/index";
-export { Enum };
+export * as Enum from "./enum/index";

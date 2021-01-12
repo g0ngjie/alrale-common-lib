@@ -23,8 +23,4 @@ export { dateDiff, week } from './time.axis'
 
 export { execInterval, autoStopInterval, Schedule } from './schedule'
 
-import Enum from "./enum/index";
-
-export {
-    Enum
-}
+export * as Enum from "./enum/index";
