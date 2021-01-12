@@ -15,10 +15,7 @@ $ yarn add @alrale/common-lib
 deepClone<T>(target: T): T;
 /** object deep clone -> other object */
 deepOClone(target: any): any;
-/**
- * 实现复制功能
- * @param {string} value 文本
- */
+// js复制
 copyValue(value: string): void;
 
 /** parse url(解析url上的参数)  */
@@ -53,14 +50,12 @@ sleepSync(millisecond: number): Promise<void>;
 dateDiff(timestamp: string | number): string;
 /** number -> arr -> string */
 week(day: number): string;
-/**
- * 定时器
- */
+// 定时器
 execInterval(millisecond: number, callback: Function): Function;
-/**
- * 自动结束定时器
- */
+// 自动结束定时器
 autoStopInterval(millisecond: number, stopMillisecond: number, callback: Function): Promise<void>;
+// 随机区间整数
+randomRangeInt(max?: number, min?: number): number;
 
 
 ```
