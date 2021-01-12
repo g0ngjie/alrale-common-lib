@@ -11,5 +11,4 @@ export { sleep, sleepSync } from './sleep';
 export { dateDiff, week } from './time.axis';
 export { execInterval, autoStopInterval, Schedule } from './schedule';
 import Enum from "./enum/index";
-import Validator from "validator";
-export { Enum, Validator };
+export { Enum };

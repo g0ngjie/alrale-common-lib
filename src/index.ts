@@ -25,9 +25,6 @@ export { execInterval, autoStopInterval, Schedule } from './schedule'
 
 import Enum from "./enum/index";
 
-import Validator from "validator";
-
 export {
-    Enum,
-    Validator
+    Enum
 }
