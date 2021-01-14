@@ -55,7 +55,7 @@ execInterval(millisecond: number, callback: Function): Function;
 // 自动结束定时器
 autoStopInterval(millisecond: number, stopMillisecond: number, callback: Function): Promise<void>;
 // 随机区间整数
-randomRangeInt(max?: number, min?: number): number;
+randomInt(max?: number, min?: number): number;
 
 
 ```

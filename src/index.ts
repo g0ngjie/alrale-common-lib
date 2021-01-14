@@ -23,6 +23,6 @@ export { dateDiff, week } from './time.axis'
 
 export { execInterval, autoStopInterval, Schedule } from './schedule'
 
-export { randomRangeInt } from './number'
+export { randomInt } from './number'
 
 export * as Enum from "./enum/index";
