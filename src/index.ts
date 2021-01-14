@@ -25,4 +25,6 @@ export { execInterval, autoStopInterval, Schedule } from './schedule'
 
 export { randomInt } from './number'
 
+export { getKernel, isChrome, isEdge, isFirefox, isIE, isOpera, isSafari } from './browser'
+
 export * as Enum from "./enum/index";

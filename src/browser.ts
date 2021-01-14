@@ -1,4 +1,7 @@
-export function browser(): string {
+/**
+ * 获取浏览器内核类型
+ */
+export function getKernel(): string {
   const userAgent = navigator.userAgent //取得浏览器的userAgent字符串
   const isOpera = userAgent.indexOf('Opera') > -1 //判断是否Opera浏览器
   const isIE =
@@ -27,9 +30,9 @@ export function browser(): string {
     } else if (fIEVersion == 11) {
       return 'IE11'
     } else {
-      return '0'
-    } //IE版本过低
-    // return 'IE'
+      //IE版本过低
+      return 'IE'
+    }
   }
   if (isOpera) {
     return 'Opera'
@@ -49,9 +52,9 @@ export function browser(): string {
   return 'None'
 }
 
-export const isSafari = browser() === 'Safari'
-export const isChrome = browser() === 'Chrome'
-export const isFirefox = browser() === 'FF'
-export const isOpera = browser() === 'Opera'
-export const isEdge = browser() === 'Edge'
-export const isIE = ['IE7', 'IE8', 'IE9', 'IE10', 'IE11', '0'].includes(browser())
+export const isSafari: boolean = getKernel() === 'Safari'
+export const isChrome: boolean = getKernel() === 'Chrome'
+export const isFirefox: boolean = getKernel() === 'FF'
+export const isOpera: boolean = getKernel() === 'Opera'
+export const isEdge: boolean = getKernel() === 'Edge'
+export const isIE: boolean = ['IE7', 'IE8', 'IE9', 'IE10', 'IE11', 'IE'].includes(getKernel())

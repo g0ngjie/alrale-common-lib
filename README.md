@@ -57,6 +57,14 @@ autoStopInterval(millisecond: number, stopMillisecond: number, callback: Functio
 // 随机区间整数
 randomInt(max?: number, min?: number): number;
 
+//浏览器内核类型
+getKernel(): string;
+isSafari: boolean;
+isChrome: boolean;
+isFirefox: boolean;
+isOpera: boolean;
+isEdge: boolean;
+isIE: boolean;
 
 ```
 
