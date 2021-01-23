@@ -10,4 +10,9 @@ interface DesensitizationOption {
  * @param options
  */
 export declare function desensitization(str: string, options?: DesensitizationOption): string;
+/**
+ * 随机字符串
+ * @param len 长度
+ */
+export declare function randomString(len?: number): string;
 export {};

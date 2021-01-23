@@ -12,4 +12,5 @@ export { dateDiff, week } from './time.axis';
 export { execInterval, autoStopInterval, Schedule } from './schedule';
 export { randomInt, randomDistinctIntArray, randomDistinctRangeArray, Number } from './number';
 export { getKernel, isChrome, isEdge, isFirefox, isIE, isOpera, isSafari } from './browser';
+export { randomString } from './string';
 export * as Enum from "./enum/index";

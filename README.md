@@ -60,6 +60,8 @@ randomInt(max?: number, min?: number): number;
 randomDistinctIntArray(len?: number): number[];
 // 随机区间唯一整数的列表
 randomDistinctRangeArray(toMax?: number, fromMin?: number, len?: number): number[];
+// 随机字符串
+randomString(len?: number): string
 
 //浏览器内核类型
 getKernel(): string;

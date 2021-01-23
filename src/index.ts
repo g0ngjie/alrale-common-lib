@@ -27,4 +27,6 @@ export { randomInt, randomDistinctIntArray, randomDistinctRangeArray, Number } f
 
 export { getKernel, isChrome, isEdge, isFirefox, isIE, isOpera, isSafari } from './browser'
 
+export { randomString } from './string'
+
 export * as Enum from "./enum/index";
