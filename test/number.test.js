@@ -1,5 +1,4 @@
-import { randomInt } from "../lib/number";
-
+import { randomInt, randomDistinctIntArray, randomDistinctRangeArray } from "../lib/number";
 
 describe("number", () => {
 
@@ -13,5 +12,19 @@ describe("number", () => {
         const num = randomInt(10, 5)
         expect(num <= 10).toBe(true)
         expect(num >= 5).toBe(true)
+    })
+
+    it("randomDistinctIntArray", () => {
+        const list = randomDistinctIntArray(10)
+        expect(list.includes(6)).toBe(true)
+    })
+
+    it("randomDistinctRangeArray", (done) => {
+        const list = randomDistinctRangeArray(10, 5, 6)
+        for (let i = 0; i < list.length; i++) {
+            const item = list[i];
+            expect([5, 6, 7, 8, 9, 10].includes(item)).toBe(true)
+            if (i === list.length - 1) done()
+        }
     })
 })

@@ -58,3 +58,5 @@ export const isFirefox: boolean = getKernel() === 'FF'
 export const isOpera: boolean = getKernel() === 'Opera'
 export const isEdge: boolean = getKernel() === 'Edge'
 export const isIE: boolean = ['IE7', 'IE8', 'IE9', 'IE10', 'IE11', 'IE'].includes(getKernel())
+
+// TODO: 获取浏览器所有信息
