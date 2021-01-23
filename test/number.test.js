@@ -17,9 +17,16 @@ describe("number", () => {
     it("randomDistinctIntArray", () => {
         const list = randomDistinctIntArray(10)
         expect(list.includes(6)).toBe(true)
+        // 默认[0]
+        const defaultList = randomDistinctIntArray()
+        expect(defaultList).toEqual([0])
     })
 
     it("randomDistinctRangeArray", (done) => {
+        // 默认[0~10]
+        const defaultList = randomDistinctRangeArray()
+        expect(defaultList.length).toBe(1)
+
         const list = randomDistinctRangeArray(10, 5, 6)
         for (let i = 0; i < list.length; i++) {
             const item = list[i];

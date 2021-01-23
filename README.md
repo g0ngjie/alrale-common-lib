@@ -56,6 +56,10 @@ execInterval(millisecond: number, callback: Function): Function;
 autoStopInterval(millisecond: number, stopMillisecond: number, callback: Function): Promise<void>;
 // 随机区间整数
 randomInt(max?: number, min?: number): number;
+// 随机获取整数列表
+randomDistinctIntArray(len?: number): number[];
+// 随机区间唯一整数的列表
+randomDistinctRangeArray(toMax?: number, fromMin?: number, len?: number): number[];
 
 //浏览器内核类型
 getKernel(): string;

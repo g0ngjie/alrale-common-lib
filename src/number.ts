@@ -37,7 +37,7 @@ export function randomDistinctRangeArray(toMax: number = 10, fromMin: number = 0
  * 随机获取整数列表
  * @param len 长度
  */
-export function randomDistinctIntArray(len: number): number[] {
+export function randomDistinctIntArray(len: number = 1): number[] {
     const temp: number[] = new Array();
     const target: number[] = Array.from(Array(len), (_, v) => v)
     for (let i = 0; i < len; i++) {

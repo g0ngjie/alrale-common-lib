@@ -19,7 +19,7 @@ export declare function randomDistinctRangeArray(toMax?: number, fromMin?: numbe
  * 随机获取整数列表
  * @param len 长度
  */
-export declare function randomDistinctIntArray(len: number): number[];
+export declare function randomDistinctIntArray(len?: number): number[];
 export declare const Number: {
     randomInt: typeof randomInt;
     randomDistinctIntArray: typeof randomDistinctIntArray;
