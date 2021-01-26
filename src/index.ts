@@ -29,4 +29,6 @@ export { getKernel, isChrome, isEdge, isFirefox, isIE, isOpera, isSafari } from 
 
 export { randomString } from './string'
 
+export { arrayToObject } from './array'
+
 export * as Enum from "./enum/index";
