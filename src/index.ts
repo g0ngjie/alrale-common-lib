@@ -23,12 +23,14 @@ export { dateDiff, week } from './time.axis'
 
 export { execInterval, autoStopInterval, Schedule } from './schedule'
 
-export { randomInt, randomDistinctIntArray, randomDistinctRangeArray, Number } from './number'
+export { randomInt, randomDistinctIntArray, randomDistinctRangeArray, isNumber } from './number'
 
 export { getKernel, isChrome, isEdge, isFirefox, isIE, isOpera, isSafari } from './browser'
 
 export { randomString } from './string'
 
 export { arrayToObject } from './array'
+
+export { sortMapByKey } from './object'
 
 export * as Enum from "./enum/index";

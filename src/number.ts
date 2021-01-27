@@ -48,10 +48,13 @@ export function randomDistinctIntArray(len: number = 1): number[] {
     return temp
 }
 
-export const Number = {
-    randomInt,
-    randomDistinctIntArray,
-    randomDistinctRangeArray
+/**
+ * 判断数字类型
+ * @param target 
+ */
+export function isNumber(target: any): boolean {
+    const result = Number(target)
+    return !isNaN(result)
 }
 
 export default {

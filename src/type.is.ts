@@ -11,6 +11,7 @@ export function typeIs<T>(target: T): string {
     '[object Date]': 'date',
     '[object Array]': 'array',
     '[object Object]': 'object',
+    '[object Map]': 'map',
     '[object RegExp]': 'regexp',
     '[object Error]': 'error',
     '[object HTMLDocument]': 'document',

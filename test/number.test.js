@@ -1,4 +1,4 @@
-import { randomInt, randomDistinctIntArray, randomDistinctRangeArray } from "../lib/number";
+import { randomInt, randomDistinctIntArray, randomDistinctRangeArray, isNumber } from "../lib/number";
 
 describe("number", () => {
 
@@ -33,5 +33,14 @@ describe("number", () => {
             expect([5, 6, 7, 8, 9, 10].includes(item)).toBe(true)
             if (i === list.length - 1) done()
         }
+    })
+
+    it("isNumber", () => {
+        const one = isNumber('one')
+        expect(one).toBe(false)
+        const two = isNumber('2')
+        expect(two).toBe(true)
+        const func = isNumber(() => { })
+        expect(func).toBe(false)
     })
 })

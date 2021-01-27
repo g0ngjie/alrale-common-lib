@@ -20,11 +20,11 @@ export declare function randomDistinctRangeArray(toMax?: number, fromMin?: numbe
  * @param len 长度
  */
 export declare function randomDistinctIntArray(len?: number): number[];
-export declare const Number: {
-    randomInt: typeof randomInt;
-    randomDistinctIntArray: typeof randomDistinctIntArray;
-    randomDistinctRangeArray: typeof randomDistinctRangeArray;
-};
+/**
+ * 判断数字类型
+ * @param target
+ */
+export declare function isNumber(target: any): boolean;
 declare const _default: {
     randomInt: typeof randomInt;
     randomDistinctIntArray: typeof randomDistinctIntArray;
