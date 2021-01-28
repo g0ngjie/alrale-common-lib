@@ -27,7 +27,7 @@ export { randomInt, randomDistinctIntArray, randomDistinctRangeArray, isNumber }
 
 export { getKernel, isChrome, isEdge, isFirefox, isIE, isOpera, isSafari } from './browser'
 
-export { randomString } from './string'
+export { randomString, nameDesensitization, desensitization } from './string'
 
 export { arrayToObject } from './array'
 

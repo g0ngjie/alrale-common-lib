@@ -1,20 +1,56 @@
 
-interface DesensitizationOption {
-  /**0.1~1 */
-  quantity: number,
-  /**center | start | end */
-  location: string,
+/**
+ * 字符串倍数拼接
+ * @param str 
+ * @param multiple 
+ */
+function __multipleStr(str: string, multiple: number = 1) {
+  let target = '';
+  for (let i = 0; i < multiple; i++) {
+    target += str;
+  }
+  return target;
+}
+
+/**
+ * 名字脱敏
+ * @param str
+ */
+export function nameDesensitization(str: string = ''): string {
+  // 为空|一个字符 直接返回
+  if (str.length < 2) return str;
+
+  const chars: string[] = [];
+  let name: string = '';
+  for (let i = 0; i < str.length; i++) {
+    const char: string = str[i];
+    chars[i] = char;
+  }
+  if (chars.length === 2) name = str.replace(str.substr(1), __multipleStr('*', 1));
+  else if (chars.length > 2) {
+    name = str.replace(str.substring(1, chars.length - 1), __multipleStr('*', chars.length - 2));
+  }
+  return name;
 }
 
 /**
  * 字符串脱敏
- * @param str 
- * @param options 
+ * @param {string} str 
+ * @param {number} startIndex 
+ * @param {number} endIndex 
  */
-export function desensitization(str: string, options?: DesensitizationOption): string {
-  const str1 = '*******************'
+export function desensitization(str: string = '', startIndex: number = 0, endIndex: number): string {
+  // 为空|一个字符 直接返回
+  if (str.length < 2) return str;
+  if (!endIndex) endIndex = str.length;
 
-  return ''
+  let target: string = '';
+  for (let i = 0; i < str.length; i++) {
+    const char: string = str[i];
+    if (i >= startIndex && i < endIndex) target += '*';
+    else target += char;
+  }
+  return target;
 }
 
 /**
