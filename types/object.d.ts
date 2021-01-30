@@ -17,3 +17,8 @@ export declare function objectToVArray(target: any): any[];
  * @param {Map<any, any>} target
  */
 export declare function mapToVArray(target: any): any[];
+/**
+ * 对象to 对象数组
+ * @param {Object | Map<any, any>} target
+ */
+export declare function objectToArray(target: any): any[];

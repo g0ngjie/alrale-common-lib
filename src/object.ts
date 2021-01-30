@@ -82,3 +82,24 @@ export function mapToVArray(target: any): any[] {
     target.forEach((value: any) => arr.push(value))
     return arr;
 }
+
+/**
+ * 对象to 对象数组
+ * @param {Object | Map<any, any>} target 
+ */
+export function objectToArray(target: any): any[] {
+    const arr: any[] = [];
+    if (typeIs(target) === 'object') {
+        for (const key in target) {
+            if (Object.prototype.hasOwnProperty.call(target, key)) {
+                const item = target[key];
+                arr.push({ [key]: item })
+            }
+        }
+    } else if (typeIs(target) === 'map') {
+        target.forEach((value: any, key: any) => {
+            arr.push({ [key]: value })
+        })
+    }
+    return arr;
+}

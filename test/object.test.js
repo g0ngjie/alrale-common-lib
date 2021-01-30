@@ -1,4 +1,4 @@
-import { sortMapByKey, objectToVArray, mapToVArray } from "../lib/object";
+import { sortMapByKey, objectToVArray, mapToVArray, objectToArray } from "../lib/object";
 
 describe("object", () => {
     it('sortMapByKey', () => {
@@ -19,10 +19,20 @@ describe("object", () => {
     })
 
     it("mapToVArray", () => {
-        const obj = { a: 1, b: null, c: [1, 2], d: { val: 'haha' } }
         const map = new Map();
         map.set('a', 1).set('b', null).set('c', [1, 2]).set('d', true)
         const arr = mapToVArray(map)
         expect(arr.includes(true)).toBe(true)
+    })
+
+    it("objectToArray", () => {
+        const obj = { a: 1, b: null, c: [1, 2], d: { val: 'haha' } }
+        const objArr = objectToArray(obj)
+        expect(objArr[0].a).toBe(1)
+
+        const map = new Map();
+        map.set('a', 1).set('b', null).set('c', [1, 2]).set('d', true)
+        const mapArr = objectToArray(map)
+        expect(mapArr.length).toBe(map.size)
     })
 })
