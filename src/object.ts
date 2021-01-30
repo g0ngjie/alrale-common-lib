@@ -15,9 +15,6 @@ function __compareSize(small: any, big: any): number {
 }
 
 /**
- * 排序
- */
-/**
  * 对象key排序
  * @param {Map | Object} map 
  * @param {boolean} isKeyUpSort 
