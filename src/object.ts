@@ -55,3 +55,30 @@ export function sortMapByKey(map: any, isKeyUpSort: boolean = true) {
     }
     return newMap;
 }
+
+/**
+ * 对象to value数组
+ * @param {Object} target 
+ */
+export function objectToVArray(target: any): any[] {
+    if (typeIs(target) !== 'object') return target;
+    const arr: any[] = [];
+    for (const key in target) {
+        if (Object.prototype.hasOwnProperty.call(target, key)) {
+            const item = target[key];
+            arr.push(item)
+        }
+    }
+    return arr;
+}
+
+/**
+ * Map to value数组
+ * @param {Map<any, any>} target 
+ */
+export function mapToVArray(target: any): any[] {
+    if (typeIs(target) !== 'map') return target;
+    const arr: any[] = [];
+    target.forEach((value: any) => arr.push(value))
+    return arr;
+}
