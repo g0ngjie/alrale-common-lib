@@ -1,20 +1,14 @@
-import { typeIs } from "./type.is";
 
+type LevelType = 'info' | 'log' | 'debug' | 'warn' | 'error';
 
 interface LogOption {
     disabled?: boolean,
-    level: string | any
+    level: LevelType
 }
 
 interface ConsoleOption {
     disabledAll?: boolean,
 }
-
-type LevelType = 'info' | 'log' | 'debug' | 'warn' | 'error';
-
-type DisabledLevel = LevelType | LevelType[];
-
-let console: any;
 
 function _log({ level, disabled }: LogOption): void {
     console[level] = function (origin) {
@@ -29,23 +23,24 @@ function _envLog(option: ConsoleOption): void {
     const { disabledAll } = option || {}
     console = function (origin) {
         return {
-            log: function (...args: any[]) {
+            ...origin,
+            log: function (...args: any[]): void {
                 if (disabledAll) return
                 origin.log.call(console, ...args)
             },
-            info: function (...args: any[]) {
+            info: function (...args: any[]): void {
                 if (disabledAll) return
                 origin.info.call(console, ...args)
             },
-            debug: function (...args: any[]) {
+            debug: function (...args: any[]): void {
                 if (disabledAll) return
                 origin.debug.call(console, ...args)
             },
-            warn: function (...args: any[]) {
+            warn: function (...args: any[]): void {
                 if (disabledAll) return
                 origin.warn.call(console, ...args)
             },
-            error: function (...args: any[]) {
+            error: function (...args: any[]): void {
                 if (disabledAll) return
                 origin.error.call(console, ...args)
             }
@@ -55,13 +50,9 @@ function _envLog(option: ConsoleOption): void {
 
 export const log = {
     disabledAll: () => _envLog({ disabledAll: true }),
-    disabled: (level: DisabledLevel) => {
-        if (typeIs(level) === 'array') {
-            for (let i = 0; i < level.length; i++) {
-                const l: string = level[i];
-                _log({ level: l, disabled: true })
-            }
-        } else {
+    disabled: (levels: LevelType[]) => {
+        for (let i = 0; i < levels.length; i++) {
+            const level: LevelType = levels[i];
             _log({ level, disabled: true })
         }
     }
