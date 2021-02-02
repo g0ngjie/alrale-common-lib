@@ -53,7 +53,7 @@ function _envLog(option: ConsoleOption): void {
     }(console);
 }
 
-export const _console = {
+export const log = {
     disabledAll: () => _envLog({ disabledAll: true }),
     disabled: (level: DisabledLevel) => {
         if (typeIs(level) === 'array') {

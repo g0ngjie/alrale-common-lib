@@ -16,5 +16,5 @@ export { randomString, nameDesensitization, desensitization } from './string';
 export { arrayToObject } from './array';
 export { sortMapByKey, objectToVArray, mapToVArray, objectToArray } from './object';
 export { globalStore, getGlobal, setGlobal, removeGlobalItem } from './window';
-export { _console } from './console';
+export { log } from './console';
 export * as Enum from "./enum/index";

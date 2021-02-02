@@ -1,4 +1,4 @@
-import log from "../lib/console";
+import { log } from "../lib/console";
 
 describe('console', () => {
 
