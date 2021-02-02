@@ -1,4 +1,4 @@
-import { getGlobal, setGlobal, globalStore } from "../lib/window";
+import { getGlobal, setGlobal, globalStore, removeGlobalItem } from "../lib/window";
 
 describe('window', () => {
 
@@ -8,5 +8,11 @@ describe('window', () => {
         expect(bool).toBe(true)
         const getObj = getGlobal(keyObj)
         expect(getObj.value).toBe('hehe')
+
+        const rmBool = removeGlobalItem(keyObj)
+        expect(rmBool).toBe(true)
+        const hasObj = getGlobal(keyObj)
+        expect(hasObj).toBeUndefined()
     })
+    
 })

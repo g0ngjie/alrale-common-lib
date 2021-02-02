@@ -31,3 +31,13 @@ export function getGlobal(key: string): any {
     const _g: any = globalStore();
     return _g[key]
 }
+
+/**
+ * 删除 对象数据
+ * @param {string} key 
+ */
+export function removeGlobalItem(key: string): boolean {
+    const _g: any = globalStore();
+    const bool: boolean = delete _g[key];
+    return bool;
+}

@@ -14,3 +14,8 @@ export declare function setGlobal(key: string, value: any, cover?: boolean): boo
  * @param {string} key
  */
 export declare function getGlobal(key: string): any;
+/**
+ * 删除 对象数据
+ * @param {string} key
+ */
+export declare function removeGlobalItem(key: string): boolean;
