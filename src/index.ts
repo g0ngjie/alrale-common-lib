@@ -33,4 +33,6 @@ export { arrayToObject } from './array'
 
 export { sortMapByKey, objectToVArray, mapToVArray, objectToArray } from './object'
 
+export { globalStore, getGlobal, setGlobal } from './window'
+
 export * as Enum from "./enum/index";

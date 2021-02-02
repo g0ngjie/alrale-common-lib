@@ -15,4 +15,5 @@ export { getKernel, isChrome, isEdge, isFirefox, isIE, isOpera, isSafari } from 
 export { randomString, nameDesensitization, desensitization } from './string';
 export { arrayToObject } from './array';
 export { sortMapByKey, objectToVArray, mapToVArray, objectToArray } from './object';
+export { globalStore, getGlobal, setGlobal } from './window';
 export * as Enum from "./enum/index";
