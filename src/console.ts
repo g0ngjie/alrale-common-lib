@@ -12,7 +12,7 @@ interface ConsoleOption {
 
 type LevelType = 'info' | 'log' | 'debug' | 'warn' | 'error';
 
-type DisabledLevel = string | LevelType[];
+type DisabledLevel = LevelType | LevelType[];
 
 let console: any;
 
@@ -53,7 +53,7 @@ function _envLog(option: ConsoleOption): void {
     }(console);
 }
 
-export default {
+export const _console = {
     disabledAll: () => _envLog({ disabledAll: true }),
     disabled: (level: DisabledLevel) => {
         if (typeIs(level) === 'array') {

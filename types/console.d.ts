@@ -1,7 +1,7 @@
 declare type LevelType = 'info' | 'log' | 'debug' | 'warn' | 'error';
-declare type DisabledLevel = string | LevelType[];
-declare const _default: {
+declare type DisabledLevel = LevelType | LevelType[];
+export declare const _console: {
     disabledAll: () => void;
     disabled: (level: DisabledLevel) => void;
 };
-export default _default;
+export {};
