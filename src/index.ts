@@ -35,4 +35,6 @@ export { sortMapByKey, objectToVArray, mapToVArray, objectToArray } from './obje
 
 export { globalStore, getGlobal, setGlobal, removeGlobalItem } from './window'
 
+export * as _console from './console'
+
 export * as Enum from "./enum/index";
