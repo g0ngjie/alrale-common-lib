@@ -16,21 +16,13 @@ interface LogOption extends ConsoleOption {
     level: LevelType
 }
 
-function _log(option: LogOption): void {
-    const { level, disabled, startWitch, endWitch, includes } = option || {}
-    console[level] = function (origin) {
-        return function (...args: any[]) {
-            if (disabled) return
-            if (_filterString(option, args)) return
-            origin.call(console, ...args)
-        }
-    }(console[level])
-}
-
+/**数组是否存在数据 */
 function _hasArrayData(list: any[]): boolean {
     if (typeIs(list) !== 'array') return false
     return list.length > 0
 }
+
+/**字符串开始是否包含 */
 function _hasStartWitch(startStr: string, args: any[]): boolean {
     if (!_hasArrayData(args)) return false
     const zero: any = args[0]
@@ -38,6 +30,7 @@ function _hasStartWitch(startStr: string, args: any[]): boolean {
     return zero.startsWith(startStr)
 }
 
+/**字符串结束是否包含 */
 function _hasEndWitch(endStr: string, args: any[]): boolean {
     if (!_hasArrayData(args)) return false
     const ending: any = args[args.length - 1]
@@ -45,6 +38,7 @@ function _hasEndWitch(endStr: string, args: any[]): boolean {
     return endStr.endsWith(endStr)
 }
 
+/**字符串是否包含 */
 function _hasIncludes(includeStr: string, args: any[]): boolean {
     if (!_hasArrayData(args)) return false
     for (let i = 0; i < args.length; i++) {
@@ -56,6 +50,7 @@ function _hasIncludes(includeStr: string, args: any[]): boolean {
     return false
 }
 
+/**统一过滤字符串 */
 function _filterString(option: ConsoleOption, args: any[]): boolean {
     const { startWitch, endWitch, includes } = option || {}
     // 如果包含 则不输出
@@ -65,6 +60,19 @@ function _filterString(option: ConsoleOption, args: any[]): boolean {
     return false
 }
 
+/**单级别日志输出 */
+function _log(option: LogOption): void {
+    const { level, disabled, startWitch, endWitch, includes } = option || {}
+    console[level] = function (origin) {
+        return function (...args: any[]) {
+            if (disabled) return
+            if (_filterString(option, args)) return
+            origin.call(console, ...args)
+        }
+    }(console[level])
+}
+
+/**多级别日志输出 */
 function _envLog(option: AllLogOption): void {
     const { disabledAll } = option || {}
     console = function (origin) {
@@ -99,6 +107,7 @@ function _envLog(option: AllLogOption): void {
     }(console);
 }
 
+/**默认导出对象 */
 export const log = {
     disabledAll: () => _envLog({ disabledAll: true }),
     disabled: (levels: LevelType[]) => {
