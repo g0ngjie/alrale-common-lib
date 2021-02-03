@@ -136,18 +136,28 @@ function _envLog(option: AllLogOption): void {
 
 /**默认导出对象 */
 export const log = {
-    disabledAll: () => _envLog({ disabledAll: true }),
-    disabled: (levels: LevelType[]) => {
+    /**全部禁用 */
+    disabledAll: (): void => _envLog({ disabledAll: true }),
+    /**level级别禁用 */
+    disabled: (levels: LevelType[]): void => {
         for (let i = 0; i < levels.length; i++) {
             const level: LevelType = levels[i];
             _log({ level, disabled: true })
         }
     },
-    disabledAllBy: (option: ConsoleOption) => _envLog(option),
-    disabledBy: (levels: LevelType[], option: ConsoleOption) => {
+    /**条件禁用 */
+    disabledAllBy: (option: ConsoleOption): void => _envLog(option),
+    /**level级别禁用|条件过滤 */
+    disabledBy: (levels: LevelType[], option: ConsoleOption): void => {
         for (let i = 0; i < levels.length; i++) {
             const level: LevelType = levels[i];
             _log({ level, ...option })
         }
-    }
+    },
+    /**收集 */
+    collectAll: (option: ConsoleOption): void => _envLog(option),
+    /**level级别收集|条件过滤 */
+    // collect: (option: ConsoleOption): void => {
+
+    // }
 }

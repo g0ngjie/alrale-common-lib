@@ -14,7 +14,8 @@ export { randomInt, randomDistinctIntArray, randomDistinctRangeArray, isNumber }
 export { getKernel, isChrome, isEdge, isFirefox, isIE, isOpera, isSafari } from './browser';
 export { randomString, nameDesensitization, desensitization } from './string';
 export { arrayToObject } from './array';
-export { sortMapByKey, objectToVArray, mapToVArray, objectToArray } from './object';
+export { sortMapByKey, mapToVArray, objectToArray } from './object';
 export { globalStore, getGlobal, setGlobal, removeGlobalItem } from './window';
 export { log } from './console';
 export * as Enum from "./enum/index";
+export { globalStore, getGlobal, setGlobal, removeGlobalItem } from './window';

@@ -15,9 +15,15 @@ interface ConsoleOption {
 }
 /**默认导出对象 */
 export declare const log: {
+    /**全部禁用 */
     disabledAll: () => void;
+    /**level级别禁用 */
     disabled: (levels: LevelType[]) => void;
+    /**条件禁用 */
     disabledAllBy: (option: ConsoleOption) => void;
+    /**level级别禁用|条件过滤 */
     disabledBy: (levels: LevelType[], option: ConsoleOption) => void;
+    /**收集 */
+    collectAll: (option: ConsoleOption) => void;
 };
 export {};
