@@ -3,9 +3,18 @@ import { typeIs } from "./type.is";
 type LevelType = 'info' | 'log' | 'debug' | 'warn' | 'error';
 
 interface ConsoleOption {
+    /**字符串 以foo开头 */
     startWitch?: string,
+    /**字符串以 foo结尾 */
     endWitch?: string,
-    includes?: string,
+    /**字符串包含 foo */
+    include?: string,
+    /**开始-字符串包含数组 */
+    startWitchs?: string[],
+    /**结束-字符串包含数组 */
+    endWidths?: string[],
+    /**包含-字符串包含数组 */
+    includes?: string[],
 }
 
 interface AllLogOption extends ConsoleOption {
@@ -52,17 +61,35 @@ function _hasIncludes(includeStr: string, args: any[]): boolean {
 
 /**统一过滤字符串 */
 function _filterString(option: ConsoleOption, args: any[]): boolean {
-    const { startWitch, endWitch, includes } = option || {}
+    const { startWitch, endWitch, include, startWitchs, endWidths, includes } = option || {}
     // 如果包含 则不输出
     if (startWitch && _hasStartWitch(startWitch, args)) return true
     if (endWitch && _hasEndWitch(endWitch, args)) return true
-    if (includes && _hasIncludes(includes, args)) return true
+    if (include && _hasIncludes(include, args)) return true
+    if (startWitchs && typeIs(startWitchs) === 'array') {
+        for (let i = 0; i < startWitchs.length; i++) {
+            const startStr: any = startWitchs[i];
+            if (startStr && _hasStartWitch(startStr, args)) return true
+        }
+    }
+    if (endWidths && typeIs(endWidths) === 'array') {
+        for (let i = 0; i < endWidths.length; i++) {
+            const endStr: any = endWidths[i];
+            if (endStr && _hasEndWitch(endStr, args)) return true
+        }
+    }
+    if (includes && typeIs(includes) === 'array') {
+        for (let i = 0; i < includes.length; i++) {
+            const includeStr: any = includes[i];
+            if (includeStr && _hasIncludes(includeStr, args)) return true
+        }
+    }
     return false
 }
 
 /**单级别日志输出 */
 function _log(option: LogOption): void {
-    const { level, disabled, startWitch, endWitch, includes } = option || {}
+    const { level, disabled } = option || {}
     console[level] = function (origin) {
         return function (...args: any[]) {
             if (disabled) return

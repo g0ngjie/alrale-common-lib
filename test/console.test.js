@@ -27,11 +27,24 @@ describe('console', () => {
         console.log('[debug]123-> ', 123);
     })
 
-    it("disabledBy includes", () => {
-        log.disabledBy(['log'], { includes: 'hehe' })
+    it.skip("disabledBy include", () => {
+        log.disabledBy(['log'], { include: 'hehe' })
         console.log('[debug]333-> ', 333);
         console.log('123hehe')
         console.log('[debug]123-> ', 123);
     })
 
+    it.skip("disabledBy includes [***]", () => {
+        log.disabledBy(['log', 'info'], { includes: ['hehe', '[de'] })
+        console.log('[debug]333-> ', 333);
+        console.info('123hehe')
+        console.log('[debug]123-> ', 123);
+    })
+
+    it("disabledAllBy startWitchs [***]", () => {
+        log.disabledAllBy({ startWitchs: ['hehe', '[de'], include: 'hehe' })
+        console.log('[debug]333-> ', 333);
+        console.info('123hehe')
+        console.log('[debug]123-> ', 123);
+    })
 })
