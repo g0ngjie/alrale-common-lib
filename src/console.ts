@@ -2,7 +2,14 @@ import { typeIs } from "./type.is";
 
 type LevelType = 'info' | 'log' | 'debug' | 'warn' | 'error';
 
-interface ConsoleOption {
+interface Output {
+    /**起始-关键词 */
+    prefix: string,
+    /**回调 */
+    callback: (...args: any) => any,
+}
+
+interface Option {
     /**字符串 以foo开头 */
     startWitch?: string,
     /**字符串以 foo结尾 */
@@ -15,6 +22,10 @@ interface ConsoleOption {
     endWidths?: string[],
     /**包含-字符串包含数组 */
     includes?: string[],
+}
+interface ConsoleOption extends Option {
+    /**输出结果集回调 */
+    output?: Output,
 }
 
 interface AllLogOption extends ConsoleOption {
@@ -87,11 +98,19 @@ function _filterString(option: ConsoleOption, args: any[]): boolean {
     return false
 }
 
+/**日志输出回调 */
+function _outputFunc(option: Output, ...args: any[]): void {
+    if (!option) return
+    const { prefix, callback } = option
+    if (prefix && _filterString({ startWitch: prefix }, args)) callback(...args)
+}
+
 /**单级别日志输出 */
 function _log(option: LogOption): void {
-    const { level, disabled } = option || {}
+    const { level, disabled, output } = option || {}
     console[level] = function (origin) {
         return function (...args: any[]) {
+            if (output) _outputFunc(output, ...args)
             if (disabled) return
             if (_filterString(option, args)) return
             origin.call(console, ...args)
@@ -101,31 +120,36 @@ function _log(option: LogOption): void {
 
 /**多级别日志输出 */
 function _envLog(option: AllLogOption): void {
-    const { disabledAll } = option || {}
+    const { disabledAll, output } = option || {}
     console = function (origin) {
         return {
             ...origin,
             log: function (...args: any[]): void {
+                if (output) _outputFunc(output, ...args)
                 if (disabledAll) return
                 if (_filterString(option, args)) return
                 origin.log.call(console, ...args)
             },
             info: function (...args: any[]): void {
+                if (output) _outputFunc(output, ...args)
                 if (disabledAll) return
                 if (_filterString(option, args)) return
                 origin.info.call(console, ...args)
             },
             debug: function (...args: any[]): void {
+                if (output) _outputFunc(output, ...args)
                 if (disabledAll) return
                 if (_filterString(option, args)) return
                 origin.debug.call(console, ...args)
             },
             warn: function (...args: any[]): void {
+                if (output) _outputFunc(output, ...args)
                 if (disabledAll) return
                 if (_filterString(option, args)) return
                 origin.warn.call(console, ...args)
             },
             error: function (...args: any[]): void {
+                if (output) _outputFunc(output, ...args)
                 if (disabledAll) return
                 if (_filterString(option, args)) return
                 origin.error.call(console, ...args)
@@ -146,18 +170,24 @@ export const log = {
         }
     },
     /**条件禁用 */
-    disabledAllBy: (option: ConsoleOption): void => _envLog(option),
+    disabledAllBy: (option: Option): void => _envLog(option),
     /**level级别禁用|条件过滤 */
-    disabledBy: (levels: LevelType[], option: ConsoleOption): void => {
+    disabledBy: (levels: LevelType[], option: Option): void => {
         for (let i = 0; i < levels.length; i++) {
             const level: LevelType = levels[i];
             _log({ level, ...option })
         }
     },
     /**收集 */
-    collectAll: (option: ConsoleOption): void => _envLog(option),
+    collectAll: (option: Output): void => {
+        const consoleOption: ConsoleOption = {};
+        consoleOption.output = option
+        _envLog(consoleOption)
+    },
     /**level级别收集|条件过滤 */
-    // collect: (option: ConsoleOption): void => {
-
-    // }
+    collect: (level: LevelType, option: Output): void => {
+        const consoleOption: ConsoleOption = {};
+        consoleOption.output = option
+        _log({ level, ...consoleOption })
+    }
 }

@@ -41,10 +41,30 @@ describe('console', () => {
         console.log('[debug]123-> ', 123);
     })
 
-    it("disabledAllBy startWitchs [***]", () => {
+    it.skip("disabledAllBy startWitchs [***]", () => {
         log.disabledAllBy({ startWitchs: ['hehe', '[de'], include: 'hehe' })
         console.log('[debug]333-> ', 333);
         console.info('123hehe')
         console.log('[debug]123-> ', 123);
+    })
+
+    it.skip("collect 收集", () => {
+        log.collect('log', {
+            prefix: '1', callback: (args) => {
+                console.log('------>', args)
+            }
+        })
+        console.log('[debug]123-> ', 123);
+        console.log('1这个是', { a: 1 }, '测试')
+    })
+
+    it.skip("collectAll 收集", () => {
+        log.collectAll({
+            prefix: '1', callback: (args) => {
+                console.info('----->', args);
+            }
+        })
+        console.log('[debug]123-> ', 123);
+        console.log('1这个是', { a: 1 }, '测试')
     })
 })

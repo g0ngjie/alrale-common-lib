@@ -1,5 +1,11 @@
 declare type LevelType = 'info' | 'log' | 'debug' | 'warn' | 'error';
-interface ConsoleOption {
+interface Output {
+    /**起始-关键词 */
+    prefix: string;
+    /**回调 */
+    callback: (...args: any) => any;
+}
+interface Option {
     /**字符串 以foo开头 */
     startWitch?: string;
     /**字符串以 foo结尾 */
@@ -20,10 +26,12 @@ export declare const log: {
     /**level级别禁用 */
     disabled: (levels: LevelType[]) => void;
     /**条件禁用 */
-    disabledAllBy: (option: ConsoleOption) => void;
+    disabledAllBy: (option: Option) => void;
     /**level级别禁用|条件过滤 */
-    disabledBy: (levels: LevelType[], option: ConsoleOption) => void;
+    disabledBy: (levels: LevelType[], option: Option) => void;
     /**收集 */
-    collectAll: (option: ConsoleOption) => void;
+    collectAll: (option: Output) => void;
+    /**level级别收集|条件过滤 */
+    collect: (level: LevelType, option: Output) => void;
 };
 export {};

@@ -18,4 +18,3 @@ export { sortMapByKey, mapToVArray, objectToArray } from './object';
 export { globalStore, getGlobal, setGlobal, removeGlobalItem } from './window';
 export { log } from './console';
 export * as Enum from "./enum/index";
-export { globalStore, getGlobal, setGlobal, removeGlobalItem } from './window';
