@@ -23,15 +23,22 @@ interface Option {
     /**包含-字符串包含数组 */
     includes?: string[],
 }
+
+interface OnlyOption extends Option {
+    /**是否开启只查看[prefix]功能 */
+    only?: boolean,
+}
+
 interface ConsoleOption extends Option {
     /**输出结果集回调 */
     output?: Output,
 }
 
-interface AllLogOption extends ConsoleOption {
+interface AllLogOption extends ConsoleOption, OnlyOption {
     disabledAll?: boolean,
 }
-interface LogOption extends ConsoleOption {
+
+interface LogOption extends ConsoleOption, OnlyOption {
     disabled?: boolean,
     level: LevelType
 }
@@ -55,7 +62,7 @@ function _hasEndWitch(endStr: string, args: any[]): boolean {
     if (!_hasArrayData(args)) return false
     const ending: any = args[args.length - 1]
     if (typeIs(ending) !== 'string') return false
-    return endStr.endsWith(endStr)
+    return ending.endsWith(endStr)
 }
 
 /**字符串是否包含 */
@@ -107,12 +114,22 @@ function _outputFunc(option: Output, ...args: any[]): void {
 
 /**单级别日志输出 */
 function _log(option: LogOption): void {
-    const { level, disabled, output } = option || {}
+    const { level, disabled, output, only } = option || {}
     console[level] = function (origin) {
         return function (...args: any[]) {
+            // 只读
+            if (only) {
+                // 如果包含则输出
+                if (_filterString(option, args)) origin.call(console, ...args)
+                return
+            }
+            // 日志收集
             if (output) _outputFunc(output, ...args)
+            // 禁用
             if (disabled) return
+            // 过滤条件|禁用
             if (_filterString(option, args)) return
+            // 日志打印
             origin.call(console, ...args)
         }
     }(console[level])
@@ -120,35 +137,56 @@ function _log(option: LogOption): void {
 
 /**多级别日志输出 */
 function _envLog(option: AllLogOption): void {
-    const { disabledAll, output } = option || {}
+    const { disabledAll, output, only } = option || {}
     console = function (origin) {
         return {
             ...origin,
             log: function (...args: any[]): void {
+                if (only) {// 只读
+                    // 如果包含则输出
+                    if (_filterString(option, args)) origin.log.call(console, ...args)
+                    return
+                }
                 if (output) _outputFunc(output, ...args)
                 if (disabledAll) return
                 if (_filterString(option, args)) return
                 origin.log.call(console, ...args)
             },
             info: function (...args: any[]): void {
+                if (only) {// 只读
+                    if (_filterString(option, args)) origin.info.call(console, ...args)
+                    return
+                }
                 if (output) _outputFunc(output, ...args)
                 if (disabledAll) return
                 if (_filterString(option, args)) return
                 origin.info.call(console, ...args)
             },
             debug: function (...args: any[]): void {
+                if (only) {// 只读
+                    if (_filterString(option, args)) origin.debug.call(console, ...args)
+                    return
+                }
                 if (output) _outputFunc(output, ...args)
                 if (disabledAll) return
                 if (_filterString(option, args)) return
                 origin.debug.call(console, ...args)
             },
             warn: function (...args: any[]): void {
+                if (only) {// 只读
+                    if (_filterString(option, args)) origin.warn.call(console, ...args)
+                    return
+                }
                 if (output) _outputFunc(output, ...args)
                 if (disabledAll) return
                 if (_filterString(option, args)) return
                 origin.warn.call(console, ...args)
             },
             error: function (...args: any[]): void {
+                if (only) {// 只读
+                    if (_filterString(option, args)) origin.error.call(console, ...args)
+                    return
+                }
                 if (output) _outputFunc(output, ...args)
                 if (disabledAll) return
                 if (_filterString(option, args)) return
@@ -161,18 +199,18 @@ function _envLog(option: AllLogOption): void {
 /**默认导出对象 */
 export const log = {
     /**全部禁用 */
-    disabledAll: (): void => _envLog({ disabledAll: true }),
+    skipAll: (): void => _envLog({ disabledAll: true }),
     /**level级别禁用 */
-    disabled: (levels: LevelType[]): void => {
+    skip: (levels: LevelType[]): void => {
         for (let i = 0; i < levels.length; i++) {
             const level: LevelType = levels[i];
             _log({ level, disabled: true })
         }
     },
     /**条件禁用 */
-    disabledAllBy: (option: Option): void => _envLog(option),
+    skipAllBy: (option: Option): void => _envLog(option),
     /**level级别禁用|条件过滤 */
-    disabledBy: (levels: LevelType[], option: Option): void => {
+    skipBy: (levels: LevelType[], option: Option): void => {
         for (let i = 0; i < levels.length; i++) {
             const level: LevelType = levels[i];
             _log({ level, ...option })
@@ -189,5 +227,9 @@ export const log = {
         const consoleOption: ConsoleOption = {};
         consoleOption.output = option
         _log({ level, ...consoleOption })
-    }
+    },
+    /**之展示[prefix]相关 */
+    onlyAll: (option: Option): void => _envLog({ only: true, ...option }),
+    /**level级别只展示[prefix]相关 */
+    only: (level: LevelType, option: Option): void => _log({ level, only: true, ...option })
 }

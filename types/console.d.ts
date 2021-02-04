@@ -22,16 +22,20 @@ interface Option {
 /**默认导出对象 */
 export declare const log: {
     /**全部禁用 */
-    disabledAll: () => void;
+    skipAll: () => void;
     /**level级别禁用 */
-    disabled: (levels: LevelType[]) => void;
+    skip: (levels: LevelType[]) => void;
     /**条件禁用 */
-    disabledAllBy: (option: Option) => void;
+    skipAllBy: (option: Option) => void;
     /**level级别禁用|条件过滤 */
-    disabledBy: (levels: LevelType[], option: Option) => void;
+    skipBy: (levels: LevelType[], option: Option) => void;
     /**收集 */
     collectAll: (option: Output) => void;
     /**level级别收集|条件过滤 */
     collect: (level: LevelType, option: Output) => void;
+    /**之展示[prefix]相关 */
+    onlyAll: (option: Option) => void;
+    /**level级别只展示[prefix]相关 */
+    only: (level: LevelType, option: Option) => void;
 };
 export {};
