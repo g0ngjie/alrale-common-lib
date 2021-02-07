@@ -12,7 +12,7 @@ export { dateDiff, week } from './time.axis';
 export { execInterval, autoStopInterval, Schedule } from './schedule';
 export { randomInt, randomDistinctIntArray, randomDistinctRangeArray, isNumber } from './number';
 export { getKernel, isChrome, isEdge, isFirefox, isIE, isOpera, isSafari } from './browser';
-export { randomString, nameDesensitization, desensitization } from './string';
+export { randomString, nameDesensitization, desensitization, positionOfStringIndexes } from './string';
 export { arrayToObject } from './array';
 export { sortMapByKey, mapToVArray, objectToArray } from './object';
 export { globalStore, getGlobal, setGlobal, removeGlobalItem } from './window';

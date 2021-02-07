@@ -15,3 +15,9 @@ export declare function desensitization(str: string | undefined, startIndex: num
  * @param len 长度
  */
 export declare function randomString(len?: number): string;
+/**
+ * 字符串索引位置列表
+ * @param {string} target
+ * @param {string} search
+ */
+export declare function positionOfStringIndexes(target?: string, search?: string): number[];

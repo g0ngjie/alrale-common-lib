@@ -67,3 +67,19 @@ export function randomString(len: number = 32): string {
   }
   return pwd;
 }
+
+/**
+ * 字符串索引位置列表
+ * @param {string} target 
+ * @param {string} search 
+ */
+export function positionOfStringIndexes(target: string = '', search: string = ''): number[] {
+  let index = target.indexOf(search), count = 0; // 字符串出现次数
+  const indexes = index !== -1 ? [index] : []
+  while (index !== -1) {
+    count++;
+    index = target.indexOf(search, index + 1);
+    if (index !== -1) indexes.push(index)
+  }
+  return indexes
+}
