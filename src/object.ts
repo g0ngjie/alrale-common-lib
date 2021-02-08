@@ -84,3 +84,19 @@ export function objectToArray(target: any): any[] {
     }
     return arr;
 }
+
+/**
+ * Make a map and return a function for checking if a key
+ * is in that map.
+ * By Vue
+ */
+export function makeMap(str: string, expectsLowerCase: boolean) {
+    const map: any = Object.create(null);
+    const list: string[] = str.split(',');
+    for (let i = 0; i < list.length; i++) {
+        map[list[i]] = true;
+    }
+    return expectsLowerCase
+        ? function (val: string) { return map[val.toLowerCase()]; }
+        : function (val: string) { return map[val]; }
+}

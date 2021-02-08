@@ -31,7 +31,7 @@ export { randomString, nameDesensitization, desensitization, positionOfStringInd
 
 export { arrayToObject } from './array'
 
-export { sortMapByKey, mapToVArray, objectToArray } from './object'
+export { sortMapByKey, mapToVArray, objectToArray, makeMap } from './object'
 
 export { globalStore, getGlobal, setGlobal, removeGlobalItem } from './window'
 

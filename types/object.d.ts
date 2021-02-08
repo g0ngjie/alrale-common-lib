@@ -14,3 +14,9 @@ export declare function mapToVArray(target: any): any[];
  * @param {Object | Map<any, any>} target
  */
 export declare function objectToArray(target: any): any[];
+/**
+ * Make a map and return a function for checking if a key
+ * is in that map.
+ * By Vue
+ */
+export declare function makeMap(str: string, expectsLowerCase: boolean): (val: string) => any;

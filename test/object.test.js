@@ -1,4 +1,4 @@
-import { sortMapByKey, mapToVArray, objectToArray } from "../lib/object";
+import { sortMapByKey, mapToVArray, objectToArray, makeMap } from "../lib/object";
 
 describe("object", () => {
     it('sortMapByKey', () => {
@@ -28,5 +28,14 @@ describe("object", () => {
         map.set('a', 1).set('b', null).set('c', [1, 2]).set('d', true)
         const mapArr = objectToArray(map)
         expect(mapArr.length).toBe(map.size)
+    })
+
+    it("makeMap", () => {
+        const acceptValue = makeMap('input,textarea,option,select,progress');
+        const acceptValue2 = makeMap('input,textarea,option,select,progress', true);
+        const bool = acceptValue('input')
+        const bool2 = acceptValue2('INPUT')
+        expect(bool).toBe(true)
+        expect(bool2).toBe(true)
     })
 })
