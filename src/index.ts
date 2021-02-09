@@ -35,6 +35,8 @@ export { sortMapByKey, mapToVArray, objectToArray, makeMap } from './object'
 
 export { globalStore, getGlobal, setGlobal, removeGlobalItem } from './window'
 
+export { ArrayQueue, LinkedQueue } from './queue'
+
 export { log } from './console'
 
 export * as Enum from "./enum/index";
