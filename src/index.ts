@@ -37,6 +37,8 @@ export { globalStore, getGlobal, setGlobal, removeGlobalItem } from './window'
 
 export { ArrayQueue, LinkedQueue } from './queue'
 
+export * as Env from './env'
+
 export { log } from './console'
 
 export * as Enum from "./enum/index";
