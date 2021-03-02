@@ -21,3 +21,7 @@ export declare function randomString(len?: number): string;
  * @param {string} search
  */
 export declare function positionOfStringIndexes(target?: string, search?: string): number[];
+/**
+ * 唯一(24位长度)Id
+ */
+export declare function uniqueId(): string;

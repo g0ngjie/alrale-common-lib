@@ -1,3 +1,5 @@
+import os from 'os'
+import crypto from 'crypto'
 
 /**
  * 字符串倍数拼接
@@ -82,4 +84,24 @@ export function positionOfStringIndexes(target: string = '', search: string = ''
     if (index !== -1) indexes.push(index)
   }
   return indexes
+}
+
+/**
+ * 唯一(24位长度)Id
+ */
+export function uniqueId(): string {
+  const { hostname } = os;
+  const hash: crypto.Hash = crypto.createHash('sha256');
+  const hostName: string = hostname()
+  hash.update(hostName)
+  // 8位
+  const hashTime: string = Math.floor((Date.now() / 1000)).toString(16);
+  // 6位
+  const hashHost: string = hash.digest('hex').slice(0, 6)
+  // 4位
+  const hashRandomId: string = Math.random().toString(36).substr(2).slice(0, 6);
+  // 6位
+  const hashRandomStr: string = randomString(6)
+  const unId: string = [hashTime, hashHost, hashRandomId, hashRandomStr].join('')
+  return unId.toLowerCase()
 }
