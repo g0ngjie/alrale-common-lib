@@ -99,7 +99,7 @@ export function uniqueId(): string {
   // 6位
   const hashHost: string = hash.digest('hex').slice(0, 6)
   // 4位
-  const hashRandomId: string = Math.random().toString(36).substr(2).slice(0, 6);
+  const hashRandomId: string = Math.random().toString(36).substr(2).slice(0, 4);
   // 6位
   const hashRandomStr: string = randomString(6)
   const unId: string = [hashTime, hashHost, hashRandomId, hashRandomStr].join('')
