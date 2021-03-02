@@ -10,7 +10,7 @@ export { setStore, getStore, setOStore, getOStore, removeStore } from './store';
 export { sleep, sleepSync } from './sleep';
 export { dateDiff, week } from './time.axis';
 export { execInterval, autoStopInterval, Schedule } from './schedule';
-export { randomInt, randomDistinctIntArray, randomDistinctRangeArray, isNumber } from './number';
+export { randomInt, randomDistinctIntArray, randomDistinctRangeArray, isNumber, isFloat } from './number';
 export { getKernel, isChrome, isEdge, isFirefox, isIE, isOpera, isSafari } from './browser';
 export { randomString, nameDesensitization, desensitization, positionOfStringIndexes, uniqueId, guid, uuid, guid2, uuid2 } from './string';
 export { arrayToObject } from './array';

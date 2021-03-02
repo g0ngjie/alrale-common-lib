@@ -23,7 +23,7 @@ export { dateDiff, week } from './time.axis'
 
 export { execInterval, autoStopInterval, Schedule } from './schedule'
 
-export { randomInt, randomDistinctIntArray, randomDistinctRangeArray, isNumber } from './number'
+export { randomInt, randomDistinctIntArray, randomDistinctRangeArray, isNumber, isFloat } from './number'
 
 export { getKernel, isChrome, isEdge, isFirefox, isIE, isOpera, isSafari } from './browser'
 

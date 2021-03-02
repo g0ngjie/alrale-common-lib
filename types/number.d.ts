@@ -25,6 +25,11 @@ export declare function randomDistinctIntArray(len?: number): number[];
  * @param target
  */
 export declare function isNumber(target: any): boolean;
+/**
+ * 判断是否位float格式
+ * @param target
+ */
+export declare function isFloat(target: any): boolean;
 declare const _default: {
     randomInt: typeof randomInt;
     randomDistinctIntArray: typeof randomDistinctIntArray;

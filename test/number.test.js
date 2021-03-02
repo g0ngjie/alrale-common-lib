@@ -1,4 +1,4 @@
-import { randomInt, randomDistinctIntArray, randomDistinctRangeArray, isNumber } from "../lib/number";
+import { randomInt, randomDistinctIntArray, randomDistinctRangeArray, isNumber, isFloat } from "../lib/number";
 
 describe("number", () => {
 
@@ -42,5 +42,20 @@ describe("number", () => {
         expect(two).toBe(true)
         const func = isNumber(() => { })
         expect(func).toBe(false)
+    })
+
+    it("isFloat", () => {
+        const isA = isFloat('1')
+        const isB = isFloat('1.2')
+        const isC = isFloat('true')
+        const isD = isFloat([1.1, 2.2])
+        const isE = isFloat(2.334)
+        const isF = isFloat({ '1.1': 1.1 })
+        expect(isA).toBe(false)
+        expect(isB).toBe(true)
+        expect(isC).toBe(false)
+        expect(isD).toBe(false)
+        expect(isE).toBe(true)
+        expect(isF).toBe(false)
     })
 })

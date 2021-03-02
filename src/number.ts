@@ -57,6 +57,15 @@ export function isNumber(target: any): boolean {
     return !isNaN(result)
 }
 
+/**
+ * 判断是否位float格式
+ * @param target 
+ */
+export function isFloat(target: any): boolean {
+    if (!isNumber(target)) return false;
+    return target % 1 !== 0;
+}
+
 export default {
     randomInt,
     randomDistinctIntArray,
