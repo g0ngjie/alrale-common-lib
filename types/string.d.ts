@@ -25,3 +25,16 @@ export declare function positionOfStringIndexes(target?: string, search?: string
  * 唯一(24位长度)Id
  */
 export declare function uniqueId(): string;
+/**guid */
+export declare function guid(): string;
+/**uuid */
+export declare function uuid(): string;
+/**guid2 */
+export declare function guid2(): string;
+/**
+ * 指定长度和基数
+ * @param len 长度
+ * @param radix 基数
+ * @description uuid2(16, 16) // "277571702EE33E11"
+ */
+export declare function uuid2(len: number, radix: number): string;

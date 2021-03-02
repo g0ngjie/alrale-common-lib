@@ -105,3 +105,70 @@ export function uniqueId(): string {
   const unId: string = [hashTime, hashHost, hashRandomId, hashRandomStr].join('')
   return unId.toLowerCase()
 }
+
+/**guid */
+export function guid(): string {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    const r = Math.random() * 16 | 0,
+      v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
+/**uuid */
+export function uuid(): string {
+  const s: any[] = [];
+  const hexDigits = "0123456789abcdef";
+  for (let i = 0; i < 36; i++) {
+    s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+  }
+  s[14] = "4"; // bits 12-15 of the time_hi_and_version field to 0010
+  s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1); // bits 6-7 of the clock_seq_hi_and_reserved to 01
+  s[8] = s[13] = s[18] = s[23] = "-";
+
+  const uuid: string = s.join("");
+  return uuid;
+}
+
+/**guid2 */
+export function guid2(): string {
+  const S4: () => string = (): string => {
+    return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+  }
+  return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+}
+
+/**
+ * 指定长度和基数
+ * @param len 长度
+ * @param radix 基数
+ * @description uuid2(16, 16) // "277571702EE33E11"
+ */
+export function uuid2(len: number, radix: number): string {
+  const chars: string[] = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+  let uuid: any[] = [],
+    i;
+  radix = radix || chars.length;
+
+  if (len) {
+    // Compact form
+    for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random() * radix];
+  } else {
+    // rfc4122, version 4 form
+    let r: number;
+
+    // rfc4122 requires these characters
+    uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
+    uuid[14] = '4';
+
+    // Fill in random data.  At i==19 set the high bits of clock sequence as
+    // per rfc4122, sec. 4.1.5
+    for (i = 0; i < 36; i++) {
+      if (!uuid[i]) {
+        r = 0 | Math.random() * 16;
+        uuid[i] = chars[(i == 19) ? (r & 0x3) | 0x8 : r];
+      }
+    }
+  }
+  return uuid.join('');
+}

@@ -1,4 +1,4 @@
-import { randomString, nameDesensitization, desensitization, positionOfStringIndexes } from "../lib/string";
+import { randomString, nameDesensitization, desensitization, positionOfStringIndexes, uuid, uuid2, guid, guid2 } from "../lib/string";
 
 describe("string", () => {
 
@@ -27,5 +27,17 @@ describe("string", () => {
         const target2 = '123'
         const list2 = positionOfStringIndexes(str, target2)
         expect(list2).toEqual([])
+    })
+
+    it("uuid guid", () => {
+        const _uuid = uuid()
+        const _guid = guid()
+        const _uuid2 = uuid2(16, 16)
+        const _guid2 = guid2()
+        const temp = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+        expect(_uuid2).toHaveLength(16)
+        expect(_uuid).toHaveLength(temp.length)
+        expect(_guid).toHaveLength(temp.length)
+        expect(_guid2).toHaveLength(36)
     })
 })
