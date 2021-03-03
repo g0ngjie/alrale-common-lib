@@ -23,11 +23,29 @@ export { dateDiff, week } from './time.axis'
 
 export { execInterval, autoStopInterval, Schedule } from './schedule'
 
-export { randomInt, randomDistinctIntArray, randomDistinctRangeArray, isNumber, isFloat } from './number'
+export {
+    randomInt,
+    randomDistinctIntArray,
+    randomDistinctRangeArray,
+    prefixZero,
+    isNumber,
+    isInt,
+    isFloat,
+} from './number'
 
 export { getKernel, isChrome, isEdge, isFirefox, isIE, isOpera, isSafari } from './browser'
 
-export { randomString, nameDesensitization, desensitization, positionOfStringIndexes, uniqueId, guid, uuid, guid2, uuid2 } from './string'
+export {
+    randomString,
+    nameDesensitization,
+    desensitization,
+    positionOfStringIndexes,
+    uniqueId,
+    guid,
+    uuid,
+    guid2,
+    uuid2
+} from './string'
 
 export { arrayToObject } from './array'
 
@@ -41,4 +59,8 @@ export * as Env from './env'
 
 export { log } from './console'
 
+export * as DateFunc from './date'
+
 export * as Enum from "./enum/index";
+
+export * as Regular from './regular';

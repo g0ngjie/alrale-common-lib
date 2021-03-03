@@ -1,3 +1,4 @@
+import { IntegerReg, NotNegativeFloatReg, NotPositiveFloatReg } from "./regular";
 
 /**
  * 随机区间整数
@@ -49,12 +50,19 @@ export function randomDistinctIntArray(len: number = 1): number[] {
 }
 
 /**
- * 判断数字类型
- * @param target 
+ * 判断数字类型,(包含字符串类型数字)
+ * @param {any} target 
  */
 export function isNumber(target: any): boolean {
-    const result = Number(target)
-    return !isNaN(result)
+    return NotNegativeFloatReg.test(target) || NotPositiveFloatReg.test(target)
+}
+
+/**
+ * 严格校验正负正数
+ * @param {any} target 
+ */
+export function isInt(target: any): boolean {
+    return IntegerReg.test(target)
 }
 
 /**
@@ -64,6 +72,20 @@ export function isNumber(target: any): boolean {
 export function isFloat(target: any): boolean {
     if (!isNumber(target)) return false;
     return target % 1 !== 0;
+}
+
+/**
+ * 整数前置补零
+ * @param {number|string} target 
+ * @param {number} places 位数，默认2 -> 10
+ */
+export function prefixZero(target: number | string, places: number = 2): string {
+    if (!isNumber(target) || isFloat(target)) return ''
+    const condition: number = 10 ** (places - 1)
+    if (+target < condition) {
+        return (Array(places).join('0') + target).slice(-places)
+    }
+    return target + '';
 }
 
 export default {
