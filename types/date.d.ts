@@ -2,6 +2,7 @@ declare type FotmatTsResponse = {
     year: number;
     month: number;
     day: number;
+    week: number;
     hour: number;
     minutes: number;
     seconds: number;

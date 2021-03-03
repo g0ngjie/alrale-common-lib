@@ -6,6 +6,7 @@ type FotmatTsResponse = {
     year: number,
     month: number,
     day: number,
+    week: number,
     hour: number,
     minutes: number,
     seconds: number,
@@ -32,12 +33,13 @@ export function formatTs(timestamp: string | number): FotmatTsResponse {
     const _date: Date = new Date(ts)
     const year = _date.getFullYear()
     const month = _date.getMonth() + 1
-    const day = _date.getDay()
+    const week = _date.getDay()
+    const day = _date.getDate()
     const hour = _date.getHours()
     const minutes = _date.getMinutes()
     const seconds = _date.getSeconds()
     const milliseconds = _date.getMilliseconds()
-    const fullMonth = prefixZero(month + 1)
+    const fullMonth = prefixZero(month)
     const fullDay = prefixZero(day)
     const fullHour = prefixZero(hour)
     const fullMinutes = prefixZero(minutes)
@@ -54,6 +56,7 @@ export function formatTs(timestamp: string | number): FotmatTsResponse {
         year,
         month,
         day,
+        week,
         hour,
         minutes,
         seconds,
