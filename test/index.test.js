@@ -1,5 +1,4 @@
 import { queryToString } from "../lib/query.to.string";
-import { getSync } from "../lib/request";
 import { sleepSync } from "../lib/sleep";
 import {
   deepClone,
@@ -74,7 +73,7 @@ describe("查看类型", () => {
   });
 
   test("function", () => {
-    const func = typeIs(() => {});
+    const func = typeIs(() => { });
     const func_2 = typeIs(new Function());
     expect(func).toBe("function");
     expect(func_2).toBe("function");
@@ -182,19 +181,5 @@ describe("定时", () => {
     expect(count).toBeGreaterThan(1);
     expect(count).toBe(2);
     done();
-  });
-});
-
-describe.skip("ajax", () => {
-  test("get", (done) => {
-    get("http://localhost:3000/json", {}, function (data) {
-      expect(data).toEqual({ title: "koa2 json" });
-      done();
-    });
-  });
-
-  test("get sync", async () => {
-    const data = await getSync("http://localhost:3000/json");
-    expect(data).toEqual({ title: "koa2 json" });
   });
 });

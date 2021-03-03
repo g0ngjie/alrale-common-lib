@@ -13,7 +13,7 @@ export { typeIs } from './type.is'
 
 export { toSimplifiedChinese } from './to.simplified.chinese'
 
-export { get, getSync, post, postSync } from './request'
+export { get, post, simpleFetch } from './request'
 
 export { setStore, getStore, setOStore, getOStore, removeStore } from './store'
 
