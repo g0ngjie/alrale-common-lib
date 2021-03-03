@@ -44,13 +44,15 @@ export function formatTs(timestamp: string | number): FotmatTsResponse {
     const fullHour = prefixZero(hour)
     const fullMinutes = prefixZero(minutes)
     const fullSeconds = prefixZero(seconds)
-    const getYMD = (separate?: string): string => {
-        const s = separate || ''
-        return [year, s, month, s, day, ' ', hour, s, minutes, s, seconds].join('')
+    const getYMD = (separate: string = '-', semicolon: string = ':'): string => {
+        const _s = separate || ''
+        const _se = semicolon || ''
+        return [year, _s, month, _s, day, ' ', hour, _se, minutes, _se, seconds].join('')
     }
-    const getYYYYMMDD = (separate?: string): string => {
-        const s = separate || ''
-        return [year, s, fullMonth, s, fullDay, s, ' ', fullHour, s, fullMinutes, s, fullSeconds].join('')
+    const getYYYYMMDD = (separate: string = '-', semicolon: string = ':'): string => {
+        const _s = separate || ''
+        const _se = semicolon || ''
+        return [year, _s, fullMonth, _s, fullDay, ' ', fullHour, _se, fullMinutes, _se, fullSeconds].join('')
     }
     return {
         year,
