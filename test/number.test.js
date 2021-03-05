@@ -97,6 +97,7 @@ describe("number", () => {
         const _five = prefixZero(2.21)
         const _six = prefixZero(true)
         const _seven = prefixZero(20, 6)
+        const _eight = prefixZero(-20)
         expect(_one).toBe('02')
         expect(_two).toBe('20')
         expect(_three).toBe('020')
@@ -104,6 +105,7 @@ describe("number", () => {
         expect(_five).toBe('')
         expect(_six).toBe('')
         expect(_seven).toBe('000020')
+        expect(_eight).toBe('')
     })
 
     it("isInt", () => {
@@ -125,7 +127,7 @@ describe("number", () => {
         const _six = isInt({})
         expect(_six).toBe(false)
 
-        const _seven = isInt(() => {})
+        const _seven = isInt(() => { })
         expect(_seven).toBe(false)
 
         const _eight = isInt(1.23)

@@ -81,6 +81,8 @@ export function isFloat(target: any): boolean {
  */
 export function prefixZero(target: number | string, places: number = 2): string {
     if (!isNumber(target) || isFloat(target)) return ''
+    // 如果为负数
+    if (+target < 0) return ''
     const condition: number = 10 ** (places - 1)
     if (+target < condition) {
         return (Array(places).join('0') + target).slice(-places)
