@@ -3,8 +3,18 @@
  * @param {number} b byte
  */
 export declare function format(target: number): {
+    Bit: {
+        to: {
+            Byte: () => number;
+            KB: () => number;
+            MB: () => number;
+            GB: () => number;
+            TB: () => number;
+        };
+    };
     Byte: {
         to: {
+            Bit: () => number;
             KB: () => number;
             MB: () => number;
             GB: () => number;
@@ -13,6 +23,7 @@ export declare function format(target: number): {
     };
     KB: {
         to: {
+            Bit: () => number;
             Byte: () => number;
             MB: () => number;
             GB: () => number;
@@ -21,6 +32,7 @@ export declare function format(target: number): {
     };
     MB: {
         to: {
+            Bit: () => number;
             Byte: () => number;
             KB: () => number;
             GB: () => number;
@@ -29,6 +41,7 @@ export declare function format(target: number): {
     };
     GB: {
         to: {
+            Bit: () => number;
             Byte: () => number;
             KB: () => number;
             MB: () => number;
@@ -37,6 +50,7 @@ export declare function format(target: number): {
     };
     TB: {
         to: {
+            Bit: () => number;
             Byte: () => number;
             KB: () => number;
             MB: () => number;

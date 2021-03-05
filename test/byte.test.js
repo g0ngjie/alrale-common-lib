@@ -23,5 +23,13 @@ describe("byte", () => {
         const _b2 = 1231
         const _b22mb = byte.format(_b2).Byte.to.MB()
         expect(_b22mb).toBe(0.0011739730834960938)
+        // 1232 bit
+        const _bit1 = 1232
+        const _bit12kb = byte.format(_bit1).Bit.to.KB()
+        expect(_bit12kb).toBe(0.150390625)
+        // 1232.1 MB
+        const _mb1 = 1232.1
+        const _mb12bit = byte.format(_mb1).MB.to.Bit()
+        expect(_mb12bit).toBe(10335603916.8)
     })
 })
