@@ -1,4 +1,5 @@
-const { formatTs } = require('../lib/date')
+const { date } = require('../lib/index')
+const { formatTs } = date
 
 describe("日期工具", () => {
     it('日期格式化', () => {

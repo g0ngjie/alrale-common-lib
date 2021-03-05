@@ -1,3 +1,4 @@
+const { regular } = require('../lib/index')
 const {
     InternetURLReg,
     IDNumberReg,
@@ -6,7 +7,7 @@ const {
     IntegerReg,
     NotNegativeFloatReg,
     NotPositiveFloatReg,
-} = require('../lib/regular')
+} = regular
 
 describe("正则校验", () => {
     it("url", () => {

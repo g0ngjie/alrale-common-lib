@@ -1,0 +1,27 @@
+const { byte } = require('../lib/index')
+
+describe("byte", () => {
+
+    it("字节格式转化", () => {
+        // 1024b
+        const b = 1024
+        const b2kb = byte.format(b).Byte.to.KB()
+        expect(b2kb).toBe(1)
+        // 5kb
+        const kb = 5;
+        const kb2m = byte.format(kb).KB.to.MB()
+        expect(kb2m).toBe(5 / 1024)
+        // 10M
+        const m = 10;
+        const m2gb = byte.format(m).MB.to.GB()
+        expect(m2gb).toBe(10 / 1024)
+        // 1Gb
+        const gb = 1;
+        const gb2m = byte.format(gb).GB.to.MB()
+        expect(gb2m).toBe(1 * 1024)
+        // 1231
+        const _b2 = 1231
+        const _b22mb = byte.format(_b2).Byte.to.MB()
+        expect(_b22mb).toBe(0.0011739730834960938)
+    })
+})

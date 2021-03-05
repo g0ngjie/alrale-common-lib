@@ -1,7 +1,7 @@
-import { Env } from "../lib";
+import { env } from "../lib";
 
 describe("Env", () => {
-    const { isAndroid, isIos } = Env;
+    const { isAndroid, isIos } = env;
     
     it('isAndroid', () => {
         expect(isAndroid).toBe(false)

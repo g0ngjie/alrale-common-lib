@@ -53,12 +53,14 @@ export { globalStore, getGlobal, setGlobal, removeGlobalItem } from './window'
 
 export { ArrayQueue, LinkedQueue } from './queue'
 
-export * as Env from './env'
+export * as env from './env'
 
 export { log } from './console'
 
-export * as DateFunc from './date'
+export * as date from './date'
 
 export * as Enum from "./enum/index";
 
-export * as Regular from './regular';
+export * as regular from './regular';
+
+export * as byte from './byte'
