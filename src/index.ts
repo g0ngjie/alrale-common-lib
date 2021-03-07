@@ -5,7 +5,7 @@ export { deepClone, deepOClone } from './deep.clone'
 
 export { copyValue } from './document'
 
-export { parseQuery, decodeUrlSearch } from './parse-query'
+export { parseQuery, decodeUrlSearch } from './parse.query'
 
 export { queryToString } from './query.to.string'
 

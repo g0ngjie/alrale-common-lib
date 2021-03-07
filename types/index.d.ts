@@ -1,7 +1,7 @@
 export { appendJs } from './appendjs';
 export { deepClone, deepOClone } from './deep.clone';
 export { copyValue } from './document';
-export { parseQuery, decodeUrlSearch } from './parse-query';
+export { parseQuery, decodeUrlSearch } from './parse.query';
 export { queryToString } from './query.to.string';
 export { typeIs } from './type.is';
 export { toSimplifiedChinese } from './to.simplified.chinese';

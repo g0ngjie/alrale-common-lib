@@ -14,7 +14,6 @@ import {
   sleep,
   dateDiff,
   week,
-  get,
   Schedule,
 } from "./../lib";
 

@@ -228,7 +228,7 @@ export const log = {
         consoleOption.output = option
         _log({ level, ...consoleOption })
     },
-    /**之展示[prefix]相关 */
+    /**只展示[prefix]相关 */
     onlyAll: (option: Option): void => _envLog({ only: true, ...option }),
     /**level级别只展示[prefix]相关 */
     only: (level: LevelType, option: Option): void => _log({ level, only: true, ...option })
