@@ -71,13 +71,37 @@ $ yarn add @alrale/common-lib
   - <a href="#LinkedQueue">LinkedQueue</a>
 - <a href="#regular">regular</a>
 - <a href="#schedule">schedule</a>
+  - <a href="#execInterval">execInterval</a>
+  - <a href="#autoStopInterval">autoStopInterval</a>
 - <a href="#sleep">sleep</a>
+  - <a href="#sleep.sleep">sleep</a>
+  - <a href="#sleep.sleepSync">sleepSync</a>
 - <a href="#store">store</a>
+  - <a href="#setStore">setStore</a>
+  - <a href="#getStore">getStore</a>
+  - <a href="#setOStore">setOStore</a>
+  - <a href="#getOStore">getOStore</a>
+  - <a href="#removeStore">removeStore</a>
 - <a href="#string">string</a>
+  - <a href="#randomString">randomString</a>
+  - <a href="#nameDesensitization">nameDesensitization</a>
+  - <a href="#desensitization">desensitization</a>
+  - <a href="#positionOfStringIndexes">positionOfStringIndexes</a>
+  - <a href="#uniqueId">uniqueId</a>
+  - <a href="#guid">guid</a>
+  - <a href="#uuid">uuid</a>
+  - <a href="#guid2">guid2</a>
+  - <a href="#uuid2">uuid2</a>
 - <a href="#time.axis">time.axis</a>
+  - <a href="#dateDiff">dateDiff</a>
+  - <a href="#week">week</a>
 - <a href="#to.simplified.chinese">to.simplified.chinese</a>
 - <a href="#type.is">type.is</a>
 - <a href="#window">window</a>
+  - <a href="#globalStore">globalStore</a>
+  - <a href="#getGlobal">getGlobal</a>
+  - <a href="#setGlobal">setGlobal</a>
+  - <a href="#removeGlobalItem">removeGlobalItem</a>
 
 ------
 
@@ -515,55 +539,316 @@ str2.trim(); // => '2 3 4'
 ### <span id="regular">regular</span>
 
 ```javascript
-
+const { regular } = require('@alrale/common-lib');
+const {
+    InternetURLReg, 		// Url
+    IDNumberReg,			// 身份证号（15位或18位数字）
+    EmailReg, 				// 邮箱
+    ChineseReg, 			// 中文
+    IntegerReg, 			// 整数
+    NotNegativeFloatReg, 	// 非负浮点数（正浮点数 + 0）
+    NotPositiveFloatReg, 	// 非正浮点数（负浮点数 + 0）
+} = regular;
+// Url
+const baidu = 'http://www.baidu.com'
+const baidus = 'https://www.baidu.com'
+const ftp = 'ftp://192.168.2.1/dir'
+InternetURLReg.test(baidu);	// => true
+InternetURLReg.test(baidus); // => true
+InternetURLReg.test(ftp); 	// => true
+// 身份证
+const idList = [ '130928198905281793', '130532197901235712']
+for (let i = 0; i < idList.length; i++) {
+    const number = idList[i];
+    const bool = IDNumberReg.test(number); // => true
+}
+// 邮箱
+const mailList = [ 'xxxxxxxxxxx@qq.com', 'xxxxx.xxxxxx@163.com'];
+for (let i = 0; i < mailList.length; i++) {
+    const mail = mailList[i];
+    const bool = EmailReg.test(mail); // => true
+}
+// 中文
+ChineseReg.test('中文'); // => true
+ChineseReg.test('1'); 	// => true
+ChineseReg.test(['']); 	// => false
+// 整数
+IntegerReg.test(12); 	// => true
+IntegerReg.test(-12); 	// => true
+IntegerReg.test(12.32); // => false
+IntegerReg.test(true); 	// => false
+// 非负浮点数（正浮点数 + 0）
+NotNegativeFloatReg.test(12); 		// => true
+NotNegativeFloatReg.test(-12); 		// => false
+NotNegativeFloatReg.test(12.32); 	// => true
+NotNegativeFloatReg.test([]); 		// => false
+// 非正浮点数（负浮点数 + 0）
+NotPositiveFloatReg.test(12);		// => false
+NotPositiveFloatReg.test(-12);		// => true
 ```
 
 ### <span id="schedule">schedule</span>
 
 ```javascript
-
+const { execInterval, autoStopInterval } = require('@alrale/common-lib');
 ```
+
+###### <a id=execInterval>execInterval</a> 定时器
+
+```javascript
+let count = 0;
+const clearInterval = execInterval(500, () => (count += 1));
+setTimeout(() => {
+    expect(count).toBeGreaterThan(1);
+    expect(count).toBe(2);
+    clearInterval();
+    done();
+}, 1100);
+```
+
+###### <a id=autoStopInterval>autoStopInterval</a> 自动结束定时器
+
+```javascript
+let count = 0;
+await autoStopInterval(500, 1000, () => (count += 1));
+expect(count).toBeGreaterThan(1);
+expect(count).toBe(2);
+done();
+```
+
+
 
 ### <span id="sleep">sleep</span>
 
 ```javascript
-
+const { sleep, sleepSync } = require('@alrale/common-lib');
 ```
+
+###### <a id=sleep.sleep>sleep.sleep</a> async
+
+```javascript
+async () => {
+    const _start = Date.now();
+    await sleepSync(1000);
+    const _calc = Date.now() - _start;
+    expect(parseInt(_calc / 1000)).toBe(1);
+}
+```
+
+###### <a id=sleep.sleepSync>sleepSync</a> sync
+
+```javascript
+(done) => {
+    const _start = Date.now();
+    sleep(1000, () => {
+      const _calc = Date.now() - _start;
+      expect(parseInt(_calc / 1000)).toBe(1);
+      done();
+    });
+  });
+}
+```
+
+
 
 ### <span id="store">store</span>
 
 ```javascript
-
+const { setStore, getStore, setOStore, getOStore, removeStore } = require('@alrale/common-lib');
 ```
+
+###### <a id=setStore>setStore </a>set session | local store 、<a id=getStore>getStore</a> get session | local store
+
+```javascript
+// session
+const s_key = "session_key";
+setStore(s_key, "test session");
+getStore(s_key); // => 'test session'
+// local
+const l_key = "local_key";
+setStore(l_key, "test local", "local");
+getStore(l_key, "local"); // => test local
+// boolean -> string
+const b_s_key = "b_s_key";
+setStore(b_s_key, true);
+getStore(b_s_key); // => typeof bool === 'string'
+```
+
+###### <a id=setOStore>setOStore</a> set object、<a id=getOStore>getOStore</a> get object
+
+```javascript
+// object session
+const o_s_key = "o_s_key";
+setOStore(o_s_key, { foo: 123 });
+getOStore(o_s_key); // => 123
+// object local"
+const o_l_key = "o_l_key";
+setOStore(o_l_key, { foo: 456 }, "local");
+getOStore(o_l_key, "local"); // => 456
+// boolean -> boolean
+const o_b_s_key = "o_b_s_key";
+setOStore(o_b_s_key, true);
+const o_bool = getOStore(o_b_s_key); // => typeof o_bool === 'boolean'
+```
+
+###### <a id=removeStore>removeStore</a> remove store
+
+```javascript
+removeStore(key, [level]): void
+```
+
+
 
 ### <span id="string">string</span>
 
 ```javascript
-
+const { 
+    randomString,
+    nameDesensitization,
+    desensitization,
+    positionOfStringIndexes,
+    uniqueId,
+    guid,
+    uuid,
+    guid2,
+    uuid2
+} = require('@alrale/common-lib');
 ```
+
+###### <a id=randomString>randomString</a> 随机字符串
+
+```javascript
+const defaultStr = randomString(); 	// => defaultStr.length === 32
+const str = randomString(16); 		// => str.length === 16
+```
+
+###### <a id=nameDesensitization>nameDesensitization </a>名字脱敏
+
+```javascript
+const name = nameDesensitization("张三丰"); // => '张*丰'
+```
+
+###### <a id=desensitization>desensitization</a> 字符串脱敏
+
+```javascript
+const str = desensitization('asdfg', 1, 3); // => 'a**fg'
+```
+
+###### <a id=positionOfStringIndexes>positionOfStringIndexes</a> 字符串索引位置列表
+
+```javascript
+const str = 'asdfasdfasdfasdfasdfasdf'
+const target = 'asdf'
+const list = positionOfStringIndexes(str, target);
+expect(list).toEqual([0, 4, 8, 12, 16, 20])
+const target2 = '123'
+const list2 = positionOfStringIndexes(str, target2)
+expect(list2).toEqual([])
+```
+
+###### <a id=uniqueId>uniqueId</a> 唯一(24位长度)Id
+
+```javascript
+// 1w次随机，不重复
+let count = 10000;
+const cache = {}
+const repetition = []
+while (count) {
+    const unId = uniqueId()
+    if (cache[unId]) repetition.push(unId)
+    cache[unId] = true
+    count--
+}
+expect(repetition).toEqual([])
+```
+
+###### <a id=guid>guid</a>、<a id=uuid>uuid</a>、<a id=guid2>guid2</a>、<a id=uuid2>uuid2</a> 指定长度和基数
+
+```javascript
+const _uuid = uuid()
+const _guid = guid()
+const _uuid2 = uuid2(16, 16)
+const _guid2 = guid2()
+const temp = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+expect(_uuid2).toHaveLength(16)
+expect(_uuid).toHaveLength(temp.length)
+expect(_guid).toHaveLength(temp.length)
+expect(_guid2).toHaveLength(36)
+```
+
+
 
 ### <span id="time.axis">time.axis</span>
 
 ```javascript
-
+const { dateDiff, week } = require('@alrale/common-lib');
 ```
+
+<a id=dateDiff>dateDiff</a> 时间戳显示为多少分钟前，多少天前的处理
+
+```javascript
+/**
+ * 时间戳显示为多少分钟前，多少天前的处理
+ * eg.
+ * console.log(dateDiff(1411111111111));  // 2014年09月19日
+ * console.log(dateDiff(1481111111111));  // 9月前
+ * console.log(dateDiff(1499911111111));  // 2月前
+ * console.log(dateDiff(1503211111111));  // 3周前
+ * console.log(dateDiff(1505283100802));  // 1分钟前
+ */
+const diff = dateDiff(1605168177);
+expect(diff).toBe("1天前");
+const diff = dateDiff(Date.now());
+expect(diff).toBe("刚刚");
+```
+
+<a id=week>week</a>
+
+```javascript
+const day = week(7); // => '周日'
+```
+
+
 
 ### <span id="to.simplified.chinese">to.simplified.chinese</span>
 
 ```javascript
-
+const { toSimplifiedChinese } = require('@alrale/common-lib');
+const han = toSimplifiedChinese(12345);
+expect(han).toBe("一万二千三百四十五");
 ```
 
-### <span id="type.is">type.is</span>
+### <span id="type.is">typeIs</span>
 
 ```javascript
-
+const { typeIs } = require('@alrale/common-lib');
+// 'string'|'number'|'boolean'|'symbol'|'undefined'|'null'|'function'|'date'|'array'|'object'|'map'|'regexp'|'error'|'document'|'window'
+const arr = typeIs([]); // => 'array'
+const arr_2 = typeIs(new Array()); // => array
 ```
 
 ### <span id="window">window</span>
 
-```javascript
+###### <a id=globalStore>globalStore</a>  获取全局对象
 
+###### <a id=getGlobal>getGlobal</a> get 全局对象
+
+###### <a id=setGlobal>setGlobal</a> set 全局对象
+
+###### <a id=removeGlobalItem>removeGlobalItem</a> 删除 对象数据
+
+```javascript
+const { globalStore, getGlobal, setGlobal, removeGlobalItem } = require('@alrale/common-lib');
+const keyObj = 'key'
+const bool = setGlobal(keyObj, { value: 'hehe' })
+expect(bool).toBe(true)
+const getObj = getGlobal(keyObj)
+expect(getObj.value).toBe('hehe')
+
+const rmBool = removeGlobalItem(keyObj)
+expect(rmBool).toBe(true)
+const hasObj = getGlobal(keyObj)
+expect(hasObj).toBeUndefined()
 ```
 
 

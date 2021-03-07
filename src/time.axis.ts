@@ -1,14 +1,4 @@
 
-
-/*
-** 时间戳显示为多少分钟前，多少天前的处理
-** eg.
-** console.log(dateDiff(1411111111111));  // 2014年09月19日
-** console.log(dateDiff(1481111111111));  // 9月前
-** console.log(dateDiff(1499911111111));  // 2月前
-** console.log(dateDiff(1503211111111));  // 3周前
-** console.log(dateDiff(1505283100802));  // 1分钟前
-*/
 /**
  * 时间戳显示为多少分钟前，多少天前的处理
  * eg.
