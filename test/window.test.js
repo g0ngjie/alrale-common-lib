@@ -1,4 +1,4 @@
-import { getGlobal, setGlobal, globalStore, removeGlobalItem } from "../lib/window";
+const { getGlobal, setGlobal, globalStore, removeGlobalItem } = require('../lib');
 
 describe('window', () => {
 
@@ -14,5 +14,5 @@ describe('window', () => {
         const hasObj = getGlobal(keyObj)
         expect(hasObj).toBeUndefined()
     })
-    
+
 })

@@ -1,4 +1,4 @@
-const { uniqueId } = require("../lib/string")
+const { uniqueId } = require("../lib/string");
 
 describe('uniqueId', () => {
     it('1w次随机，不重复', () => {

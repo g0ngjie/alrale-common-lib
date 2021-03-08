@@ -1,4 +1,4 @@
-import { arrayToObject } from "../lib/array";
+const { arrayToObject } = require('../lib');
 
 describe("array", () => {
     it('arrayToObject', () => {

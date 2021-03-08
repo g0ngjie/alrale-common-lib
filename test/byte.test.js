@@ -1,4 +1,4 @@
-const { byte } = require('../lib/index')
+const { byte } = require('../lib/index');
 
 describe("byte", () => {
 

@@ -1,4 +1,4 @@
-import { log } from "../lib/console";
+const { log } = require('../lib');
 
 describe('console', () => {
 

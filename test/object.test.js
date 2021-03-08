@@ -1,4 +1,4 @@
-import { sortMapByKey, mapToVArray, objectToArray, makeMap } from "../lib/object";
+const { sortMapByKey, mapToVArray, objectToArray, makeMap } = require('../lib');
 
 describe("object", () => {
     it('sortMapByKey', () => {

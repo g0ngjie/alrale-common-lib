@@ -1,4 +1,4 @@
-import {
+const {
     randomInt,
     randomDistinctIntArray,
     randomDistinctRangeArray,
@@ -6,7 +6,7 @@ import {
     isFloat,
     prefixZero,
     isInt,
-} from "../lib/number";
+} = require('../lib');
 
 describe("number", () => {
 

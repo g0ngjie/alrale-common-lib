@@ -1,4 +1,4 @@
-import { randomString, nameDesensitization, desensitization, positionOfStringIndexes, uuid, uuid2, guid, guid2 } from "../lib/string";
+const { randomString, nameDesensitization, desensitization, positionOfStringIndexes, uuid, uuid2, guid, guid2 } = require('../lib');
 
 describe("string", () => {
 
@@ -18,7 +18,7 @@ describe("string", () => {
         const str = desensitization('asdfg', 1, 3)
         expect(str).toBe('a**fg')
     })
-    
+
     it("目标字符出现次数", () => {
         const str = 'asdfasdfasdfasdfasdfasdf'
         const target = 'asdf'

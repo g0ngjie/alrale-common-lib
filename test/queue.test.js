@@ -1,4 +1,4 @@
-import { ArrayQueue, LinkedQueue } from "../lib/queue";
+const { ArrayQueue, LinkedQueue } = require('../lib');
 
 describe("队列", () => {
 

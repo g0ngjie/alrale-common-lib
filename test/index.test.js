@@ -1,21 +1,14 @@
-import { queryToString } from "../lib/query.to.string";
-import { sleepSync } from "../lib/sleep";
-import {
+const {
   deepClone,
   deepOClone,
   parseQuery,
   decodeUrlSearch,
   typeIs,
   toSimplifiedChinese,
-  setStore,
-  getStore,
-  setOStore,
-  getOStore,
-  sleep,
   dateDiff,
   week,
-  Schedule,
-} from "./../lib";
+  queryToString,
+} = require('../lib');
 
 describe("深复制", () => {
   test("string -> json -> string", () => {
@@ -91,66 +84,6 @@ describe("数字转汉字", () => {
   });
 });
 
-describe("store", () => {
-  test("session", () => {
-    const s_key = "session_key";
-    setStore(s_key, "test session");
-    const s_val = getStore(s_key);
-    expect(s_val).toBe("test session");
-  });
-
-  test("local", () => {
-    const l_key = "local_key";
-    setStore(l_key, "test local", "local");
-    const l_val = getStore(l_key, "local");
-    expect(l_val).toBe("test local");
-  });
-
-  test("object session", () => {
-    const o_s_key = "o_s_key";
-    setOStore(o_s_key, { foo: 123 });
-    const o_s_val = getOStore(o_s_key);
-    expect(o_s_val.foo).toBe(123);
-  });
-
-  test("object local", () => {
-    const o_l_key = "o_l_key";
-    setOStore(o_l_key, { foo: 456 }, "local");
-    const o_l_val = getOStore(o_l_key, "local");
-    expect(o_l_val.foo).toBe(456);
-  });
-
-  test("boolean -> string", () => {
-    const b_s_key = "b_s_key";
-    setStore(b_s_key, true);
-    const bool = getStore(b_s_key);
-    expect(typeof bool).toBe("string");
-  });
-
-  test("boolean -> boolean", () => {
-    const o_b_s_key = "o_b_s_key";
-    setOStore(o_b_s_key, true);
-    const o_bool = getOStore(o_b_s_key);
-    expect(typeof o_bool).toBe("boolean");
-  });
-});
-
-describe("sleep", () => {
-  it("测试 同步 延时", async () => {
-    const _start = Date.now();
-    await sleepSync(1000);
-    const _calc = Date.now() - _start;
-    expect(parseInt(_calc / 1000)).toBe(1);
-  });
-  it("测试 异步 延时", (done) => {
-    const _start = Date.now();
-    sleep(1000, () => {
-      const _calc = Date.now() - _start;
-      expect(parseInt(_calc / 1000)).toBe(1);
-      done();
-    });
-  });
-});
 
 describe("时间轴", () => {
   test.skip("一天前", () => {
@@ -163,22 +96,3 @@ describe("时间轴", () => {
   });
 });
 
-describe("定时", () => {
-  it("execInterval", (done) => {
-    let count = 0;
-    const clearInterval = Schedule.execInterval(500, () => (count += 1));
-    setTimeout(() => {
-      expect(count).toBeGreaterThan(1);
-      expect(count).toBe(2);
-      clearInterval();
-      done();
-    }, 1100);
-  });
-  it("autoStopInterval", async (done) => {
-    let count = 0;
-    await Schedule.autoStopInterval(500, 1000, () => (count += 1));
-    expect(count).toBeGreaterThan(1);
-    expect(count).toBe(2);
-    done();
-  });
-});

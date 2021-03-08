@@ -1,4 +1,5 @@
-import {
+
+const {
     getKernel,
     isChrome,
     isEdge,
@@ -6,7 +7,7 @@ import {
     isIE,
     isOpera,
     isSafari
-} from "../lib";
+} = require('../lib');
 
 describe("Browser", () => {
     it('getKernel', () => {
