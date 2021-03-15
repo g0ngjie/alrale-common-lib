@@ -45,7 +45,7 @@ export {
     uuid2
 } from './string'
 
-export { arrayToObject } from './array'
+export { arrayToObject, arrayMove, arrayMoveMutate } from './array'
 
 export { sortMapByKey, mapToVArray, objectToArray, makeMap } from './object'
 
