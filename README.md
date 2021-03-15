@@ -128,7 +128,7 @@ const obj = arrayToObject('id', arr) // => { '1': { id: 1, test: 123 }, '2': { i
 
 ###### <a id="arrayMove">arrayMove</a>
 
-> Learn from <a href="https://www.npmjs.com/package/array-move">array-move</a>
+> Learn from <a target="_blank" href="https://www.npmjs.com/package/array-move">array-move</a>
 
 ```javascript
 const input = ['a', 'b', 'c'];
