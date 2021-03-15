@@ -13,6 +13,8 @@ $ yarn add @alrale/common-lib
 - <a href="#appendjs">appendjs</a>
 - <a href="#array">array</a>
   - <a href="#arrayToObject">arrayToObject</a>
+  - <a href="#arrayMove">arrayMove</a>
+  - <a href="#arrayMoveMutate">arrayMoveMutate</a>
 - <a href="#browser">browser</a>
   - <a href="#browserIs">isSafari</a>
   - <a href="#browserIs">isChrome</a>
@@ -123,6 +125,40 @@ appendJs('http://code.jquery.com/jquery-migrate-1.2.1.min.js', function() {
 const arr = [{ id: 1, test: 123 }, { id: 2, test: 345 }]
 const obj = arrayToObject('id', arr) // => { '1': { id: 1, test: 123 }, '2': { id: 2, test: 345 } }
 ```
+
+###### <a id="arrayMove">arrayMove</a>
+
+> Learn from <a href="https://www.npmjs.com/package/array-move">array-move</a>
+
+```javascript
+const input = ['a', 'b', 'c'];
+const array1 = arrayMove(input, 1, 2);
+expect(array1).toEqual(['a', 'c', 'b']);
+
+const array2 = arrayMove(input, -1, 0);
+expect(array2).toEqual(['c', 'a', 'b']);
+
+const array3 = arrayMove(input, -2, -3);
+expect(array3).toEqual(['b', 'a', 'c']);
+```
+
+###### <a id="arrayMoveMutate">arrayMoveMutate</a>
+
+```javascript
+const input1 = ['a', 'b', 'c'];
+arrayMoveMutate(input1, 1, 2);
+expect(input1).toEqual(['a', 'c', 'b']);
+
+const input2 = ['a', 'b', 'c'];
+arrayMoveMutate(input2, -1, 0);
+expect(input2).toEqual(['c', 'a', 'b']);
+
+const input3 = ['a', 'b', 'c'];
+arrayMoveMutate(input3, -2, -3);
+expect(input3).toEqual(['b', 'a', 'c']);
+```
+
+
 
 ### <span id="browser">browser</span>
 
