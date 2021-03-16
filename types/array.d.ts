@@ -19,7 +19,7 @@ export declare function arrayMoveMutate(array: unknown[], from: number, to: numb
  * @returns
  * @example
     ```
-        import arrayMove = require('array-move');
+        const { arrayMove } = require('@alrale/common-lib');
 
         const input = ['a', 'b', 'c'];
 
