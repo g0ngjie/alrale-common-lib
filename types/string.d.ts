@@ -38,3 +38,21 @@ export declare function guid2(): string;
  * @description uuid2(16, 16) // "277571702EE33E11"
  */
 export declare function uuid2(len: number, radix: number): string;
+/**
+ *
+ * @param target
+ * @param separator
+ */
+/**
+ * 字符串后缀获取、判断
+ * @param {string} target
+ * @param {string} separator
+ * @param {any[]|string} condition
+ * @example
+ * ```
+ * stringExtension('flower.png', '.'); //  => png
+ * stringExtension('avatar.jpg', '.', ['png', 'jpg']); // => true
+ * stringExtension('xxx@gmail.com', '@'); // => gmail.com
+ * ```
+ */
+export declare function stringExtension(target: string, separator: string, condition?: any[] | string): boolean | string;

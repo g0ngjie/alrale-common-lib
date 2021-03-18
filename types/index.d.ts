@@ -11,7 +11,7 @@ export { dateDiff, week } from './time.axis';
 export { execInterval, autoStopInterval, Schedule } from './schedule';
 export { randomInt, randomDistinctIntArray, randomDistinctRangeArray, prefixZero, isNumber, isInt, isFloat, } from './number';
 export { getKernel, isChrome, isEdge, isFirefox, isIE, isOpera, isSafari } from './browser';
-export { randomString, nameDesensitization, desensitization, positionOfStringIndexes, uniqueId, guid, uuid, guid2, uuid2 } from './string';
+export { randomString, nameDesensitization, desensitization, positionOfStringIndexes, uniqueId, guid, uuid, guid2, uuid2, stringExtension } from './string';
 export { arrayToObject, arrayMove, arrayMoveMutate } from './array';
 export { sortMapByKey, mapToVArray, objectToArray, makeMap } from './object';
 export { globalStore, getGlobal, setGlobal, removeGlobalItem } from './window';

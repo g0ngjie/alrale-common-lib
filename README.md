@@ -94,6 +94,7 @@ $ yarn add @alrale/common-lib
   - <a href="#uuid">uuid</a>
   - <a href="#guid2">guid2</a>
   - <a href="#uuid2">uuid2</a>
+  - <a href="#stringExtension">stringExtension</a>
 - <a href="#time.axis">time.axis</a>
   - <a href="#dateDiff">dateDiff</a>
   - <a href="#week">week</a>
@@ -747,7 +748,8 @@ const {
     guid,
     uuid,
     guid2,
-    uuid2
+    uuid2,
+    stringExtension
 } = require('@alrale/common-lib');
 ```
 
@@ -810,6 +812,19 @@ expect(_uuid2).toHaveLength(16)
 expect(_uuid).toHaveLength(temp.length)
 expect(_guid).toHaveLength(temp.length)
 expect(_guid2).toHaveLength(36)
+```
+
+###### <a id="stringExtension">stringExtension</a> 字符串后缀获取、判断
+
+```javascript
+const str1 = stringExtension('flower.png', '.');
+expect(str1).toBe('png')
+const bool = stringExtension('avatar.jpg', '.', ['png', 'jpg']);
+expect(bool).toBe(true)
+const str2 = stringExtension('xxx@gmail.com', '@');
+expect(str2).toBe('gmail.com')
+const null1 = stringExtension('null.png');
+expect(null1).toBe(false);
 ```
 
 

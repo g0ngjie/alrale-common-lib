@@ -1,5 +1,6 @@
 import os from 'os'
 import crypto from 'crypto'
+import { typeIs } from './type.is';
 
 /**
  * 字符串倍数拼接
@@ -171,4 +172,35 @@ export function uuid2(len: number, radix: number): string {
     }
   }
   return uuid.join('');
+}
+
+/**
+ * 
+ * @param target 
+ * @param separator 
+ */
+/**
+ * 字符串后缀获取、判断
+ * @param {string} target 
+ * @param {string} separator 
+ * @param {any[]|string} condition 
+ * @example
+ * ```
+ * stringExtension('flower.png', '.'); //  => png
+ * stringExtension('avatar.jpg', '.', ['png', 'jpg']); // => true
+ * stringExtension('xxx@gmail.com', '@'); // => gmail.com
+ * ```
+ */
+export function stringExtension(target: string, separator: string, condition?: any[] | string): boolean | string {
+  if (!target || typeIs(target) !== 'string') return false
+  if (!separator || typeIs(separator) !== 'string') return false
+  const index: number = target.lastIndexOf(separator);
+  // 获取后缀
+  const ext: string = target.substr(index + 1);
+  // 如果有条件，则判断是否包含
+  if (condition) {
+    if (typeIs(condition) === 'array' && condition.length > 0) return condition.includes(ext)
+    else if (typeIs(condition) === 'string') return condition === ext
+  } else return ext
+  return false
 }

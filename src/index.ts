@@ -42,7 +42,8 @@ export {
     guid,
     uuid,
     guid2,
-    uuid2
+    uuid2,
+    stringExtension
 } from './string'
 
 export { arrayToObject, arrayMove, arrayMoveMutate } from './array'

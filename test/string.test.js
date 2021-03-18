@@ -1,4 +1,14 @@
-const { randomString, nameDesensitization, desensitization, positionOfStringIndexes, uuid, uuid2, guid, guid2 } = require('../lib');
+const {
+    randomString,
+    nameDesensitization,
+    desensitization,
+    positionOfStringIndexes,
+    uuid,
+    uuid2,
+    guid,
+    guid2,
+    stringExtension
+} = require('../lib');
 
 describe("string", () => {
 
@@ -39,5 +49,16 @@ describe("string", () => {
         expect(_uuid).toHaveLength(temp.length)
         expect(_guid).toHaveLength(temp.length)
         expect(_guid2).toHaveLength(36)
+    })
+
+    it("字符串后缀获取、判断", () => {
+        const str1 = stringExtension('flower.png', '.');
+        expect(str1).toBe('png')
+        const bool = stringExtension('avatar.jpg', '.', ['png', 'jpg']);
+        expect(bool).toBe(true)
+        const str2 = stringExtension('xxx@gmail.com', '@');
+        expect(str2).toBe('gmail.com')
+        const null1 = stringExtension('null.png');
+        expect(null1).toBe(false);
     })
 })
