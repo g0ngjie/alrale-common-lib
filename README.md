@@ -64,6 +64,7 @@ $ yarn add @alrale/common-lib
   - <a href="#object.mapToVArray">mapToVArray</a>
   - <a href="#object.objectToArray">objectToArray</a>
   - <a href="#object.makeMap">makeMap</a>
+  - <a href="#isEmpty">isEmpty</a>
 - <a href="#parse.query">parse.query</a>
   - <a href="#parseQuery">parseQuery</a>
   - <a href="#decodeUrlSearch">decodeUrlSearch</a>
@@ -501,6 +502,14 @@ const acceptValue = makeMap('input,textarea,option,select,progress');
 const acceptValue2 = makeMap('input,textarea,option,select,progress', true);
 const bool = acceptValue('input');	// => true
 const bool2 = acceptValue2('INPUT');// => true
+```
+
+###### <a id="isEmpty">isEmpty</a> 判断Object是否是空对象
+
+```javascript
+object.isEmpty({}); // => true
+object.isEmpty({ alrale: 'common-lib' }); // => false
+object.isEmpty([1,2,3]); // => false
 ```
 
 
