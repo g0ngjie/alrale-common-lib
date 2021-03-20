@@ -1,4 +1,4 @@
-const { sortMapByKey, mapToVArray, objectToArray, makeMap } = require('../lib');
+const { sortMapByKey, mapToVArray, objectToArray, makeMap, object } = require('../lib');
 
 describe("object", () => {
     it('sortMapByKey', () => {
@@ -37,5 +37,14 @@ describe("object", () => {
         const bool2 = acceptValue2('INPUT')
         expect(bool).toBe(true)
         expect(bool2).toBe(true)
+    })
+
+    it("isEmpty", () => {
+        const e1 = object.isEmpty({});
+        expect(e1).toBe(true)
+        const e2 = object.isEmpty({ alrale: 'common-lib' });
+        expect(e2).toBe(false)
+        const e3 = object.isEmpty([1,2,3]);
+        expect(e3).toBe(false)
     })
 })

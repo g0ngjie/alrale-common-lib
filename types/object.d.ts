@@ -20,3 +20,13 @@ export declare function objectToArray(target: any): any[];
  * By Vue
  */
 export declare function makeMap(str: string, expectsLowerCase: boolean): (val: string) => any;
+/**
+ * 判断Object是否是空对象
+ * @param {any} target
+ * @example
+ * ```
+ * object.isEmpty({}); // => true
+ * object.isEmpty({ alrale: 'common-lib' }); // => false
+ * ```
+ */
+export declare function isEmpty(target: any): boolean;

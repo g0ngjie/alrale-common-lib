@@ -100,3 +100,17 @@ export function makeMap(str: string, expectsLowerCase: boolean) {
         ? function (val: string) { return map[val.toLowerCase()]; }
         : function (val: string) { return map[val]; }
 }
+
+/**
+ * 判断Object是否是空对象
+ * @param {any} target 
+ * @example
+ * ```
+ * object.isEmpty({}); // => true
+ * object.isEmpty({ alrale: 'common-lib' }); // => false
+ * ```
+ */
+export function isEmpty(target: any): boolean {
+    if (typeIs(target) !== 'object') return false;
+    return JSON.stringify(target) === '{}';
+}

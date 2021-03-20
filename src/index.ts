@@ -64,4 +64,6 @@ export * as Enum from "./enum/index";
 
 export * as regular from './regular';
 
-export * as byte from './byte'
+export * as byte from './byte';
+
+export * as object from './object';
