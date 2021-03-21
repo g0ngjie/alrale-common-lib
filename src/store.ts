@@ -1,3 +1,4 @@
+import { isBrowser } from "./env"
 
 const DEFAULT_LEVEL: string = 'session'
 
@@ -6,7 +7,7 @@ interface Store {
 }
 
 const store = (level?: string): Storage => {
-  const _store: Store = { local: localStorage, session: sessionStorage }
+  const _store: Store = { local: isBrowser ? localStorage : global, session: isBrowser ? sessionStorage : global }
   return _store[level || DEFAULT_LEVEL]
 }
 
