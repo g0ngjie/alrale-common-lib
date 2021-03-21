@@ -1,6 +1,6 @@
 {
   "name": "@alrale/common-lib",
-  "version": "1.0.48",
+  "version": "1.0.49",
   "description": "common functions",
   "private": false,
   "main": "lib/index.js",
