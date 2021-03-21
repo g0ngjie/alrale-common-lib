@@ -3,7 +3,7 @@ interface Store {
   [key: string]: Storage
 }
 
-const store: Store = { local: localStorage, session: sessionStorage }
+const store: Store = { local: window.localStorage, session: window.sessionStorage }
 const DEFAULT_LEVEL: string = 'session'
 
 function stringifyJSON(e: any): string {
