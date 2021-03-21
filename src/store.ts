@@ -1,10 +1,14 @@
 
+const DEFAULT_LEVEL: string = 'session'
+
 interface Store {
   [key: string]: any
 }
 
-const store: Store = { local: window ? localStorage : global, session: window ? sessionStorage : global }
-const DEFAULT_LEVEL: string = 'session'
+const store = (level?: string): Storage => {
+  const _store: Store = { local: localStorage, session: sessionStorage }
+  return _store[level || DEFAULT_LEVEL]
+}
 
 function stringifyJSON(e: any): string {
   return JSON.stringify(e)
@@ -24,7 +28,7 @@ function parseJSON(e: string | null): any {
  * @returns {void}
  */
 export function setStore(key: string, value: string, level?: string /**default session */): void {
-  return store[level || DEFAULT_LEVEL].setItem(key, value)
+  return store(level).setItem(key, value)
 }
 
 /**
@@ -37,7 +41,7 @@ export function setStore(key: string, value: string, level?: string /**default s
  * @returns {void}
  */
 export function setOStore(key: string, value: any, level?: string /**default session */): void {
-  return store[level || DEFAULT_LEVEL].setItem(key, stringifyJSON(value))
+  return store(level).setItem(key, stringifyJSON(value))
 }
 
 /**
@@ -49,7 +53,7 @@ export function setOStore(key: string, value: any, level?: string /**default ses
  * @returns {(string | null)}
  */
 export function getStore(key: string, level?: string /**default session */): string | null {
-  return store[level || DEFAULT_LEVEL].getItem(key)
+  return store(level).getItem(key)
 }
 
 /**
@@ -72,5 +76,5 @@ export function getOStore(key: string, level?: string /**default session */): st
  * @param {string} [level]
  */
 export function removeStore(key: string, level?: string /**default session */): void {
-  store[level || DEFAULT_LEVEL].removeItem(key)
+  store(level).removeItem(key)
 }
