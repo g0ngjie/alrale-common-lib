@@ -21,7 +21,7 @@ export function targetConversionIntoList(target: ITargetConversionFormattedTarge
     let _options;
     if (options) _options = options
     else _options = { label: 'label', value: 'value' }
-    let returnList: any[] = [];
+    const returnList: any[] = [];
     const { label, value } = _options
     // 判断target类型
     if (typeIs(target) === 'object') {
