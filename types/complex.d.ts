@@ -3,9 +3,9 @@ declare type ITargetConversionFormattedTarget = {
 };
 /**
  * 目标转换成列表
- * @param {object} target 目标对象
- * @param {ITargetConversionData} formattedObject 格式化对象
- * @param {TargetConversionOptions} options K/V
+ * @param target 目标对象
+ * @param formattedObject 格式化对象
+ * @param options K/V
  */
 export declare function targetConversionIntoList(target: ITargetConversionFormattedTarget, formattedObject: {
     [propName: string]: string;
