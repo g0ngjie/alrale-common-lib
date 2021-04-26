@@ -106,7 +106,9 @@ $ yarn add @alrale/common-lib
   - <a href="#getGlobal">getGlobal</a>
   - <a href="#setGlobal">setGlobal</a>
   - <a href="#removeGlobalItem">removeGlobalItem</a>
-
+- <a href="#Complex">Complex</a>
+  - <a href="#targetConversionIntoList">targetConversionIntoList</a>
+  
 ------
 
 ### <a id="appendjs">appendjs</a>
@@ -912,6 +914,32 @@ expect(hasObj).toBeUndefined()
 ```
 
 
+### <span id="Complex">Complex</span>
+
+###### <a id=targetConversionIntoList>targetConversionIntoList</a>  目标转换成列表
+
+
+```javascript
+const { Complex } = require('@alrale/common-lib');
+it("targetConversionIntoList", () => {
+  const target = {
+    name: "张三",
+    age: 18,
+    hight: 180,
+  };
+  const list = Complex.targetConversionIntoList(target, {
+    name: "姓名",
+    age: "年龄",
+    hight: "身高",
+  });
+  const arr = [
+    { label: "姓名", value: "张三" },
+    { label: "年龄", value: 18 },
+    { label: "身高", value: 180 },
+  ];
+  expect(list).toEqual(arr);
+});
+```
 
 ## License
 [The ISC License](./LICENSE)
