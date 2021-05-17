@@ -1,12 +1,13 @@
 import { isBrowser } from "./env"
 
 const DEFAULT_LEVEL: string = 'session'
+type Level = 'local' | 'session'
 
 interface Store {
   [key: string]: any
 }
 
-const store = (level?: string): Storage => {
+const store = (level?: Level): Storage => {
   const _store: Store = { local: isBrowser ? localStorage : global, session: isBrowser ? sessionStorage : global }
   return _store[level || DEFAULT_LEVEL]
 }
@@ -28,7 +29,7 @@ function parseJSON(e: string | null): any {
  * @param {string} [level] session | local
  * @returns {void}
  */
-export function setStore(key: string, value: string, level?: string /**default session */): void {
+export function setStore(key: string, value: string, level?: Level /**default session */): void {
   return store(level).setItem(key, value)
 }
 
@@ -41,7 +42,7 @@ export function setStore(key: string, value: string, level?: string /**default s
  * @param {string} [level]
  * @returns {void}
  */
-export function setOStore(key: string, value: any, level?: string /**default session */): void {
+export function setOStore(key: string, value: any, level?: Level /**default session */): void {
   return store(level).setItem(key, stringifyJSON(value))
 }
 
@@ -53,7 +54,7 @@ export function setOStore(key: string, value: any, level?: string /**default ses
  * @param {string} [level] session | local
  * @returns {(string | null)}
  */
-export function getStore(key: string, level?: string /**default session */): string | null {
+export function getStore(key: string, level?: Level /**default session */): string | null {
   return store(level).getItem(key)
 }
 
@@ -65,7 +66,7 @@ export function getStore(key: string, level?: string /**default session */): str
  * @param {string} [level]
  * @returns {(string | null)}
  */
-export function getOStore(key: string, level?: string /**default session */): string | null {
+export function getOStore(key: string, level?: Level /**default session */): string | null {
   return parseJSON(getStore(key, level))
 }
 
@@ -76,6 +77,6 @@ export function getOStore(key: string, level?: string /**default session */): st
  * @param {string} key
  * @param {string} [level]
  */
-export function removeStore(key: string, level?: string /**default session */): void {
+export function removeStore(key: string, level?: Level /**default session */): void {
   store(level).removeItem(key)
 }
