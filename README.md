@@ -662,7 +662,10 @@ setTimeout(() => {
   expect(count).toBe(2);
   done()
 }, 1100);
-autoStopInterval(500, 1200, () => (count += 1));
+autoStopInterval(500, 1200, (target) => {
+  count += 1
+  if (count === 3) expect(target).toBe('done')
+});
 ```
 ```javascript
 let count = 0;

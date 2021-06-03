@@ -18,7 +18,10 @@ describe("定时", () => {
             expect(count).toBe(2);
             done();
         }, 1100);
-        Schedule.autoStopInterval(500, 1200, () => (count += 1));
+        Schedule.autoStopInterval(500, 1200, (target) => {
+            count += 1
+            if (count === 3) expect(target).toBe('done')
+        });
     });
 
     it("autoStopInterval clearInterval function", async (done) => {

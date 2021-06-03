@@ -18,10 +18,13 @@ export function execInterval(millisecond: number = 1000, callback: Function): Fu
  * @param {number | undefined} stopMillisecond 结束时间毫秒 | 1000
  * @param {Function} callback 
  */
-export function autoStopInterval(interval: number = 1000, stopMillisecond: number = 1000, callback: Function): Promise<Function> {
+export function autoStopInterval(interval: number = 1000, stopMillisecond: number = 1000, callback: Function): Promise<Function | 'done'> {
     return new Promise(resolve => {
         const intervalId: NodeJS.Timeout = setInterval(() => callback(), interval)
-        const timeoutId: NodeJS.Timeout = setTimeout(() => clearInterval(intervalId), stopMillisecond);
+        const timeoutId: NodeJS.Timeout = setTimeout(() => {
+            clearInterval(intervalId)
+            callback('done')
+        }, stopMillisecond);
         resolve(() => {
             clearInterval(intervalId)
             clearTimeout(timeoutId)
