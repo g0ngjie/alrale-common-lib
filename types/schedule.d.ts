@@ -11,7 +11,7 @@ export declare function execInterval(millisecond: number | undefined, callback: 
  * @param {number | undefined} stopMillisecond 结束时间毫秒 | 1000
  * @param {Function} callback
  */
-export declare function autoStopInterval(interval: number | undefined, stopMillisecond: number | undefined, callback: Function): Promise<void>;
+export declare function autoStopInterval(interval: number | undefined, stopMillisecond: number | undefined, callback: Function): Promise<Function>;
 export declare const Schedule: {
     execInterval: typeof execInterval;
     autoStopInterval: typeof autoStopInterval;

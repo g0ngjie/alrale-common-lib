@@ -658,12 +658,22 @@ setTimeout(() => {
 
 ```javascript
 let count = 0;
-await autoStopInterval(500, 1000, () => (count += 1));
-expect(count).toBeGreaterThan(1);
-expect(count).toBe(2);
-done();
+setTimeout(() => {
+  expect(count).toBe(2);
+  done()
+}, 1100);
+autoStopInterval(500, 1200, () => (count += 1));
 ```
-
+```javascript
+let count = 0;
+let clearFunc = null;
+setTimeout(() => {
+  clearFunc();
+  expect(count).toBe(4)
+  done()
+}, 2 * 1000 + 100);
+clearFunc = await Schedule.autoStopInterval(500, 4 * 1000 + 100, () => count += 1);
+```
 
 
 ### <span id="sleep">sleep</span>
