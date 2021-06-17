@@ -1,6 +1,6 @@
 import { typeIs } from "./type.is";
 
-type LevelType = 'info' | 'log' | 'debug' | 'warn' | 'error';
+type Level = 'info' | 'log' | 'debug' | 'warn' | 'error';
 
 interface Output {
     /**起始-关键词 */
@@ -40,7 +40,7 @@ interface AllLogOption extends ConsoleOption, OnlyOption {
 
 interface LogOption extends ConsoleOption, OnlyOption {
     disabled?: boolean,
-    level: LevelType
+    level: Level
 }
 
 /**数组是否存在数据 */
@@ -201,18 +201,18 @@ export const log = {
     /**全部禁用 */
     skipAll: (): void => _envLog({ disabledAll: true }),
     /**level级别禁用 */
-    skip: (levels: LevelType[]): void => {
+    skip: (levels: Level[]): void => {
         for (let i = 0; i < levels.length; i++) {
-            const level: LevelType = levels[i];
+            const level: Level = levels[i];
             _log({ level, disabled: true })
         }
     },
     /**条件禁用 */
     skipAllBy: (option: Option): void => _envLog(option),
     /**level级别禁用|条件过滤 */
-    skipBy: (levels: LevelType[], option: Option): void => {
+    skipBy: (levels: Level[], option: Option): void => {
         for (let i = 0; i < levels.length; i++) {
-            const level: LevelType = levels[i];
+            const level: Level = levels[i];
             _log({ level, ...option })
         }
     },
@@ -223,7 +223,7 @@ export const log = {
         _envLog(consoleOption)
     },
     /**level级别收集|条件过滤 */
-    collect: (level: LevelType, option: Output): void => {
+    collect: (level: Level, option: Output): void => {
         const consoleOption: ConsoleOption = {};
         consoleOption.output = option
         _log({ level, ...consoleOption })
@@ -231,5 +231,5 @@ export const log = {
     /**只展示[prefix]相关 */
     onlyAll: (option: Option): void => _envLog({ only: true, ...option }),
     /**level级别只展示[prefix]相关 */
-    only: (level: LevelType, option: Option): void => _log({ level, only: true, ...option })
+    only: (level: Level, option: Option): void => _log({ level, only: true, ...option })
 }

@@ -1,4 +1,4 @@
-declare type LevelType = 'info' | 'log' | 'debug' | 'warn' | 'error';
+declare type Level = 'info' | 'log' | 'debug' | 'warn' | 'error';
 interface Output {
     /**起始-关键词 */
     prefix: string;
@@ -24,18 +24,18 @@ export declare const log: {
     /**全部禁用 */
     skipAll: () => void;
     /**level级别禁用 */
-    skip: (levels: LevelType[]) => void;
+    skip: (levels: Level[]) => void;
     /**条件禁用 */
     skipAllBy: (option: Option) => void;
     /**level级别禁用|条件过滤 */
-    skipBy: (levels: LevelType[], option: Option) => void;
+    skipBy: (levels: Level[], option: Option) => void;
     /**收集 */
     collectAll: (option: Output) => void;
     /**level级别收集|条件过滤 */
-    collect: (level: LevelType, option: Output) => void;
+    collect: (level: Level, option: Output) => void;
     /**只展示[prefix]相关 */
     onlyAll: (option: Option) => void;
     /**level级别只展示[prefix]相关 */
-    only: (level: LevelType, option: Option) => void;
+    only: (level: Level, option: Option) => void;
 };
 export {};
