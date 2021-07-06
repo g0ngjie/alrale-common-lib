@@ -59,4 +59,24 @@ describe("Complex", () => {
     ];
     expect(list).toEqual(arr);
   });
+
+  it("targetConversionIntoList 4", () => {
+    const target = {
+      name: "张三",
+      age: 18,
+      hight: 180,
+    };
+    const list = Complex.targetConversionIntoList(target, {
+      name: "姓名",
+      age: {
+        label: "年龄",
+        formatter: () => "保密",
+      },
+    });
+    const arr = [
+      { label: "姓名", value: "张三" },
+      { label: "年龄", value: "保密" },
+    ];
+    expect(list).toEqual(arr);
+  });
 });
