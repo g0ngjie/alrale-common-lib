@@ -1,4 +1,4 @@
-export { appendJs } from './appendjs';
+export { appendJs, appendBodyJs } from './appendjs';
 export { deepClone, deepOClone } from './deep.clone';
 export { copyValue } from './document';
 export { parseQuery, decodeUrlSearch } from './parse.query';

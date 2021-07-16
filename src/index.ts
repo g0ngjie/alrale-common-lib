@@ -1,5 +1,5 @@
 
-export { appendJs } from './appendjs'
+export { appendJs, appendBodyJs } from './appendjs'
 
 export { deepClone, deepOClone } from './deep.clone'
 
