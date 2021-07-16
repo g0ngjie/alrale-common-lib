@@ -3,6 +3,6 @@
  *
  * @export
  * @param {string} src
- * @param {(Function | undefined)} cb
+ * @param {Function} cb
  */
-export declare function appendJs(src: string, cb: Function | undefined): void;
+export declare function appendJs(src: string, cb?: Function): Function;
