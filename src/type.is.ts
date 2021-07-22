@@ -1,5 +1,6 @@
+type IType = 'string' | 'number' | 'boolean' | 'symbol' | 'undefined' | 'null' | 'function' | 'date' | 'array' | 'object' | 'map' | 'regexp' | 'error' | 'document' | 'window'
 
-export function typeIs<T>(target: T): string {
+export function typeIs<T>(target: T): IType {
   const Type: any = {
     '[object String]': 'string',
     '[object Number]': 'number',
@@ -18,6 +19,6 @@ export function typeIs<T>(target: T): string {
     '[object global]': 'window' // window 是全局对象 global 的引用
   }
   const find_proto: string = Object.prototype.toString.call(target)
-  const type_to_string: string = Type[find_proto]
+  const type_to_string: IType = Type[find_proto]
   return type_to_string
 }
