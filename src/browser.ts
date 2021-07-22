@@ -1,12 +1,14 @@
 import { isBrowser } from "./env"
 
+type IKernel = 'Nil' | 'IE7' | 'IE8' | 'IE9' | 'IE10' | 'IE11' | 'IE' | 'Opera' | 'Edge' | 'FF' | 'Safari' | 'Chrome' | 'None'
+
 /**
  * 获取浏览器内核类型
  */
-export function getKernel(): string {
+export function getKernel(): IKernel {
 
   if (!isBrowser) return 'Nil'
-  
+
   const userAgent = navigator.userAgent //取得浏览器的userAgent字符串
   const isOpera = userAgent.indexOf('Opera') > -1 //判断是否Opera浏览器
   const isIE =
