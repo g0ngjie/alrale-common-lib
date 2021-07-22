@@ -72,3 +72,36 @@ export function formatTs(timestamp: string | number): FotmatTsResponse {
         getYYYYMMDD
     }
 }
+
+
+type RelativeTimeKey = 's' | 'ss' | 'm' | 'mm' | 'h' | 'hh' | 'd' | 'dd' | 'M' | 'MM' | 'yy' | 'yyyy';
+type CombinationYear = 'yyyy-MM' | 'yyyy-MM-dd' | 'yyyy-MM-dd hh' | 'yyyy-MM-dd hh:mm' | 'yyyy-MM-dd hh:mm:ss';
+type CombinationMonth = 'MM-dd' | 'MM-dd hh' | 'MM-dd hh:mm' | 'MM-dd hh:mm:ss';
+type CombinationDay = 'dd hh' | 'dd hh:mm' | 'dd hh:mm:ss';
+type CombinationHour = 'hh:mm' | 'hh:mm:ss';
+type CombinationMinute = 'mm:ss';
+type IFormatDate = RelativeTimeKey | CombinationYear | CombinationMonth | CombinationDay | CombinationHour | CombinationMinute
+
+/**
+ * 格式化时间
+ * @param {IFormatDate} fmt 
+ * @param {Date} date 
+ * @returns 
+ */
+export function formatDate(date: Date, fmt: IFormatDate): string {
+    let target: string = fmt
+    const o: any = {
+        "M+": date.getMonth() + 1, // 月份
+        "d+": date.getDate(), // 日
+        "h+": date.getHours(), // 小时
+        "m+": date.getMinutes(), // 分
+        "s+": date.getSeconds(), // 秒
+        "q+": Math.floor((date.getMonth() + 3) / 3), // 季度
+        "S": date.getMilliseconds() // 毫秒
+    };
+    if (/(y+)/.test(fmt))
+        target = target.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (let k in o)
+        if (new RegExp("(" + k + ")").test(target)) target = target.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return target;
+}
