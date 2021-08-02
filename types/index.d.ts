@@ -18,6 +18,7 @@ export { globalStore, getGlobal, setGlobal, removeGlobalItem } from './window';
 export { ArrayQueue, LinkedQueue } from './queue';
 export * as env from './env';
 export { log } from './console';
+export * as color from './color';
 export * as date from './date';
 export * as Enum from "./enum/index";
 export * as regular from './regular';

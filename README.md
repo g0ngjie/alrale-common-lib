@@ -4,6 +4,7 @@
 - small tool
 
 ## Installing
+
 ```javascript
 $ yarn add @alrale/common-lib
 ```
@@ -33,6 +34,8 @@ $ yarn add @alrale/common-lib
   - <a href="#collect">collect</a>
   - <a href="#onlyAll">onlyAll</a>
   - <a href="#only">only</a>
+- <a href="#color">color</a>
+  - <a href="#hexTransparency">hexTransparency</a>
 - <a href="#date">date</a>
   - <a href="#date.formatTs">formatTs</a>
 - <a href="#deep.clone">deep.clone</a>
@@ -108,17 +111,17 @@ $ yarn add @alrale/common-lib
   - <a href="#removeGlobalItem">removeGlobalItem</a>
 - <a href="#Complex">Complex</a>
   - <a href="#targetConversionIntoList">targetConversionIntoList</a>
-  
-------
+
+---
 
 ### <a id="appendjs">appendjs</a>
 
 ###### 动态加载 `script`
 
 ```javascript
-appendJs('http://code.jquery.com/jquery-migrate-1.2.1.min.js', function() {
-    console.log('jquery success')
-})
+appendJs("http://code.jquery.com/jquery-migrate-1.2.1.min.js", function () {
+  console.log("jquery success");
+});
 ```
 
 ### <span id="array">array</span>
@@ -126,8 +129,11 @@ appendJs('http://code.jquery.com/jquery-migrate-1.2.1.min.js', function() {
 ###### <a id="arrayToObject">arrayToObject</a>
 
 ```javascript
-const arr = [{ id: 1, test: 123 }, { id: 2, test: 345 }]
-const obj = arrayToObject('id', arr) // => { '1': { id: 1, test: 123 }, '2': { id: 2, test: 345 } }
+const arr = [
+  { id: 1, test: 123 },
+  { id: 2, test: 345 },
+];
+const obj = arrayToObject("id", arr); // => { '1': { id: 1, test: 123 }, '2': { id: 2, test: 345 } }
 ```
 
 ###### <a id="arrayMove">arrayMove</a>
@@ -135,34 +141,32 @@ const obj = arrayToObject('id', arr) // => { '1': { id: 1, test: 123 }, '2': { i
 > Learn from <a target="_blank" href="https://www.npmjs.com/package/array-move">array-move</a>
 
 ```javascript
-const input = ['a', 'b', 'c'];
+const input = ["a", "b", "c"];
 const array1 = arrayMove(input, 1, 2);
-expect(array1).toEqual(['a', 'c', 'b']);
+expect(array1).toEqual(["a", "c", "b"]);
 
 const array2 = arrayMove(input, -1, 0);
-expect(array2).toEqual(['c', 'a', 'b']);
+expect(array2).toEqual(["c", "a", "b"]);
 
 const array3 = arrayMove(input, -2, -3);
-expect(array3).toEqual(['b', 'a', 'c']);
+expect(array3).toEqual(["b", "a", "c"]);
 ```
 
 ###### <a id="arrayMoveMutate">arrayMoveMutate</a>
 
 ```javascript
-const input1 = ['a', 'b', 'c'];
+const input1 = ["a", "b", "c"];
 arrayMoveMutate(input1, 1, 2);
-expect(input1).toEqual(['a', 'c', 'b']);
+expect(input1).toEqual(["a", "c", "b"]);
 
-const input2 = ['a', 'b', 'c'];
+const input2 = ["a", "b", "c"];
 arrayMoveMutate(input2, -1, 0);
-expect(input2).toEqual(['c', 'a', 'b']);
+expect(input2).toEqual(["c", "a", "b"]);
 
-const input3 = ['a', 'b', 'c'];
+const input3 = ["a", "b", "c"];
 arrayMoveMutate(input3, -2, -3);
-expect(input3).toEqual(['b', 'a', 'c']);
+expect(input3).toEqual(["b", "a", "c"]);
 ```
-
-
 
 ### <span id="browser">browser</span>
 
@@ -175,13 +179,20 @@ const kernel = getKernel(); // => 'IE7'|'IE8'|'IE9'|'IE10'|'IE11'|'IE'|'Opera'|'
 ###### <a id="browserIs">isSafari, isChrome, isFirefox, isOpera, isEdge, isIE</a>
 
 ```javascript
-const { isSafari, isChrome, isFirefox, isOpera, isEdge, isIE } = require('@alrale/common-lib');
-isSafari 	// => boolean
-isChrome 	// => boolean
-isFirefox 	// => boolean
-isOpera 	// => boolean
-isEdge 		// => boolean
-isIE 		// => boolean
+const {
+  isSafari,
+  isChrome,
+  isFirefox,
+  isOpera,
+  isEdge,
+  isIE,
+} = require("@alrale/common-lib");
+isSafari; // => boolean
+isChrome; // => boolean
+isFirefox; // => boolean
+isOpera; // => boolean
+isEdge; // => boolean
+isIE; // => boolean
 ```
 
 ### <span id="byte">byte</span>
@@ -197,117 +208,126 @@ byte.format(...).MB.toBit()
 // from ... to ...
 ```
 
-### <span id="console">console</span> 
+### <span id="console">console</span>
 
 ###### 日志过滤器
 
 ```javascript
-const { log } = require('@alrale/common-lib');
+const { log } = require("@alrale/common-lib");
 // type LevelType = 'info' | 'log' | 'debug' | 'warn' | 'error';
 ```
 
 ###### <a id=skipAll>skipAll</a> 全部禁用
 
 ```javascript
-log.skipAll()
-console.log('---这个信息不会输出----');
+log.skipAll();
+console.log("---这个信息不会输出----");
 ```
 
-###### <a id=skip>skip</a> level级别禁用
+###### <a id=skip>skip</a> level 级别禁用
 
 ```javascript
-log.skip(['log'])
-console.log('---这个信息不会输出---')
-console.info('---这个信息会输出---')
+log.skip(["log"]);
+console.log("---这个信息不会输出---");
+console.info("---这个信息会输出---");
 ```
 
 ###### <a id=skipAllBy>skipAllBy</a> 条件禁用
 
 ```javascript
-log.skipAllBy({ startWitch: '[d' })
-console.log('这个信息会输出')
-console.log('[debug]这个信息不输出-> ', 123);
+log.skipAllBy({ startWitch: "[d" });
+console.log("这个信息会输出");
+console.log("[debug]这个信息不输出-> ", 123);
 ```
 
-###### <a id=skipBy>skipBy</a> level级别禁用|条件过滤
+###### <a id=skipBy>skipBy</a> level 级别禁用|条件过滤
 
 ```javascript
-log.skipBy(['log'], { endWitch: 'foo' })
-console.log('[debug]这个会log1-> ', 123);
-console.log('这个信息不会输出foo')
-console.log('[debug]这个会log2-> ', 123);
+log.skipBy(["log"], { endWitch: "foo" });
+console.log("[debug]这个会log1-> ", 123);
+console.log("这个信息不会输出foo");
+console.log("[debug]这个会log2-> ", 123);
 ```
 
 ###### <a id=collectAll>collectAll</a> 收集
 
 ```javascript
 log.collectAll({
-    prefix: '1', callback: (args) => {
-        console.info('----->', args);
-    }
-})
-console.log('[debug]123-> ', 123);
-console.log('1这个是', { a: 1 }, '测试')
+  prefix: "1",
+  callback: (args) => {
+    console.info("----->", args);
+  },
+});
+console.log("[debug]123-> ", 123);
+console.log("1这个是", { a: 1 }, "测试");
 ```
 
-###### <a id=collect>collect</a> level级别收集|条件过滤
+###### <a id=collect>collect</a> level 级别收集|条件过滤
 
 ```javascript
-log.collect('log', {
-    prefix: '1', callback: (args) => {
-        console.info('收集------>', args)
-    }
-})
-console.log('[debug]不会被收集-> ', 123);
-console.log('这个会被收集', { a: 1 }, '测试')
+log.collect("log", {
+  prefix: "1",
+  callback: (args) => {
+    console.info("收集------>", args);
+  },
+});
+console.log("[debug]不会被收集-> ", 123);
+console.log("这个会被收集", { a: 1 }, "测试");
 ```
 
 ###### <a id=onlyAll>onlyAll</a> 只展示[prefix]相关
 
 ```javascript
-log.onlyAll({ startWitch: '[debug]' })
-console.log('[debug]这个会输出-> ', 123);
-console.log('这个不会输出')
-console.info('[debug]这个也会输出-> ', true);
+log.onlyAll({ startWitch: "[debug]" });
+console.log("[debug]这个会输出-> ", 123);
+console.log("这个不会输出");
+console.info("[debug]这个也会输出-> ", true);
 ```
 
-###### <a id=only>only</a> level级别只展示[prefix]相关
+###### <a id=only>only</a> level 级别只展示[prefix]相关
 
 ```javascript
-log.only('info', { startWitch: '[debug]' })
-console.info('[debug]这个会输出-> ', 123);
-console.info('测试测试')
-console.log('这个也输出')
+log.only("info", { startWitch: "[debug]" });
+console.info("[debug]这个会输出-> ", 123);
+console.info("测试测试");
+console.log("这个也输出");
 ```
 
+### <span id="color">color</span>
 
+###### <a id=hexTransparency>hexTransparency</a> css 颜色十六进制末尾透明度对照
+
+```javascript
+const hexSuffix = color.hexTransparency["50%"]; // -> '80'
+// #00000080 -> gray
+```
 
 ### <span id="date">date</span>
 
 ###### <a id=date.formatTs>formatTs</a> 格式化时间戳
 
 ```javascript
-const { date } = require('@alrale/common-lib');
+const { date } = require("@alrale/common-lib");
 // 2021年1月2日3时4分5秒 = 1609527845
-const { 
-    year, 	// 2021
-    month, 	// 1
-    day, 	// 2
-    hour, 	// 3
-    minutes,// 4
-    seconds // 5
-} = formatTs(1609527845)
+const {
+  year, // 2021
+  month, // 1
+  day, // 2
+  hour, // 3
+  minutes, // 4
+  seconds, // 5
+} = formatTs(1609527845);
 // 2009年10月12日13时44分55秒 = 1255326295
-const { 
-    fullMonth, 	// '10'
-    fullDay, 	// '12'
-    fullHour, 	// '13'
-    fullMinutes,// '44'
-    fullSeconds	// '55'
-} = formatTs(1255326295000)
+const {
+  fullMonth, // '10'
+  fullDay, // '12'
+  fullHour, // '13'
+  fullMinutes, // '44'
+  fullSeconds, // '55'
+} = formatTs(1255326295000);
 
 const ymd = formatTs(1609527845).getYMD(); // => '2021-1-2 3:4:5'
-const fullYmd = formatTs(1609527845).getYYYYMMDD('/', '/'); // => '2021/01/02 03/04/05'
+const fullYmd = formatTs(1609527845).getYYYYMMDD("/", "/"); // => '2021/01/02 03/04/05'
 ```
 
 ### <span id="deep.clone">deep.clone</span>
@@ -315,7 +335,7 @@ const fullYmd = formatTs(1609527845).getYYYYMMDD('/', '/'); // => '2021/01/02 03
 ###### deepClone, deepOClone 深复制
 
 ```javascript
-const { deepClone, deepOClone } = require('@alrale/common-lib');
+const { deepClone, deepOClone } = require("@alrale/common-lib");
 // object -> string -> object
 const foo1 = { a: 1, b: 2 };
 const foo_copy1 = deepClone(foo1); // foo_copy1 !== foo1
@@ -338,17 +358,17 @@ copyValue(value: string /**浏览器需要复制的文本 */): void;
 ###### 客户端环境
 
 ```javascript
-const { 
-    isBrowser,	// 判断是否是浏览器访问 => boolean
-    UA,			// userAgent => any
-    isIE,		//  => boolean
-    isIE9,		// => boolean
-    isEdge,		// => boolean
-    isAndroid,	// => boolean
-    isIos,		// => boolean
-    isChrome,	// => boolean
-    isFF,		// => boolean
-} = require('@alrale/common-lib');
+const {
+  isBrowser, // 判断是否是浏览器访问 => boolean
+  UA, // userAgent => any
+  isIE, //  => boolean
+  isIE9, // => boolean
+  isEdge, // => boolean
+  isAndroid, // => boolean
+  isIos, // => boolean
+  isChrome, // => boolean
+  isFF, // => boolean
+} = require("@alrale/common-lib");
 ```
 
 ### <span id="filter">filter</span>
@@ -360,37 +380,35 @@ const {
 ### <span id="number">number</span>
 
 ```javascript
-const { 
-    randomInt,
-    randomDistinctIntArray,
-    randomDistinctRangeArray,
-    isNumber,
-    isFloat,
-    prefixZero,
-    isInt
-} = require('@alrale/common-lib');
+const {
+  randomInt,
+  randomDistinctIntArray,
+  randomDistinctRangeArray,
+  isNumber,
+  isFloat,
+  prefixZero,
+  isInt,
+} = require("@alrale/common-lib");
 ```
-
-
 
 ###### <a id=number.randomInt>randomInt</a> 随机区间整数
 
 ```javascript
-const num = randomInt() // default max = 10
+const num = randomInt(); // default max = 10
 num <= 10; // => true
-num >= 0;  // => true
-const num1 = randomInt(10, 5)
-num <= 10  // => true
-num >= 5   // => true
+num >= 0; // => true
+const num1 = randomInt(10, 5);
+num <= 10; // => true
+num >= 5; // => true
 ```
 
 ###### <a id=number.randomDistinctIntArray>randomDistinctIntArray</a> 随机获取整数列表
 
 ```javascript
-const list = randomDistinctIntArray(10)
+const list = randomDistinctIntArray(10);
 list.includes(6); // => true
 // 默认[0]
-const defaultList = randomDistinctIntArray()
+const defaultList = randomDistinctIntArray();
 // defaultList equal [0]
 ```
 
@@ -398,133 +416,132 @@ const defaultList = randomDistinctIntArray()
 
 ###### 随机区间唯一整数的列表
 
-###### 随机获取固定长度len的数组
+###### 随机获取固定长度 len 的数组
 
-###### 最小出现值fromMin
+###### 最小出现值 fromMin
 
-###### 最大出现值toMax
+###### 最大出现值 toMax
 
 ```javascript
 // 默认[0~10]
-const defaultList = randomDistinctRangeArray()
-expect(defaultList.length).toBe(1)
+const defaultList = randomDistinctRangeArray();
+expect(defaultList.length).toBe(1);
 
-const list = randomDistinctRangeArray(10, 5, 6)
+const list = randomDistinctRangeArray(10, 5, 6);
 for (let i = 0; i < list.length; i++) {
-    const item = list[i];
-    expect([5, 6, 7, 8, 9, 10].includes(item)).toBe(true)
-    if (i === list.length - 1) done()
+  const item = list[i];
+  expect([5, 6, 7, 8, 9, 10].includes(item)).toBe(true);
+  if (i === list.length - 1) done();
 }
 ```
 
 ###### <a id=number.prefixZero> prefixZero</a> 整数前置补零
 
 ```javascript
-prefixZero(2);		// => '02'
-prefixZero(20);		// => '20'
-prefixZero(20, 3);	// => '020'
-prefixZero();		// => ''
-prefixZero(2.21);	// => ''
-prefixZero(true);	// => ''
-prefixZero(20, 6);	// => '000020'
-prefixZero(-20);	// => ''
+prefixZero(2); // => '02'
+prefixZero(20); // => '20'
+prefixZero(20, 3); // => '020'
+prefixZero(); // => ''
+prefixZero(2.21); // => ''
+prefixZero(true); // => ''
+prefixZero(20, 6); // => '000020'
+prefixZero(-20); // => ''
 ```
 
 ###### <a id=number.isNumber>isNumber</a> 判断数字类型,(包含字符串类型数字)
 
 ```javascript
-isNumber('one');	// => false
-isNumber('2');		// => true
-isNumber(() => { });// => false
-isNumber(1.23);		// => true
-isNumber(true); 	// => false
+isNumber("one"); // => false
+isNumber("2"); // => true
+isNumber(() => {}); // => false
+isNumber(1.23); // => true
+isNumber(true); // => false
 ```
 
 ###### <a id=number.isInt>isInt</a> 严格校验正负正数
 
 ```javascript
-isInt(122); 	// => true
-isInt(-122); 	// => true
-isInt(true); 	// => false
-isInt('032'); 	// => true
-isInt([]); 		// => false
+isInt(122); // => true
+isInt(-122); // => true
+isInt(true); // => false
+isInt("032"); // => true
+isInt([]); // => false
 ```
 
-###### <a id=number.isFloat>isFloat</a> 判断是否位float格式
+###### <a id=number.isFloat>isFloat</a> 判断是否位 float 格式
 
 ```javascript
-isFloat('1'); 			// => false
-isFloat('1.2'); 		// => true
-isFloat([1.1, 2.2]); 	// => false
-isFloat(2.334); 		// => true
+isFloat("1"); // => false
+isFloat("1.2"); // => true
+isFloat([1.1, 2.2]); // => false
+isFloat(2.334); // => true
 ```
 
 ### <span id="object">object</span>
 
 ```javascript
-const { sortMapByKey, mapToVArray, objectToArray, makeMap } = require('@alrale/common-lib');
+const {
+  sortMapByKey,
+  mapToVArray,
+  objectToArray,
+  makeMap,
+} = require("@alrale/common-lib");
 ```
 
-
-
-###### <a id=object.sortMapByKey>sortMapByKey</a> 对象key排序
+###### <a id=object.sortMapByKey>sortMapByKey</a> 对象 key 排序
 
 ```javascript
-const object = { 12: { a: 1 }, 4: 4, '7': true, 1: 'haha' };
+const object = { 12: { a: 1 }, 4: 4, 7: true, 1: "haha" };
 const resObj = sortMapByKey(object, false); // resObj[12] => { a: 1 }
 
 const map = new Map();
-map.set(12, { a: 1 }).set(4, 4).set(7, true).set(1, 'haha');
+map.set(12, { a: 1 }).set(4, 4).set(7, true).set(1, "haha");
 const resMap = sortMapByKey(map); // resMap.get(1) => 'haha'
 ```
 
-###### <a id=object.mapToVArray>mapToVArray</a> Map to value数组
+###### <a id=object.mapToVArray>mapToVArray</a> Map to value 数组
 
 ```javascript
 const map = new Map();
-map.set('a', 1).set('b', null).set('c', [1, 2]).set('d', true);
+map.set("a", 1).set("b", null).set("c", [1, 2]).set("d", true);
 const arr = mapToVArray(map); // arr.includes(true) === true
 ```
 
-###### <a id=object.objectToArray>objectToArray</a> 对象to 对象数组
+###### <a id=object.objectToArray>objectToArray</a> 对象 to 对象数组
 
 ```javascript
-const obj = { a: 1, b: null, c: [1, 2], d: { val: 'haha' } };
+const obj = { a: 1, b: null, c: [1, 2], d: { val: "haha" } };
 const objArr = objectToArray(obj); // objArr[0].a === 1
 
 const map = new Map();
-map.set('a', 1).set('b', null).set('c', [1, 2]).set('d', true);
+map.set("a", 1).set("b", null).set("c", [1, 2]).set("d", true);
 const mapArr = objectToArray(map); // mapArr.length === map.size
 ```
 
 ###### <a id=object.makeMap>makeMap</a> Make a map and return a function for checking if a key
 
 ```javascript
-const acceptValue = makeMap('input,textarea,option,select,progress');
-const acceptValue2 = makeMap('input,textarea,option,select,progress', true);
-const bool = acceptValue('input');	// => true
-const bool2 = acceptValue2('INPUT');// => true
+const acceptValue = makeMap("input,textarea,option,select,progress");
+const acceptValue2 = makeMap("input,textarea,option,select,progress", true);
+const bool = acceptValue("input"); // => true
+const bool2 = acceptValue2("INPUT"); // => true
 ```
 
-###### <a id="isEmpty">isEmpty</a> 判断Object是否是空对象
+###### <a id="isEmpty">isEmpty</a> 判断 Object 是否是空对象
 
 ```javascript
 object.isEmpty({}); // => true
-object.isEmpty({ alrale: 'common-lib' }); // => false
-object.isEmpty([1,2,3]); // => false
+object.isEmpty({ alrale: "common-lib" }); // => false
+object.isEmpty([1, 2, 3]); // => false
 ```
-
-
 
 ### <span id="parse.query">parse.query</span>
 
 ```javascript
-const { parseQuery, decodeUrlSearch } = require('@alrale/common-lib');
+const { parseQuery, decodeUrlSearch } = require("@alrale/common-lib");
 ```
 
-
-
-###### <a id=parseQuery>parseQuery</a> 格式化url参数
+###### <a id=parseQuery>parseQuery</a> 格式化 url 参数
 
 ```javascript
 const url = "https://www.gaodeditu.com?areaName=%E5%8C%97%E4%BA%AC&xml=test";
@@ -538,30 +555,28 @@ const search = "?areaName=%E5%8C%97%E4%BA%AC&xml=test=";
 const params = decodeUrlSearch(search); // => { areaName: "北京", xml: "test=" }
 ```
 
-
-
 ### <span id="query.to.string">query.to.string</span>
 
 ###### object -> ?xxx=xxx&xxx=xxx
 
 ```javascript
-const { queryToString } = require('@alrale/common-lib');
+const { queryToString } = require("@alrale/common-lib");
 const params = queryToString({ a: 1, b: "foo", c: "汉" }); // => ?a=1&b=foo&c=%E6%B1%89
 ```
 
 ### <span id="queue">queue</span>
 
 ```javascript
-const { ArrayQueue, LinkedQueue } = require('@alrale/common-lib');
+const { ArrayQueue, LinkedQueue } = require("@alrale/common-lib");
 ```
 
 ##### <a id=ArrayQueue>ArrayQueue</a> 集合队列
 
 ```javascript
 const queue = new ArrayQueue();
-const pop = queue.pop()
-expect(pop).toBeUndefined()
-queue.push({ a: 1 })
+const pop = queue.pop();
+expect(pop).toBeUndefined();
+queue.push({ a: 1 });
 queue.size(); // => 1
 queue.getFront(); // => { a: 1 }
 ```
@@ -570,75 +585,73 @@ queue.getFront(); // => { a: 1 }
 
 ```javascript
 const myQueue = new LinkedQueue();
-myQueue.push(1)
-myQueue.push(2)
-myQueue.push(3)
-myQueue.push(4)
-const str1 = myQueue.toString()
+myQueue.push(1);
+myQueue.push(2);
+myQueue.push(3);
+myQueue.push(4);
+const str1 = myQueue.toString();
 str1.trim(); // => '1 2 3 4'
-const pop = myQueue.pop()
+const pop = myQueue.pop();
 pop.ele; // => 1
 const str2 = myQueue.toString();
 str2.trim(); // => '2 3 4'
 ```
 
-
-
 ### <span id="regular">regular</span>
 
 ```javascript
-const { regular } = require('@alrale/common-lib');
+const { regular } = require("@alrale/common-lib");
 const {
-    InternetURLReg, 		// Url
-    IDNumberReg,			// 身份证号（15位或18位数字）
-    EmailReg, 				// 邮箱
-    ChineseReg, 			// 中文
-    IntegerReg, 			// 整数
-    NotNegativeFloatReg, 	// 非负浮点数（正浮点数 + 0）
-    NotPositiveFloatReg, 	// 非正浮点数（负浮点数 + 0）
+  InternetURLReg, // Url
+  IDNumberReg, // 身份证号（15位或18位数字）
+  EmailReg, // 邮箱
+  ChineseReg, // 中文
+  IntegerReg, // 整数
+  NotNegativeFloatReg, // 非负浮点数（正浮点数 + 0）
+  NotPositiveFloatReg, // 非正浮点数（负浮点数 + 0）
 } = regular;
 // Url
-const baidu = 'http://www.baidu.com'
-const baidus = 'https://www.baidu.com'
-const ftp = 'ftp://192.168.2.1/dir'
-InternetURLReg.test(baidu);	// => true
+const baidu = "http://www.baidu.com";
+const baidus = "https://www.baidu.com";
+const ftp = "ftp://192.168.2.1/dir";
+InternetURLReg.test(baidu); // => true
 InternetURLReg.test(baidus); // => true
-InternetURLReg.test(ftp); 	// => true
+InternetURLReg.test(ftp); // => true
 // 身份证
-const idList = [ '130928198905281793', '130532197901235712']
+const idList = ["130928198905281793", "130532197901235712"];
 for (let i = 0; i < idList.length; i++) {
-    const number = idList[i];
-    const bool = IDNumberReg.test(number); // => true
+  const number = idList[i];
+  const bool = IDNumberReg.test(number); // => true
 }
 // 邮箱
-const mailList = [ 'xxxxxxxxxxx@qq.com', 'xxxxx.xxxxxx@163.com'];
+const mailList = ["xxxxxxxxxxx@qq.com", "xxxxx.xxxxxx@163.com"];
 for (let i = 0; i < mailList.length; i++) {
-    const mail = mailList[i];
-    const bool = EmailReg.test(mail); // => true
+  const mail = mailList[i];
+  const bool = EmailReg.test(mail); // => true
 }
 // 中文
-ChineseReg.test('中文'); // => true
-ChineseReg.test('1'); 	// => true
-ChineseReg.test(['']); 	// => false
+ChineseReg.test("中文"); // => true
+ChineseReg.test("1"); // => true
+ChineseReg.test([""]); // => false
 // 整数
-IntegerReg.test(12); 	// => true
-IntegerReg.test(-12); 	// => true
+IntegerReg.test(12); // => true
+IntegerReg.test(-12); // => true
 IntegerReg.test(12.32); // => false
-IntegerReg.test(true); 	// => false
+IntegerReg.test(true); // => false
 // 非负浮点数（正浮点数 + 0）
-NotNegativeFloatReg.test(12); 		// => true
-NotNegativeFloatReg.test(-12); 		// => false
-NotNegativeFloatReg.test(12.32); 	// => true
-NotNegativeFloatReg.test([]); 		// => false
+NotNegativeFloatReg.test(12); // => true
+NotNegativeFloatReg.test(-12); // => false
+NotNegativeFloatReg.test(12.32); // => true
+NotNegativeFloatReg.test([]); // => false
 // 非正浮点数（负浮点数 + 0）
-NotPositiveFloatReg.test(12);		// => false
-NotPositiveFloatReg.test(-12);		// => true
+NotPositiveFloatReg.test(12); // => false
+NotPositiveFloatReg.test(-12); // => true
 ```
 
 ### <span id="schedule">schedule</span>
 
 ```javascript
-const { execInterval, autoStopInterval } = require('@alrale/common-lib');
+const { execInterval, autoStopInterval } = require("@alrale/common-lib");
 ```
 
 ###### <a id=execInterval>execInterval</a> 定时器
@@ -647,10 +660,10 @@ const { execInterval, autoStopInterval } = require('@alrale/common-lib');
 let count = 0;
 const clearInterval = execInterval(500, () => (count += 1));
 setTimeout(() => {
-    expect(count).toBeGreaterThan(1);
-    expect(count).toBe(2);
-    clearInterval();
-    done();
+  expect(count).toBeGreaterThan(1);
+  expect(count).toBe(2);
+  clearInterval();
+  done();
 }, 1100);
 ```
 
@@ -660,40 +673,44 @@ setTimeout(() => {
 let count = 0;
 setTimeout(() => {
   expect(count).toBe(2);
-  done()
+  done();
 }, 1100);
 autoStopInterval(500, 1200, (status) => {
-  count += 1
-  if (count === 3) expect(status).toBe('done')
+  count += 1;
+  if (count === 3) expect(status).toBe("done");
 });
 ```
+
 ```javascript
 let count = 0;
 let clearFunc = null;
 setTimeout(() => {
   clearFunc();
-  expect(count).toBe(4)
-  done()
+  expect(count).toBe(4);
+  done();
 }, 2 * 1000 + 100);
-clearFunc = await Schedule.autoStopInterval(500, 4 * 1000 + 100, () => count += 1);
+clearFunc = await Schedule.autoStopInterval(
+  500,
+  4 * 1000 + 100,
+  () => (count += 1)
+);
 ```
-
 
 ### <span id="sleep">sleep</span>
 
 ```javascript
-const { sleep, sleepSync } = require('@alrale/common-lib');
+const { sleep, sleepSync } = require("@alrale/common-lib");
 ```
 
 ###### <a id=sleep.sleep>sleep.sleep</a> async
 
 ```javascript
 async () => {
-    const _start = Date.now();
-    await sleepSync(1000);
-    const _calc = Date.now() - _start;
-    expect(parseInt(_calc / 1000)).toBe(1);
-}
+  const _start = Date.now();
+  await sleepSync(1000);
+  const _calc = Date.now() - _start;
+  expect(parseInt(_calc / 1000)).toBe(1);
+};
 ```
 
 ###### <a id=sleep.sleepSync>sleepSync</a> sync
@@ -710,12 +727,16 @@ async () => {
 }
 ```
 
-
-
 ### <span id="store">store</span>
 
 ```javascript
-const { setStore, getStore, setOStore, getOStore, removeStore } = require('@alrale/common-lib');
+const {
+  setStore,
+  getStore,
+  setOStore,
+  getOStore,
+  removeStore,
+} = require("@alrale/common-lib");
 ```
 
 ###### <a id=setStore>setStore </a>set session | local store 、<a id=getStore>getStore</a> get session | local store
@@ -758,30 +779,28 @@ const o_bool = getOStore(o_b_s_key); // => typeof o_bool === 'boolean'
 removeStore(key, [level]): void
 ```
 
-
-
 ### <span id="string">string</span>
 
 ```javascript
-const { 
-    randomString,
-    nameDesensitization,
-    desensitization,
-    positionOfStringIndexes,
-    uniqueId,
-    guid,
-    uuid,
-    guid2,
-    uuid2,
-    stringExtension
-} = require('@alrale/common-lib');
+const {
+  randomString,
+  nameDesensitization,
+  desensitization,
+  positionOfStringIndexes,
+  uniqueId,
+  guid,
+  uuid,
+  guid2,
+  uuid2,
+  stringExtension,
+} = require("@alrale/common-lib");
 ```
 
 ###### <a id=randomString>randomString</a> 随机字符串
 
 ```javascript
-const defaultStr = randomString(); 	// => defaultStr.length === 32
-const str = randomString(16); 		// => str.length === 16
+const defaultStr = randomString(); // => defaultStr.length === 32
+const str = randomString(16); // => str.length === 16
 ```
 
 ###### <a id=nameDesensitization>nameDesensitization </a>名字脱敏
@@ -793,70 +812,68 @@ const name = nameDesensitization("张三丰"); // => '张*丰'
 ###### <a id=desensitization>desensitization</a> 字符串脱敏
 
 ```javascript
-const str = desensitization('asdfg', 1, 3); // => 'a**fg'
+const str = desensitization("asdfg", 1, 3); // => 'a**fg'
 ```
 
 ###### <a id=positionOfStringIndexes>positionOfStringIndexes</a> 字符串索引位置列表
 
 ```javascript
-const str = 'asdfasdfasdfasdfasdfasdf'
-const target = 'asdf'
+const str = "asdfasdfasdfasdfasdfasdf";
+const target = "asdf";
 const list = positionOfStringIndexes(str, target);
-expect(list).toEqual([0, 4, 8, 12, 16, 20])
-const target2 = '123'
-const list2 = positionOfStringIndexes(str, target2)
-expect(list2).toEqual([])
+expect(list).toEqual([0, 4, 8, 12, 16, 20]);
+const target2 = "123";
+const list2 = positionOfStringIndexes(str, target2);
+expect(list2).toEqual([]);
 ```
 
-###### <a id=uniqueId>uniqueId</a> 唯一(24位长度)Id
+###### <a id=uniqueId>uniqueId</a> 唯一(24 位长度)Id
 
 ```javascript
 // 1w次随机，不重复
 let count = 10000;
-const cache = {}
-const repetition = []
+const cache = {};
+const repetition = [];
 while (count) {
-    const unId = uniqueId()
-    if (cache[unId]) repetition.push(unId)
-    cache[unId] = true
-    count--
+  const unId = uniqueId();
+  if (cache[unId]) repetition.push(unId);
+  cache[unId] = true;
+  count--;
 }
-expect(repetition).toEqual([])
+expect(repetition).toEqual([]);
 ```
 
 ###### <a id=guid>guid</a>、<a id=uuid>uuid</a>、<a id=guid2>guid2</a>、<a id=uuid2>uuid2</a> 指定长度和基数
 
 ```javascript
-const _uuid = uuid()
-const _guid = guid()
-const _uuid2 = uuid2(16, 16)
-const _guid2 = guid2()
-const temp = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
-expect(_uuid2).toHaveLength(16)
-expect(_uuid).toHaveLength(temp.length)
-expect(_guid).toHaveLength(temp.length)
-expect(_guid2).toHaveLength(36)
+const _uuid = uuid();
+const _guid = guid();
+const _uuid2 = uuid2(16, 16);
+const _guid2 = guid2();
+const temp = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx";
+expect(_uuid2).toHaveLength(16);
+expect(_uuid).toHaveLength(temp.length);
+expect(_guid).toHaveLength(temp.length);
+expect(_guid2).toHaveLength(36);
 ```
 
 ###### <a id="stringExtension">stringExtension</a> 字符串后缀获取、判断
 
 ```javascript
-const str1 = stringExtension('flower.png', '.');
-expect(str1).toBe('png')
-const bool = stringExtension('avatar.jpg', '.', ['png', 'jpg']);
-expect(bool).toBe(true)
-const str2 = stringExtension('xxx@gmail.com', '@');
-expect(str2).toBe('gmail.com')
-const null1 = stringExtension('null.png');
+const str1 = stringExtension("flower.png", ".");
+expect(str1).toBe("png");
+const bool = stringExtension("avatar.jpg", ".", ["png", "jpg"]);
+expect(bool).toBe(true);
+const str2 = stringExtension("xxx@gmail.com", "@");
+expect(str2).toBe("gmail.com");
+const null1 = stringExtension("null.png");
 expect(null1).toBe(false);
 ```
-
-
 
 ### <span id="time.axis">time.axis</span>
 
 ```javascript
-const { dateDiff, week } = require('@alrale/common-lib');
+const { dateDiff, week } = require("@alrale/common-lib");
 ```
 
 <a id=dateDiff>dateDiff</a> 时间戳显示为多少分钟前，多少天前的处理
@@ -883,12 +900,10 @@ expect(diff).toBe("刚刚");
 const day = week(7); // => '周日'
 ```
 
-
-
 ### <span id="to.simplified.chinese">to.simplified.chinese</span>
 
 ```javascript
-const { toSimplifiedChinese } = require('@alrale/common-lib');
+const { toSimplifiedChinese } = require("@alrale/common-lib");
 const han = toSimplifiedChinese(12345);
 expect(han).toBe("一万二千三百四十五");
 ```
@@ -896,7 +911,7 @@ expect(han).toBe("一万二千三百四十五");
 ### <span id="type.is">typeIs</span>
 
 ```javascript
-const { typeIs } = require('@alrale/common-lib');
+const { typeIs } = require("@alrale/common-lib");
 // 'string'|'number'|'boolean'|'symbol'|'undefined'|'null'|'function'|'date'|'array'|'object'|'map'|'regexp'|'error'|'document'|'window'
 const arr = typeIs([]); // => 'array'
 const arr_2 = typeIs(new Array()); // => array
@@ -904,7 +919,7 @@ const arr_2 = typeIs(new Array()); // => array
 
 ### <span id="window">window</span>
 
-###### <a id=globalStore>globalStore</a>  获取全局对象
+###### <a id=globalStore>globalStore</a> 获取全局对象
 
 ###### <a id=getGlobal>getGlobal</a> get 全局对象
 
@@ -913,27 +928,30 @@ const arr_2 = typeIs(new Array()); // => array
 ###### <a id=removeGlobalItem>removeGlobalItem</a> 删除 对象数据
 
 ```javascript
-const { globalStore, getGlobal, setGlobal, removeGlobalItem } = require('@alrale/common-lib');
-const keyObj = 'key'
-const bool = setGlobal(keyObj, { value: 'hehe' })
-expect(bool).toBe(true)
-const getObj = getGlobal(keyObj)
-expect(getObj.value).toBe('hehe')
+const {
+  globalStore,
+  getGlobal,
+  setGlobal,
+  removeGlobalItem,
+} = require("@alrale/common-lib");
+const keyObj = "key";
+const bool = setGlobal(keyObj, { value: "hehe" });
+expect(bool).toBe(true);
+const getObj = getGlobal(keyObj);
+expect(getObj.value).toBe("hehe");
 
-const rmBool = removeGlobalItem(keyObj)
-expect(rmBool).toBe(true)
-const hasObj = getGlobal(keyObj)
-expect(hasObj).toBeUndefined()
+const rmBool = removeGlobalItem(keyObj);
+expect(rmBool).toBe(true);
+const hasObj = getGlobal(keyObj);
+expect(hasObj).toBeUndefined();
 ```
-
 
 ### <span id="Complex">Complex</span>
 
-###### <a id=targetConversionIntoList>targetConversionIntoList</a>  目标转换成列表
-
+###### <a id=targetConversionIntoList>targetConversionIntoList</a> 目标转换成列表
 
 ```javascript
-const { Complex } = require('@alrale/common-lib');
+const { Complex } = require("@alrale/common-lib");
 it("targetConversionIntoList", () => {
   const target = {
     name: "张三",
@@ -955,4 +973,5 @@ it("targetConversionIntoList", () => {
 ```
 
 ## License
+
 [The ISC License](./LICENSE)

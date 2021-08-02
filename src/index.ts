@@ -58,6 +58,8 @@ export * as env from './env'
 
 export { log } from './console'
 
+export * as color from './color'
+
 export * as date from './date'
 
 export * as Enum from "./enum/index";
