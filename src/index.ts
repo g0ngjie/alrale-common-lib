@@ -31,7 +31,7 @@ export {
     isFloat,
 } from './number'
 
-export { getKernel, isChrome, isEdge, isFirefox, isIE, isOpera, isSafari } from './browser'
+export { getKernel, isChrome, isEdge, isFirefox, isIE, isOpera, isSafari, getKernelVersion } from './browser'
 
 export {
     randomString,

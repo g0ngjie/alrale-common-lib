@@ -176,6 +176,14 @@ expect(input3).toEqual(["b", "a", "c"]);
 const kernel = getKernel(); // => 'IE7'|'IE8'|'IE9'|'IE10'|'IE11'|'IE'|'Opera'|'Edge'|'FF'|'Safari'|'Chrome'|'None'
 ```
 
+###### <a id="getKernelVersion">getKernelVersion</a> 获取浏览器内核
+
+```javascript
+const kernelVersion = getKernelVersion(); // => 'chrome 92.0.4515.131'
+const kernel = getKernelVersion("name"); // => 'chrome'
+const version = getKernelVersion("version"); // => '92.0.4515.131'
+```
+
 ###### <a id="browserIs">isSafari, isChrome, isFirefox, isOpera, isEdge, isIE</a>
 
 ```javascript

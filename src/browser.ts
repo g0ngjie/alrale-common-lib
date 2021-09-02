@@ -66,5 +66,52 @@ export const isOpera: boolean = getKernel() === 'Opera'
 export const isEdge: boolean = getKernel() === 'Edge'
 export const isIE: boolean = ['IE7', 'IE8', 'IE9', 'IE10', 'IE11', 'IE'].includes(getKernel())
 
+/**
+ * 获取浏览器内核和版本信息
+ * @param {string} type 可单独获取名称 或 版本
+ * @example
+ * ```
+ * const kernelVersion = getKernelVersion(); // => 'chrome 92.0.4515.131'
+ * const kernel = getKernelVersion("name"); // => 'chrome'
+ * const version = getKernelVersion("version"); // => '92.0.4515.131'
+ * ```
+ */
+export function getKernelVersion(type?: 'name' | 'version'): string {
+  const browser: any = {
+    msie: false,
+    firefox: false,
+    opera: false,
+    safari: false,
+    chrome: false,
+    netscape: false,
+    appname: 'unknown',
+    version: 0
+  },
+    ua = window.navigator.userAgent.toLowerCase();
+  if (/(msie|firefox|opera|chrome|netscape)\D+(\d[\d.]*)/.test(ua)) {
+    browser[RegExp.$1] = true;
+    browser.appname = RegExp.$1;
+    browser.version = RegExp.$2;
+  } else if (/version\D+(\d[\d.]*).*safari/.test(ua)) {
+    // safari
+    browser.safari = true;
+    browser.appname = 'safari';
+    browser.version = RegExp.$2;
+  }
+  let result: string
+  switch (type) {
+    case 'name':
+      result = browser.appname
+      break;
+    case 'version':
+      result = browser.version
+      break;
+    default:
+      result = browser.appname + ' ' + browser.version;
+      break;
+  }
+  return result
+}
+
 // TODO: 获取浏览器所有信息
 
