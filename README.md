@@ -184,6 +184,12 @@ const kernel = getKernelVersion("name"); // => 'chrome'
 const version = getKernelVersion("version"); // => '92.0.4515.131'
 ```
 
+###### <a id="getOs">getOs</a> 获取操作系统
+
+```javascript
+const os = getOs(); // => 'Windows' | 'Mac' | 'iphone' | 'ipod' | 'ipad' | 'Android' | 'Linux' | 'Unknown'
+```
+
 ###### <a id="browserIs">isSafari, isChrome, isFirefox, isOpera, isEdge, isIE</a>
 
 ```javascript
