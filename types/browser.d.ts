@@ -20,7 +20,7 @@ export declare const isIE: boolean;
  * ```
  */
 export declare function getKernelVersion(type?: 'name' | 'version'): string;
-declare type IOS = 'Windows' | 'Mac' | 'iphone' | 'ipod' | 'ipad' | 'Android' | 'Linux' | 'Unknown';
+declare type IOS = 'Windows' | 'Mac' | 'iPhone' | 'iPod' | 'iPad' | 'Android' | 'Linux' | 'Unknown';
 /**获取操作系统 */
 export declare function getOs(): IOS;
 export {};
