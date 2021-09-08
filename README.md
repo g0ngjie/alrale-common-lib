@@ -45,6 +45,7 @@ $ yarn add @alrale/common-lib
 - <a href="#document">document</a>
   - <a href="#copyValue">copyValue</a>
   - <a href="#disableBehavior">disableBehavior</a>
+  - <a href="#scrollToTop">scrollToTop</a>
 - <a href="#env">env</a>
   - <a href="#env">isBrowser</a>
   - <a href="#env">UA</a>
@@ -386,6 +387,13 @@ copyValue(value: string /**浏览器需要复制的文本 */): void;
 ```javascript
 const { disableBehavior } = require('@alrale/common-lib');
 disableBehavior(['contextmenu', 'selectstart', 'copy']): void;
+```
+
+###### <a id=scrollToTop>scrollToTop</a> 滑滚动页面到顶部
+
+```javascript
+const { scrollToTop } = require('@alrale/common-lib');
+scrollToTop(): void;
 ```
 
 ### <span id="env">env</span>

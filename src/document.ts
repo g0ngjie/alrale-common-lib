@@ -27,3 +27,14 @@ export function disableBehavior(types: TypeBehavior[]): void {
         })
     });
 }
+
+/**
+ * 滑滚动页面到顶部
+ */
+export function scrollToTop(): void {
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    if (scrollTop > 0) {
+        window.requestAnimationFrame(scrollToTop);
+        window.scrollTo(0, scrollTop - scrollTop / 8);
+    }
+};

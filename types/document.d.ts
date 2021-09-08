@@ -9,4 +9,8 @@ declare type TypeBehavior = 'contextmenu' | 'selectstart' | 'copy' | 'dragstart'
  * @param {TypeBehavior} types 行为
  */
 export declare function disableBehavior(types: TypeBehavior[]): void;
+/**
+ * 滑滚动页面到顶部
+ */
+export declare function scrollToTop(): void;
 export {};
