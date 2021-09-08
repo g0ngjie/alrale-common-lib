@@ -50,5 +50,7 @@ export * as regular from './regular';
 export * as byte from './byte';
 
 export * as object from './object';
+
+export * as client from './client';
 // 综合
 export * as Complex from './complex'

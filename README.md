@@ -114,6 +114,8 @@ $ yarn add @alrale/common-lib
   - <a href="#getGlobal">getGlobal</a>
   - <a href="#setGlobal">setGlobal</a>
   - <a href="#removeGlobalItem">removeGlobalItem</a>
+- <a href="#client">client</a>
+  - <a href="#desktopNotification">desktopNotification</a>
 - <a href="#Complex">Complex</a>
   - <a href="#targetConversionIntoList">targetConversionIntoList</a>
   - <a href="#adjustProgress">adjustProgress</a>
@@ -1002,6 +1004,26 @@ const rmBool = removeGlobalItem(keyObj);
 expect(rmBool).toBe(true);
 const hasObj = getGlobal(keyObj);
 expect(hasObj).toBeUndefined();
+```
+
+### <span id="client">client</span>
+
+###### <a id=desktopNotification>desktopNotification</a> 桌面通知
+
+```javascript
+const { client } = require("@alrale/common-lib");
+desktopNotification(
+  "@alrale/common-lib",
+  {
+    body: "您正在使用自定义组件库",
+  },
+  {
+    onclick(e) {
+      e.target.close();
+      window.focus();
+    },
+  }
+);
 ```
 
 ### <span id="Complex">Complex</span>
