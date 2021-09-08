@@ -59,7 +59,7 @@ export function targetConversionIntoList(target: TTargetConversionFormattedTarge
 /**
  * 进度值映射
  * @param progress 进度
- * @param mapping ORM关系映射参照
+ * @param mapping 关系映射参照
  */
 export function adjustProgress(progress: number, mapping: { real: number; target: number }[] = []): number {
     if (progress < 0) return 0;
