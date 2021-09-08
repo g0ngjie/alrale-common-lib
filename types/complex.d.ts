@@ -27,4 +27,13 @@ export declare function targetConversionIntoList(target: TTargetConversionFormat
     /**结果 */
     value: string;
 }): any[];
+/**
+ * 进度值映射
+ * @param progress 进度
+ * @param mapping ORM关系映射参照
+ */
+export declare function adjustProgress(progress: number, mapping?: {
+    real: number;
+    target: number;
+}[]): number;
 export {};

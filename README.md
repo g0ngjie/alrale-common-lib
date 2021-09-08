@@ -116,6 +116,7 @@ $ yarn add @alrale/common-lib
   - <a href="#removeGlobalItem">removeGlobalItem</a>
 - <a href="#Complex">Complex</a>
   - <a href="#targetConversionIntoList">targetConversionIntoList</a>
+  - <a href="#adjustProgress">adjustProgress</a>
 
 ---
 
@@ -1026,6 +1027,38 @@ it("targetConversionIntoList", () => {
     { label: "身高", value: 180 },
   ];
   expect(list).toEqual(arr);
+});
+```
+
+###### <a id=adjustProgress>adjustProgress</a> 进度映射
+
+```javascript
+const { Complex } = require("@alrale/common-lib");
+it("adjustProgress", () => {
+  const mapping = [
+    {
+      real: 0,
+      target: 0,
+    },
+    {
+      real: 20,
+      target: 40,
+    },
+    {
+      real: 100,
+      target: 100,
+    },
+  ];
+  const orm1 = Complex.adjustProgress(13, mapping);
+  expect(orm1).toBe(26);
+  const orm2 = Complex.adjustProgress(20, mapping);
+  expect(orm2).toBe(40);
+  const orm3 = Complex.adjustProgress(50.5, mapping);
+  expect(orm3).toBe(62.875);
+  const orm4 = Complex.adjustProgress(100, mapping);
+  expect(orm4).toBe(100);
+  const orm5 = Complex.adjustProgress(130, mapping);
+  expect(orm5).toBe(100);
 });
 ```
 

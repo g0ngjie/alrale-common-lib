@@ -55,3 +55,30 @@ export function targetConversionIntoList(target: TTargetConversionFormattedTarge
     }
     return returnList
 }
+
+/**
+ * 进度值映射
+ * @param progress 进度
+ * @param mapping ORM关系映射参照
+ */
+export function adjustProgress(progress: number, mapping: { real: number; target: number }[] = []): number {
+    if (progress < 0) return 0;
+
+    if (!mapping || mapping.length <= 0) return progress;
+
+    // 第一个
+    const first = mapping[0];
+    if (progress <= first.real) return progress * (first.target / first.real);
+
+    // 最后一个
+    const last = mapping[mapping.length - 1];
+    if (progress >= last.target) return last.target;
+
+    const curIndex = mapping.findIndex(m => m.real >= progress);
+    if (!curIndex) return progress;
+
+    const cur = mapping[curIndex];
+    const pre = mapping[curIndex - 1];
+    // 原基数 + 实际进度/最大实际进度 * 期望间距
+    return pre.target + (progress - pre.real) / (cur.real - pre.real) * (cur.target - pre.target);
+}
