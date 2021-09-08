@@ -381,7 +381,7 @@ const { copyValue } = require('@alrale/common-lib');
 copyValue(value: string /**浏览器需要复制的文本 */): void;
 ```
 
-###### <a id=disableBehavior>disableBehavior</a> 禁止浏览器行为 选择|复制|...
+###### <a id=disableBehavior>disableBehavior</a> 禁止浏览器行为 选择|复制|拖拽|...
 
 ```javascript
 const { disableBehavior } = require('@alrale/common-lib');

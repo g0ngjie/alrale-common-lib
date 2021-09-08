@@ -13,15 +13,15 @@ export function copyValue(value: string): void {
     document.body.removeChild(_inp);
 }
 
-type TypeBehavior = 'contextmenu' | 'selectstart' | 'copy'
+type TypeBehavior = 'contextmenu' | 'selectstart' | 'copy' | 'dragstart'
 
 /**
- * 禁止浏览器行为 选择|复制|...
+ * 禁止浏览器行为 选择|复制|拖拽|...
  * @param {TypeBehavior} types 行为
  */
 export function disableBehavior(types: TypeBehavior[]): void {
     types.forEach(function (ev: TypeBehavior) {
-        document.addEventListener(ev, function (e: MouseEvent | Event | ClipboardEvent) {
+        document.addEventListener(ev, function (e: MouseEvent | Event | ClipboardEvent | DragEvent) {
             e.preventDefault();
             e.returnValue = false;
         })
