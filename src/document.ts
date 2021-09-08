@@ -30,6 +30,7 @@ export function disableBehavior(types: TypeBehavior[]): void {
 
 /**
  * 滑滚动页面到顶部
+ * 仅适用于原生
  */
 export function scrollToTop(): void {
     let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;

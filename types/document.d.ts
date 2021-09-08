@@ -11,6 +11,7 @@ declare type TypeBehavior = 'contextmenu' | 'selectstart' | 'copy' | 'dragstart'
 export declare function disableBehavior(types: TypeBehavior[]): void;
 /**
  * 滑滚动页面到顶部
+ * 仅适用于原生
  */
 export declare function scrollToTop(): void;
 export {};
