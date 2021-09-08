@@ -16,6 +16,7 @@ $ yarn add @alrale/common-lib
   - <a href="#arrayToObject">arrayToObject</a>
   - <a href="#arrayMove">arrayMove</a>
   - <a href="#arrayMoveMutate">arrayMoveMutate</a>
+  - <a href="#arrayRange">arrayRange</a>
 - <a href="#browser">browser</a>
   - <a href="#browserIs">isSafari</a>
   - <a href="#browserIs">isChrome</a>
@@ -138,7 +139,7 @@ const arr = [
 const obj = arrayToObject("id", arr); // => { '1': { id: 1, test: 123 }, '2': { id: 2, test: 345 } }
 ```
 
-###### <a id="arrayMove">arrayMove</a>
+###### <a id="arrayMove">arrayMove</a> 数组位移
 
 > Learn from <a target="_blank" href="https://www.npmjs.com/package/array-move">array-move</a>
 
@@ -154,7 +155,7 @@ const array3 = arrayMove(input, -2, -3);
 expect(array3).toEqual(["b", "a", "c"]);
 ```
 
-###### <a id="arrayMoveMutate">arrayMoveMutate</a>
+###### <a id="arrayMoveMutate">arrayMoveMutate</a> 引用数组位移，性能优化
 
 ```javascript
 const input1 = ["a", "b", "c"];
@@ -168,6 +169,16 @@ expect(input2).toEqual(["c", "a", "b"]);
 const input3 = ["a", "b", "c"];
 arrayMoveMutate(input3, -2, -3);
 expect(input3).toEqual(["b", "a", "c"]);
+```
+
+###### <a id="arrayRange">arrayRange </a> 序列生成器
+
+```javascript
+const arr1 = arrayRange(0, 5, 2);
+expect(arr1).toEqual([0, 2, 4]);
+
+const arr2 = arrayRange(1, 5, 2);
+expect(arr2).toEqual([1, 3, 5]);
 ```
 
 ### <span id="browser">browser</span>

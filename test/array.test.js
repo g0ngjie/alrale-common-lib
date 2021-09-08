@@ -1,4 +1,4 @@
-const { arrayToObject, arrayMove, arrayMoveMutate } = require('../lib');
+const { arrayToObject, arrayMove, arrayMoveMutate, arrayRange } = require('../lib');
 
 describe("array", () => {
     it('arrayToObject', () => {
@@ -32,4 +32,13 @@ describe("array", () => {
         arrayMoveMutate(input3, -2, -3);
         expect(input3).toEqual(['b', 'a', 'c']);
     })
+
+    it('arrayRange', () => {
+        const arr1 = arrayRange(0, 5, 2)
+        expect(arr1).toEqual([0, 2, 4]);
+
+        const arr2 = arrayRange(1, 5, 2)
+        expect(arr2).toEqual([1, 3, 5]);
+    })
+
 })

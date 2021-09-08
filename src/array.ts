@@ -1,8 +1,8 @@
 
 /**
- * 
- * @param key 
- * @param arr 
+ * 数组转对象
+ * @param {string} key
+ * @param {any[]} arr
  */
 export function arrayToObject(key: string, arr: any[] = []) {
     const mapping: any = {};
@@ -16,9 +16,9 @@ export function arrayToObject(key: string, arr: any[] = []) {
 
 /**
  * 引用数组位移，性能优化
- * @param {<any[]>} array 
- * @param {number} from 
- * @param {number} to 
+ * @param {<any[]>} array
+ * @param {number} from
+ * @param {number} to
  */
 export function arrayMoveMutate(array: unknown[], from: number, to: number): void {
     const startIndex = from < 0 ? array.length + from : from;
@@ -60,4 +60,21 @@ export function arrayMove(array: ReadonlyArray<any[]>, from: number, to: number)
     const _array: any[] = [...array];
     arrayMoveMutate(_array, from, to);
     return _array;
+}
+
+/**
+ * 序列生成器
+ * @param {number} start 开始索引点
+ * @param {number} stop 结束索引点
+ * @param {number} step 间隔
+ * @example ```
+ * arrayRange(0, 5, 2) // [ 0, 2, 4 ]
+ * arrayRange(1, 5, 2) // [ 1, 3, 5 ]
+ * ```
+ */
+export function arrayRange(start: number, stop: number, step: number = 1): number[] {
+    return Array.from(
+        { length: (stop - start) / step + 1 },
+        (_, i) => start + (i * step)
+    )
 }
