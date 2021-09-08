@@ -1,62 +1,43 @@
 
-export { appendJs, appendBodyJs, appendJsSync, appendBodyJsSync } from './appendjs'
+export * from './appendjs'
 
-export { deepClone, deepOClone } from './deep.clone'
+export * from './deep.clone'
 
-export { copyValue } from './document'
+export * from './document'
 
-export { parseQuery, decodeUrlSearch } from './parse.query'
+export * from './parse.query'
 
-export { queryToString } from './query.to.string'
+export * from './query.to.string'
 
-export { typeIs } from './type.is'
+export * from './type.is'
 
-export { toSimplifiedChinese } from './to.simplified.chinese'
+export * from './to.simplified.chinese'
 
-export { setStore, getStore, setOStore, getOStore, removeStore } from './store'
+export * from './store'
 
-export { sleep, sleepSync } from './sleep'
+export * from './sleep'
 
-export { dateDiff, week } from './time.axis'
+export * from './time.axis'
 
-export { execInterval, autoStopInterval, Schedule } from './schedule'
+export * from './schedule'
 
-export {
-    randomInt,
-    randomDistinctIntArray,
-    randomDistinctRangeArray,
-    prefixZero,
-    isNumber,
-    isInt,
-    isFloat,
-} from './number'
+export * from './number'
 
-export { getKernel, isChrome, isEdge, isFirefox, isIE, isOpera, isSafari, getKernelVersion, getOs } from './browser'
+export * from './browser'
 
-export {
-    randomString,
-    nameDesensitization,
-    desensitization,
-    positionOfStringIndexes,
-    uniqueId,
-    guid,
-    uuid,
-    guid2,
-    uuid2,
-    stringExtension
-} from './string'
+export * from './string'
 
-export { arrayToObject, arrayMove, arrayMoveMutate } from './array'
+export * from './array'
 
-export { sortMapByKey, mapToVArray, objectToArray, makeMap } from './object'
+export * from './object'
 
-export { globalStore, getGlobal, setGlobal, removeGlobalItem } from './window'
+export * from './window'
 
-export { ArrayQueue, LinkedQueue } from './queue'
+export * from './queue'
+
+export * from './console'
 
 export * as env from './env'
-
-export { log } from './console'
 
 export * as color from './color'
 
@@ -69,6 +50,5 @@ export * as regular from './regular';
 export * as byte from './byte';
 
 export * as object from './object';
-
 // 综合
 export * as Complex from './complex'

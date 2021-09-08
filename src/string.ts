@@ -175,11 +175,6 @@ export function uuid2(len: number, radix: number): string {
 }
 
 /**
- * 
- * @param target 
- * @param separator 
- */
-/**
  * 字符串后缀获取、判断
  * @param {string} target 
  * @param {string} separator 
@@ -203,4 +198,26 @@ export function stringExtension(target: string, separator: string, condition?: a
     else if (typeIs(condition) === 'string') return condition === ext
   } else return ext
   return false
+}
+
+/**
+ * utf8转base64
+ * @param {string} str
+ * @example ```
+ * utf8ToBase64('@alrale/common-lib'); // "QGFscmFsZS9jb21tb24tbGli"
+ * ```
+ */
+export function utf8ToBase64(str: string): string {
+  return window.btoa(unescape(encodeURIComponent(str)))
+}
+
+/**
+ * base64解码utf8
+ * @param {string} str
+ * @example ```
+ * base64ToUtf8('QGFscmFsZS9jb21tb24tbGli'); // "@alrale/common-lib"
+ * ```
+ */
+export function base64ToUtf8(str: string): string {
+  return decodeURIComponent(escape(window.atob(str)))
 }

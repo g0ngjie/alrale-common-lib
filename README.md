@@ -99,6 +99,8 @@ $ yarn add @alrale/common-lib
   - <a href="#guid2">guid2</a>
   - <a href="#uuid2">uuid2</a>
   - <a href="#stringExtension">stringExtension</a>
+  - <a href="#utf8ToBase64">utf8ToBase64</a>
+  - <a href="#base64ToUtf8">base64ToUtf8</a>
 - <a href="#time.axis">time.axis</a>
   - <a href="#dateDiff">dateDiff</a>
   - <a href="#week">week</a>
@@ -882,6 +884,20 @@ const str2 = stringExtension("xxx@gmail.com", "@");
 expect(str2).toBe("gmail.com");
 const null1 = stringExtension("null.png");
 expect(null1).toBe(false);
+```
+
+###### <a id="utf8ToBase64">utf8ToBase64</a> utf8 转 base64
+
+```javascript
+const base64Str = utf8ToBase64("@alrale/common-lib");
+expect(base64Str).toBe("QGFscmFsZS9jb21tb24tbGli");
+```
+
+###### <a id="base64ToUtf8">base64ToUtf8</a> base64 解码 utf8
+
+```javascript
+const utf8Str = base64ToUtf8("QGFscmFsZS9jb21tb24tbGli");
+expect(utf8Str).toBe("@alrale/common-lib");
 ```
 
 ### <span id="time.axis">time.axis</span>

@@ -7,7 +7,9 @@ const {
     uuid2,
     guid,
     guid2,
-    stringExtension
+    stringExtension,
+    utf8ToBase64,
+    base64ToUtf8,
 } = require('../lib');
 
 describe("string", () => {
@@ -60,5 +62,15 @@ describe("string", () => {
         expect(str2).toBe('gmail.com')
         const null1 = stringExtension('null.png');
         expect(null1).toBe(false);
+    })
+
+    it("utf8转base64", () => {
+        const base64Str = utf8ToBase64('@alrale/common-lib');
+        expect(base64Str).toBe("QGFscmFsZS9jb21tb24tbGli");
+    })
+
+    it("base64解码utf8", () => {
+        const utf8Str = base64ToUtf8('QGFscmFsZS9jb21tb24tbGli');
+        expect(utf8Str).toBe("@alrale/common-lib");
     })
 })

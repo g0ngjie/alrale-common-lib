@@ -39,11 +39,6 @@ export declare function guid2(): string;
  */
 export declare function uuid2(len: number, radix: number): string;
 /**
- *
- * @param target
- * @param separator
- */
-/**
  * 字符串后缀获取、判断
  * @param {string} target
  * @param {string} separator
@@ -56,3 +51,19 @@ export declare function uuid2(len: number, radix: number): string;
  * ```
  */
 export declare function stringExtension(target: string, separator: string, condition?: any[] | string): boolean | string;
+/**
+ * utf8转base64
+ * @param {string} str
+ * @example ```
+ * utf8ToBase64('@alrale/common-lib'); // "QGFscmFsZS9jb21tb24tbGli"
+ * ```
+ */
+export declare function utf8ToBase64(str: string): string;
+/**
+ * base64解码utf8
+ * @param {string} str
+ * @example ```
+ * base64ToUtf8('QGFscmFsZS9jb21tb24tbGli'); // "@alrale/common-lib"
+ * ```
+ */
+export declare function base64ToUtf8(str: string): string;
