@@ -44,6 +44,7 @@ $ yarn add @alrale/common-lib
   - <a href="#deep.clone">deepOClone</a>
 - <a href="#document">document</a>
   - <a href="#copyValue">copyValue</a>
+  - <a href="#disableBehavior">disableBehavior</a>
 - <a href="#env">env</a>
   - <a href="#env">isBrowser</a>
   - <a href="#env">UA</a>
@@ -378,6 +379,13 @@ const foo_copy2 = deepOClone(foo2); // foo_copy2 !== foo2
 ```javascript
 const { copyValue } = require('@alrale/common-lib');
 copyValue(value: string /**浏览器需要复制的文本 */): void;
+```
+
+###### <a id=disableBehavior>disableBehavior</a> 禁止浏览器行为 选择|复制|...
+
+```javascript
+const { disableBehavior } = require('@alrale/common-lib');
+disableBehavior(['contextmenu', 'selectstart', 'copy']): void;
 ```
 
 ### <span id="env">env</span>
