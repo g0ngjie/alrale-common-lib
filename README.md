@@ -56,6 +56,11 @@ $ yarn add @alrale/common-lib
   - <a href="#env">isIos</a>
   - <a href="#env">isChrome</a>
   - <a href="#env">isFF</a>
+- <a href="#each">each</a>
+  - <a href="#each">each</a>
+  - <a href="#has">has</a>
+  - <a href="#keys">keys</a>
+  - <a href="#values">values</a>
 - <a href="#filter">filter</a>
 - <a href="#number">number</a>
   - <a href="#number.randomInt">randomInt</a>
@@ -415,6 +420,35 @@ const {
   isChrome, // => boolean
   isFF, // => boolean
 } = require("@alrale/common-lib");
+```
+
+### <span id="each">each</span>
+
+```javascript
+const { each } = require("@alrale/common-lib");
+each(object | array, function(key, value) { ... })
+```
+
+###### <a id=has>has</a> 判断对象或数组是否包含 key
+
+```javascript
+const { has } = require("@alrale/common-lib");
+has({ a: 1 }, "a"); // => true
+has([1, 2], 0); // => true
+```
+
+###### <a id=keys>keys</a> 获取对象或数组 keys 列表
+
+```javascript
+const { keys } = require("@alrale/common-lib");
+keys({ a: 1, b: 2, d: "abd" }); // => ['a', 'b', 'd']
+```
+
+###### <a id=values>values</a> 获取对象或数组值
+
+```javascript
+const { values } = require("@alrale/common-lib");
+values({ a: 1, b: 2, d: "abd" }); // => [1, 2, 'abd']
 ```
 
 ### <span id="filter">filter</span>

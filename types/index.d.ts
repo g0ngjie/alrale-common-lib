@@ -25,4 +25,5 @@ export * as regular from './regular';
 export * as byte from './byte';
 export * as object from './object';
 export * as client from './client';
+export * from './each';
 export * as Complex from './complex';
