@@ -29,6 +29,8 @@ describe("json", () => {
         }
         const json = parseJsonDeep(JSON.stringify(mockData))
         expect(json.one.two.three.four.time).toBe('08:20')
+        const json2 = parseJsonDeep(mockData)
+        expect(json2.one.two.three.four.time).toBe('08:20')
     })
 
     it("parseJsonDeep array", () => {
@@ -43,6 +45,8 @@ describe("json", () => {
         ]
         const arr = parseJsonDeep(JSON.stringify(mockList))
         expect(arr[0][0][0][0]).toBe('08:20')
+        const arr2 = parseJsonDeep(mockList)
+        expect(arr2[0][0][0][0]).toBe('08:20')
     })
 
 })
