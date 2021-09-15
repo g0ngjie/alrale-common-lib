@@ -3,7 +3,6 @@ const {
   deepOClone,
   parseQuery,
   decodeUrlSearch,
-  typeIs,
   toSimplifiedChinese,
   dateDiff,
   week,
@@ -41,34 +40,6 @@ describe("url", () => {
     const search = "?areaName=%E5%8C%97%E4%BA%AC&xml=test=";
     const params = decodeUrlSearch(search);
     expect(params).toEqual({ areaName: "北京", xml: "test=" });
-  });
-});
-
-describe("查看类型", () => {
-  test("arr", () => {
-    const arr = typeIs([]);
-    const arr_2 = typeIs(new Array());
-    expect(arr).toBe("array");
-    expect(arr_2).toBe("array");
-  });
-
-  test("object", () => {
-    const obj = typeIs({ foo: null });
-    const obj_2 = typeIs(new Object());
-    expect(obj).toBe("object");
-    expect(obj_2).toBe("object");
-  });
-
-  test("string", () => {
-    const str = typeIs("string");
-    expect(str).toBe("string");
-  });
-
-  test("function", () => {
-    const func = typeIs(() => { });
-    const func_2 = typeIs(new Function());
-    expect(func).toBe("function");
-    expect(func_2).toBe("function");
   });
 });
 

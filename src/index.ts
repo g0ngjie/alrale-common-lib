@@ -43,16 +43,18 @@ export * as color from './color'
 
 export * as date from './date'
 
-export * as Enum from "./enum/index";
+export * as Enum from "./enum/index"
 
-export * as regular from './regular';
+export * as regular from './regular'
 
-export * as byte from './byte';
+export * as byte from './byte'
 
-export * as object from './object';
+export * as object from './object'
 
-export * as client from './client';
+export * as client from './client'
 
-export * from './each';
+export * from './each'
+
+export * from './json'
 // 综合
 export * as Complex from './complex'

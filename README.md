@@ -114,6 +114,20 @@ $ yarn add @alrale/common-lib
   - <a href="#week">week</a>
 - <a href="#to.simplified.chinese">to.simplified.chinese</a>
 - <a href="#type.is">type.is</a>
+  - <a href="#type.is">typeIs</a>
+  - <a href="#is...">isNumberExt</a>
+  - <a href="#is...">isBoolean</a>
+  - <a href="#is...">isSymbol</a>
+  - <a href="#is...">isUndefined</a>
+  - <a href="#is...">isNull</a>
+  - <a href="#is...">isFunction</a>
+  - <a href="#is...">isDate</a>
+  - <a href="#is...">isArray</a>
+  - <a href="#is...">isObject</a>
+  - <a href="#is...">isMap</a>
+  - <a href="#is...">isSet</a>
+  - <a href="#is...">isRegExp</a>
+  - <a href="#is...">isError</a>
 - <a href="#window">window</a>
   - <a href="#globalStore">globalStore</a>
   - <a href="#getGlobal">getGlobal</a>
@@ -1006,9 +1020,31 @@ expect(han).toBe("一万二千三百四十五");
 
 ```javascript
 const { typeIs } = require("@alrale/common-lib");
-// 'string'|'number'|'boolean'|'symbol'|'undefined'|'null'|'function'|'date'|'array'|'object'|'map'|'regexp'|'error'|'document'|'window'
+// 'string'|'number'|'boolean'|'symbol'|'undefined'|'null'|'function'|'date'|'array'|'object'|'map' |'set'|'regexp'|'error'|'document'|'window'
 const arr = typeIs([]); // => 'array'
 const arr_2 = typeIs(new Array()); // => array
+```
+
+###### <a id=is...>is...</a> 类型判断
+
+```javascript
+const {
+  isNumberExt,
+  isBoolean,
+  isSymbol,
+  isUndefined,
+  isNull,
+  isFunction,
+  isDate,
+  isArray,
+  isObject,
+  isMap,
+  isSet,
+  isRegExp,
+  isError,
+} = require("@alrale/common-lib");
+isBoolean(false); // => true
+...
 ```
 
 ### <span id="window">window</span>
