@@ -29,11 +29,11 @@ export function parseJsonDeep(target: any, cache?: any): any {
         }
         // 对象
         if (isObject(target)) {
-            if (!cache) cache = {}
+            const swap: any = {}
             each<object>(target, function (key, value) {
-                cache[key] = parseJsonDeep(value)
+                swap[key] = parseJsonDeep(value)
             })
-            return cache
+            return swap
         }
         // 数组
         if (isArray(target)) {
