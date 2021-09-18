@@ -37,8 +37,8 @@ export function parseJsonDeep(target: any): any {
         }
         // 数组
         if (isArray(target)) {
-            const cache: number[] = []
-            each<number[]>(target, (key, value) => {
+            const cache: any[] = []
+            each<any[]>(target, (key, value) => {
                 cache[<number>key] = parseJsonDeep(value)
             })
             return cache
