@@ -47,6 +47,7 @@ export function each<T extends any[] | any>(target: T, fn: IEachCallback): void 
                 const key = _keys[i];
                 fn(key, (<any>target)[key])
             }
+            break;
         default:
             break;
     }
