@@ -49,7 +49,7 @@ describe("json", () => {
         expect(typeof arr2[0][0]).toBe('object')
     })
 
-    it("parseJsonDeep object", () => {
+    it("parseJsonDeep complex", () => {
         const mockData = {
             one: JSON.stringify({
                 two: JSON.stringify({
