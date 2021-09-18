@@ -31,7 +31,7 @@ export function parseJsonDeep(target: any, cache?: any): any {
         if (isObject(target)) {
             if (!cache) cache = {}
             each<object>(target, function (key, value) {
-                cache[key] = parseJsonDeep(value, cache)
+                cache[key] = parseJsonDeep(value)
             })
             return cache
         }
