@@ -30,7 +30,7 @@ interface IEachCallback {
 }
 
 /**
- * 对象数组遍历
+ * 对象|数组遍历
  * @param target array | any
  * @param fn callback
  */
