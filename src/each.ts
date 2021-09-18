@@ -43,10 +43,7 @@ export function each<T extends any[] | any>(target: T, fn: IEachCallback): void 
             break;
         case 'object':
             const _keys = keys(<any>target)
-            for (let i = 0; i < _keys.length; i++) {
-                const key = _keys[i];
-                fn(key, (<any>target)[key])
-            }
+            for (const key of _keys) fn(key, (<any>target)[key])
             break;
         default:
             break;
