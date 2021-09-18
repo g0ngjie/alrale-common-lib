@@ -20,7 +20,7 @@ export function parseJSON(target: any): any {
 }
 
 /**反序列化[深度] */
-export function parseJsonDeep(target: any, cache?: any): any {
+export function parseJsonDeep(target: any): any {
     try {
         // 字符串类型
         if (isString(target)) {
@@ -29,17 +29,17 @@ export function parseJsonDeep(target: any, cache?: any): any {
         }
         // 对象
         if (isObject(target)) {
-            const swap: any = {}
-            each<object>(target, function (key, value) {
-                swap[key] = parseJsonDeep(value)
+            const cache: any = {}
+            each<object>(target, (key, value) => {
+                cache[key] = parseJsonDeep(value)
             })
-            return swap
+            return cache
         }
         // 数组
         if (isArray(target)) {
-            if (!cache) cache = []
-            each<any[]>(target, function (key, value) {
-                cache[key] = parseJsonDeep(value, cache[key])
+            const cache: number[] = []
+            each<number[]>(target, (key, value) => {
+                cache[<number>key] = parseJsonDeep(value)
             })
             return cache
         }
