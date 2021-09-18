@@ -77,5 +77,47 @@ describe("json", () => {
         expect(json2.two.two.three.four.year).toBe(2021)
     })
 
+    it("parseJsonDeep complex2", () => {
+        const mockData = [{
+            one: JSON.stringify({
+                two: JSON.stringify({
+                    three: JSON.stringify({
+                        four: JSON.stringify({
+                            time: '08:20'
+                        })
+                    })
+                })
+            }),
+            two: JSON.stringify({
+                two: {
+                    three: {
+                        four: JSON.stringify({
+                            year: '2021'
+                        })
+                    }
+                }
+            })
+        }, [
+            JSON.stringify([
+                JSON.stringify({
+                    aaa: { bbb: JSON.stringify(['hello']) }
+                })
+            ]),
+            {
+                ccc: '123',
+                ddd: JSON.stringify([1, 2, 3])
+            }
+        ]]
+        const json = parseJsonDeep(JSON.stringify(mockData))
+        expect(json[0].one.two.three.four.time).toBe('08:20')
+        const json2 = parseJsonDeep(mockData)
+        // JSON.parse("2021") => 2021
+        expect(json2[0].two.two.three.four.year).toBe(2021)
+        const json3 = parseJsonDeep(mockData)
+        expect(json3[1][0][0].aaa.bbb[0]).toBe('hello')
+        expect(json3[1][1].ccc).toBe(123)
+        expect(json3[1][1].ddd[0]).toBe(1)
+    })
+
 })
 
