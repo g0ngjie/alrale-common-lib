@@ -30,7 +30,7 @@ describe("json", () => {
         const json = parseJsonDeep(JSON.stringify(mockData))
         expect(json.one.two.three.four.time).toBe('08:20')
         const json2 = parseJsonDeep(mockData)
-        expect(json2.one.two.three.four.time).toBe('08:20')
+        expect(typeof json2.one.two).toBe('object')
     })
 
     it("parseJsonDeep array", () => {
@@ -46,7 +46,35 @@ describe("json", () => {
         const arr = parseJsonDeep(JSON.stringify(mockList))
         expect(arr[0][0][0][0]).toBe('08:20')
         const arr2 = parseJsonDeep(mockList)
-        expect(arr2[0][0][0][0]).toBe('08:20')
+        expect(typeof arr2[0][0]).toBe('object')
+    })
+
+    it("parseJsonDeep object", () => {
+        const mockData = {
+            one: JSON.stringify({
+                two: JSON.stringify({
+                    three: JSON.stringify({
+                        four: JSON.stringify({
+                            time: '08:20'
+                        })
+                    })
+                })
+            }),
+            two: JSON.stringify({
+                two: {
+                    three: {
+                        four: JSON.stringify({
+                            year: '2021'
+                        })
+                    }
+                }
+            })
+        }
+        const json = parseJsonDeep(JSON.stringify(mockData))
+        expect(json.one.two.three.four.time).toBe('08:20')
+        const json2 = parseJsonDeep(mockData)
+        // JSON.parse("2021") => 2021
+        expect(json2.two.two.three.four.year).toBe(2021)
     })
 
 })
