@@ -11,7 +11,7 @@ export declare function has(object: object | any[], key: string): boolean;
  */
 export declare function keys<T extends object | any[]>(target: T): string[];
 interface IEachCallback {
-    (key: string | number, value: any): void;
+    (key: string | number, value: any, done: Function): void;
 }
 /**
  * 对象|数组遍历

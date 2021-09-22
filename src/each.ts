@@ -26,7 +26,7 @@ export function keys<T extends object | any[]>(target: T): string[] {
 }
 
 interface IEachCallback {
-    (key: string | number, value: any): void
+    (key: string | number, value: any, done: Function): void
 }
 
 /**
@@ -37,16 +37,21 @@ interface IEachCallback {
 export function each<T extends any[] | any>(target: T, fn: IEachCallback): void {
     const type = typeIs(target)
 
-    switch (type) {
-        case 'array':
-            for (let i = 0; i < (<any[]>target).length; i++) fn(i, (<any[]>target)[i])
-            break;
-        case 'object':
-            const _keys = keys(<any>target)
-            for (const key of _keys) fn(key, (<any>target)[key])
-            break;
-        default:
-            break;
+    const BreakException: any = {};
+    try {
+        switch (type) {
+            case 'array':
+                for (let i = 0; i < (<any[]>target).length; i++) {
+                    fn(i, (<any[]>target)[i], () => { throw BreakException })
+                }
+                break;
+            case 'object':
+                const _keys = keys(<any>target)
+                for (const key of _keys) fn(key, (<any>target)[key], () => { throw BreakException })
+                break;
+        }
+    } catch (error) {
+        if (error !== BreakException) throw error
     }
 }
 

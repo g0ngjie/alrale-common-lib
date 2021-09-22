@@ -9,6 +9,14 @@ describe("each", () => {
             keys.push(k)
         })
         expect(keys).toEqual(['a', 'b', 'c', 'd'])
+
+        const doneMap = { a: 1, b: 2, c: 3 }
+        const doneKeys = []
+        each(doneMap, (k, v, done) => {
+            if (k === 'b') done()
+            doneKeys.push(v)
+        })
+        expect(doneKeys).toEqual([1])
     })
 
     it('array', () => {
@@ -19,6 +27,14 @@ describe("each", () => {
             keys.push(k)
         })
         expect(keys).toEqual([0, 1, 2])
+
+        const doneArr = [1, 2, 3, 4]
+        const doneKeys = []
+        each(doneArr, function (k, v, done) {
+            if (v === 3) done()
+            doneKeys.push(v)
+        })
+        expect(doneKeys).toEqual([1, 2])
     })
 
     it("keys", () => {
