@@ -443,7 +443,7 @@ const {
 
 ```javascript
 const { each } = require("@alrale/common-lib");
-each(object | array, function(key, value) { ... })
+each(object | array, function(key, value, done) { ... })
 ```
 
 ###### <a id=has>has</a> 判断对象或数组是否包含 key
