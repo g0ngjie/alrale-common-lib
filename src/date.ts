@@ -102,6 +102,6 @@ export function formatDate(date: Date, fmt: IFormatDate): string {
     if (/(y+)/.test(fmt))
         target = target.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
     for (let k in o)
-        if (new RegExp("(" + k + ")").test(target)) target = target.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        if (new RegExp("(" + k + ")").test(target)) target = target.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return target;
 }
