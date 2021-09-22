@@ -19,7 +19,14 @@ type TLabel = { label: string, formatter: (value: string) => any }
  * const getList1 = targetConversionIntoList(obj1, {
  *   name: '姓名',
  *   age: '年龄'
- * }); // => [{ label: '姓名', value: 'zhangsan' }, { label: '年龄', age: 18 }]
+ * }); // => [{ label: '姓名', value: 'zhangsan' }, { label: '年龄', value: 18 }]
+ * ```
+ * @example
+ * ```
+ * const obj2 = { name: 'lisi' }
+ * const getList2 = targetConversionIntoList(obj2, {
+ *   name: '姓名',
+ * }, { label: 'field', value: 'name' }); // => [{ field: '姓名', name: 'lisi' }]
  * ```
  */
 export function targetConversionIntoList(target: TTargetConversionFormattedTarget, formattedObject: { [propName: string]: string | TLabel }, options?: {
